@@ -79,27 +79,50 @@ class access:
                         'email': bool(result['email'])}
 
     def session_create(self, user, session):
+        if not isinstance(session, dict):
+            sess = session.__dict__
+        else:
+            sess = session
+
         with self.connection() as db:
             with closing(db.cursor()) as cur:
-                cur.callproc("session_create", (user.id, session.key, session.secret, convert_time(time.localtime())))
+                cur.callproc("session_create", (user.id, sess['key'], sess['secret'], convert_time(time.localtime())))
                 db.commit()
 
     def session_update(self, session):
+        if not isinstance(session, dict):
+            sess = session.__dict__
+        else:
+            sess = session
+
         with self.connection() as db:
             with closing(db.cursor()) as cur:
-                cur.callproc("session_update", (session.key, session.secret, convert_time(time.localtime())))
+                cur.callproc("session_update", (sess['key'], sess['secret'], convert_time(time.localtime())))
                 db.commit()
 
     def session_get_user(self, session):
+        if not isinstance(session, dict):
+            sess = session.__dict__
+        else:
+            sess = session
+
         with self.connection() as db:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
-                cur.callproc("session_get_user", (session.key, session.secret))
+                cur.callproc("session_get_user", (sess['key'], sess['secret']))
                 result = cur.fetchone()
-                return user(result['username'], result['email'], result['phone_number'], result['id'])
+                if result is None:
+                    return None
+                return user(result['username'], result['email'], result['phone_number'], result['id'], result['active'],
+                            result['activated'])
 
 
     def session_logout(self, session):
+        if not isinstance(session, dict):
+            sess = session.__dict__
+        else:
+            sess = session
+
         with self.connection() as db:
             with closing(db.cursor()) as cur:
-                cur.callproc("session_logout", (session.key, session.secret))
+                cur.callproc("session_logout", (sess['key'], sess['secret']))
                 db.commit()

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 24, 2015 at 08:27 PM
+-- Generation Time: Jan 25, 2015 at 08:05 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -26,8 +26,8 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `session_get_user`(IN `k` CHAR(36), IN `sec` CHAR(36))
     NO SQL
 BEGIN
-SELECT u.* FROM users u
-	INNER JOIN user_sessions us ON u.id = us.user_id
+SELECT u.* FROM users u 
+	INNER JOIN user_sessions us ON u.id = us.user_id 
     WHERE us.skey = k AND us.secret = sec AND u.active = TRUE;
 END$$
 
@@ -86,7 +86,7 @@ CREATE TABLE `users` (
   `created` datetime NOT NULL,
   `activated` tinyint(1) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,7 @@ ALTER TABLE `user_sessions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=104;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=106;
 --
 -- Constraints for dumped tables
 --

@@ -1,37 +1,66 @@
-from flask import Flask
-from flask import request
-from flask import Response
-from flask import g
+from flask import Flask, request, Response, g, abort, current_app
+from flask.ext.principal import Principal, Permission, RoleNeed, Identity, identity_loaded, IdentityContext, \
+    identity_changed
 import json
 from timetuck.database import access
 from timetuck.model import user
 from timetuck.model import session
 from timetuck.helpers import respond
+from service_info import get_session_data
 
 app = Flask(__name__)
 app.config.from_object('config')
 
+principals = Principal(app)
+activated_user = Permission(RoleNeed('Activated'))
+
+def activate_db():
+    if not hasattr(g, 'db_main'):
+        g.db_main = access(app.config['DB_CONNECTION'])
+
 @app.before_request
 def before_request():
-    g.db_main = access(app.config['DB_CONNECTION'])
+    activate_db()
+
+@principals.identity_loader
+def identity_loader():
+    sess = get_session_data(request.get_json())
+    if sess is None:
+        return None
+
+    return Identity(sess.__dict__)
+
+@identity_loaded.connect_via(app)
+def on_identity_loaded(sender, identity):
+    activate_db()
+    identity.user = g.db_main.session_get_user(identity.id)
+
+    if identity.user is None:
+        return
+    if identity.user.activated is True:
+        identity.provides.add(RoleNeed("Activated"))
+
+    IdentityContext.identity = identity
 
 
-@app.route('/create_user', methods=['post'])
-def create_user():
+@app.route('/register', methods=['post'])
+def register():
     data = request.get_json()
 
     if data is None:
-        return Response(status=400)
+        abort(400)
 
     try:
         new_user = user(data['username'], data['email'], data['phone_number'])
         new_user.set_password(data['password'])
     except KeyError:
-        return Response(status=400)
+        abort(400)
 
-    # Check username is not an email
-    # Check email is valid
-    # Check phone number is valid
+    errors = new_user.validate()
+
+    if errors != {}:
+        return Response(response=json.dumps(respond(2, errors=errors, indent=4)),
+                        status=200, mimetype='application/json')
 
     if g.db_main.user_create(new_user) is True:
         sess = session.create()
@@ -49,46 +78,43 @@ def login():
     data = request.get_json()
 
     if data is None:
-        return Response(status=400)
+        abort(400)
 
     try:
         login = {'username': data['username'], 'passwd': data['password']}
     except KeyError:
-        return Response(status=400)
+        abort(400)
 
     u = g.db_main.user_login(login['username'])
 
-    if u is None:
-        return Response(response=json.dumps(respond(1), indent=4),
-                        status=200, mimetype='application/json')
-
-    if not u.check_password(login['passwd'], u.password):
+    if u is None or not u.check_password(login['passwd'], u.password):
         return Response(response=json.dumps(respond(1), indent=4),
                         status=200, mimetype='application/json')
 
     sess = session.create()
     g.db_main.session_create(u, sess)
-
+    
     return Response(response=json.dumps(respond(0, user=u.getdict(), session=sess.__dict__), indent=4),
                     status=200, mimetype='application/json')
 
-
 @app.route('/logout', methods=['post'])
 def logout():
-    data = request.get_json()
-
-    if data is None:
-        return Response(status=400)
-
-    try:
-        sess = session(data['key'], data['secret'])
-    except KeyError:
-        return Response(status=400)
+    sess = get_session_data(request.get_json())
+    if sess is None:
+        abort(400)
 
     g.db_main.session_logout(sess)
-
     return Response(response=json.dumps(respond(0), indent=4), status=200, mimetype='application/json')
 
+@app.route('/check_user', methods=['post'])
+@activated_user.require(http_exception=404)
+def check_user():
+    sess = session(**IdentityContext.identity.id)
+    user = IdentityContext.identity.user
+    sess.update()
+    g.db_main.session_update(sess)
+    return Response(response=json.dumps(respond(0, user=user.getdict(), session=sess.__dict__), indent=4),
+                    status=200, mimetype='application/json')
 
 
 if __name__ == '__main__':
