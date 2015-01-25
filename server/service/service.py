@@ -1,12 +1,11 @@
-from flask import Flask, request, Response, g, abort, current_app
-from flask.ext.principal import Principal, Permission, RoleNeed, Identity, identity_loaded, IdentityContext, \
-    identity_changed
-import json
+from flask import Flask, request, Response, g, abort
+from flask.ext.principal import Principal, Permission, RoleNeed, Identity, identity_loaded, IdentityContext
 from timetuck.database import access
 from timetuck.model import user
 from timetuck.model import session
 from timetuck.helpers import respond
 from service_info import get_session_data
+import json
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -17,6 +16,12 @@ activated_user = Permission(RoleNeed('Activated'))
 def activate_db():
     if not hasattr(g, 'db_main'):
         g.db_main = access(app.config['DB_CONNECTION'])
+
+def require_login(funct):
+    if IdentityContext.identity is None:
+        abort(404)
+    else:
+        return funct
 
 @app.before_request
 def before_request():
@@ -66,11 +71,11 @@ def register():
         sess = session.create()
         g.db_main.session_create(new_user, sess)
 
-        return Response(response=json.dumps(respond(1, user=new_user.getdict(), session=sess.__dict__), indent=4),
+        return Response(response=json.dumps(respond(0, user=new_user.getdict(), session=sess.__dict__), indent=4),
                         status=200, mimetype='application/json')
     else:
         result = g.db_main.check_username_phone_exits(new_user)
-        return Response(response=json.dumps(respond(0, errors=result), indent=4),
+        return Response(response=json.dumps(respond(1, errors=result), indent=4),
                         status=200, mimetype='application/json')
 
 @app.route('/login', methods=['post'])
@@ -98,6 +103,7 @@ def login():
                     status=200, mimetype='application/json')
 
 @app.route('/logout', methods=['post'])
+@require_login
 def logout():
     sess = get_session_data(request.get_json())
     if sess is None:
