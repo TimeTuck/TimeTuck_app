@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E0ACBC71A75A5C600BE6C6B /* TTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */; };
 		9EC0D01B1A758B2E0013ED31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D01A1A758B2E0013ED31 /* AppDelegate.swift */; };
 		9EC0D01E1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D01C1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld */; };
 		9EC0D0201A758B2E0013ED31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D01F1A758B2E0013ED31 /* ViewController.swift */; };
@@ -19,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9EC0D02E1A758B2E0013ED31 /* PBXContainerItemProxy */ = {
+		9E0ACBC81A75B45F00BE6C6B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9EC0D00D1A758B2E0013ED31 /* Project object */;
 			proxyType = 1;
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTUser.swift; sourceTree = "<group>"; };
 		9EC0D0151A758B2E0013ED31 /* TimeTuck_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTuck_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EC0D0191A758B2E0013ED31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9EC0D01A1A758B2E0013ED31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E0ACBC51A75A5B400BE6C6B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		9EC0D00C1A758B2E0013ED31 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +93,7 @@
 		9EC0D0171A758B2E0013ED31 /* TimeTuck_app */ = {
 			isa = PBXGroup;
 			children = (
+				9E0ACBC51A75A5B400BE6C6B /* Model */,
 				9EC0D03D1A758BA90013ED31 /* DataAccess */,
 				9EC0D01A1A758B2E0013ED31 /* AppDelegate.swift */,
 				9EC0D01F1A758B2E0013ED31 /* ViewController.swift */,
@@ -160,7 +171,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9EC0D02F1A758B2E0013ED31 /* PBXTargetDependency */,
+				9E0ACBC91A75B45F00BE6C6B /* PBXTargetDependency */,
 			);
 			name = TimeTuck_appTests;
 			productName = TimeTuck_appTests;
@@ -233,6 +244,7 @@
 				9EC0D0201A758B2E0013ED31 /* ViewController.swift in Sources */,
 				9EC0D0411A758BE10013ED31 /* TTDataAccess.swift in Sources */,
 				9EC0D01B1A758B2E0013ED31 /* AppDelegate.swift in Sources */,
+				9E0ACBC71A75A5C600BE6C6B /* TTUser.swift in Sources */,
 				9EC0D01E1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,10 +260,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9EC0D02F1A758B2E0013ED31 /* PBXTargetDependency */ = {
+		9E0ACBC91A75B45F00BE6C6B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9EC0D0141A758B2E0013ED31 /* TimeTuck_app */;
-			targetProxy = 9EC0D02E1A758B2E0013ED31 /* PBXContainerItemProxy */;
+			targetProxy = 9E0ACBC81A75B45F00BE6C6B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -425,6 +437,7 @@
 				9EC0D0391A758B2E0013ED31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9EC0D03A1A758B2E0013ED31 /* Build configuration list for PBXNativeTarget "TimeTuck_appTests" */ = {
 			isa = XCConfigurationList;
@@ -433,6 +446,7 @@
 				9EC0D03C1A758B2E0013ED31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

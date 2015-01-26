@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.3">
+   <BuildAction>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForRunning = "YES"
+            buildForTesting = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9EC0D02C1A758B2E0013ED31"
+               BuildableName = "TimeTuck_appTests.xctest"
+               BlueprintName = "TimeTuck_appTests"
+               ReferencedContainer = "container:TimeTuck_app.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug">
+      <Testables>
+         <TestableReference>
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9EC0D02C1A758B2E0013ED31"
+               BuildableName = "TimeTuck_appTests.xctest"
+               BlueprintName = "TimeTuck_appTests"
+               ReferencedContainer = "container:TimeTuck_app.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      useCustomWorkingDirectory = "NO">
+   </LaunchAction>
+</Scheme>

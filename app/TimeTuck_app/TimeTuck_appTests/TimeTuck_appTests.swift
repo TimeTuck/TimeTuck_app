@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import Foundation
 import XCTest
+import TimeTuck_app
 
 class TimeTuck_appTests: XCTestCase {
     
@@ -21,16 +23,8 @@ class TimeTuck_appTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testLogin() {
+        var access = TTDataAccess();
+        XCTAssertNotNil(access.loginUser("admgrn12", password: "123456"), "Login not working");
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
