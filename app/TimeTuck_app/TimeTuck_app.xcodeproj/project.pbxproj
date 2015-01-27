@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9E0ACBC71A75A5C600BE6C6B /* TTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */; };
+		9EB75DA41A7725E800CB6233 /* TTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB75DA31A7725E800CB6233 /* TTSession.swift */; };
 		9EC0D01B1A758B2E0013ED31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D01A1A758B2E0013ED31 /* AppDelegate.swift */; };
 		9EC0D01E1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D01C1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld */; };
 		9EC0D0201A758B2E0013ED31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D01F1A758B2E0013ED31 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTUser.swift; sourceTree = "<group>"; };
+		9EB75DA31A7725E800CB6233 /* TTSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTSession.swift; sourceTree = "<group>"; };
 		9EC0D0151A758B2E0013ED31 /* TimeTuck_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTuck_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EC0D0191A758B2E0013ED31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9EC0D01A1A758B2E0013ED31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */,
+				9EB75DA31A7725E800CB6233 /* TTSession.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EB75DA41A7725E800CB6233 /* TTSession.swift in Sources */,
 				9EC0D0201A758B2E0013ED31 /* ViewController.swift in Sources */,
 				9EC0D0411A758BE10013ED31 /* TTDataAccess.swift in Sources */,
 				9EC0D01B1A758B2E0013ED31 /* AppDelegate.swift in Sources */,

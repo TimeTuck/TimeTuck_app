@@ -24,7 +24,14 @@ class TimeTuck_appTests: XCTestCase {
     }
     
     func testLogin() {
+        var shouldLoop = true;
         var access = TTDataAccess();
-        XCTAssertNotNil(access.loginUser("admgrn12", password: "123456"), "Login not working");
+        access.loginUser("admgrn12", password: "123456", completed:{ user, session in
+            XCTAssertNotNil(user, "User login Failed");
+            XCTAssertNotNil(session, "Session login Failed");
+            shouldLoop = false;
+        });
+        
+        while(shouldLoop) {}
     }
 }

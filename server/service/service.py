@@ -5,6 +5,7 @@ from timetuck.model import user
 from timetuck.model import session
 from timetuck.helpers import respond
 from service_info import get_session_data
+from functools import wraps
 import json
 
 app = Flask(__name__)
@@ -17,11 +18,13 @@ def activate_db():
     if not hasattr(g, 'db_main'):
         g.db_main = access(app.config['DB_CONNECTION'])
 
-def require_login(funct):
-    if IdentityContext.identity is None:
-        abort(404)
-    else:
-        return funct
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not hasattr(g.identity, 'user') or g.identity.user is None:
+            abort(401)
+        return f(*args, **kwargs)
+    return decorated_function
 
 @app.before_request
 def before_request():
@@ -42,11 +45,11 @@ def on_identity_loaded(sender, identity):
 
     if identity.user is None:
         return
+
     if identity.user.activated is True:
         identity.provides.add(RoleNeed("Activated"))
 
-    IdentityContext.identity = identity
-
+    g.identity = identity
 
 @app.route('/register', methods=['post'])
 def register():
@@ -103,7 +106,7 @@ def login():
                     status=200, mimetype='application/json')
 
 @app.route('/logout', methods=['post'])
-@require_login
+@login_required
 def logout():
     sess = get_session_data(request.get_json())
     if sess is None:
@@ -113,10 +116,10 @@ def logout():
     return Response(response=json.dumps(respond(0), indent=4), status=200, mimetype='application/json')
 
 @app.route('/check_user', methods=['post'])
-@activated_user.require(http_exception=404)
+@activated_user.require(http_exception=403)
 def check_user():
-    sess = session(**IdentityContext.identity.id)
-    user = IdentityContext.identity.user
+    sess = session(**g.identity.id)
+    user = g.identity.user
     sess.update()
     g.db_main.session_update(sess)
     return Response(response=json.dumps(respond(0, user=user.getdict(), session=sess.__dict__), indent=4),
