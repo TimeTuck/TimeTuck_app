@@ -22,36 +22,72 @@ public class TTDataAccess {
     public func loginUser(username: String, password : String, completed:(user: TTUser?, session: TTSession?) -> Void) -> Void {
         let login = ["username": username, "password": password];
         makeHTTPRequest("/login", bodyData: login, requestMethod: "POST", completionHandler:{ response, data, error in
-            if ((response as NSHTTPURLResponse).statusCode == 200) {
+            if (response != nil) {
                 let values = self.JSONParseDictionary(data);
                 if ((values["status"] as Int) == 0) {
                     let user = TTUser(values["user"] as [String: AnyObject]);
                     let session = TTSession(values["session"] as [String: String]);
                     completed(user: user, session: session);
+                } else {
+                    completed(user: nil, session: nil);
                 }
-                completed(user: nil, session: nil);
             }
         });
     }
     
-    /* public func registerUser(username: String, password: String, phoneNumber: String, email: String, success:
-        (user: TTUser?, session: TTSession?) -> Void, failure: (username: Bool, email: Bool, phoneNumber: Bool) -> Void) -> Void {
-            let register = ["username": username, "password": password, "phone_number": phoneNumber, "email": email];
-            makeHTTPRequest("/register", bodyData: register, requestMethod: "POST", completionHandler:{ response, data, error in
-                if ((response as NSHTTPURLResponse).statusCode == 200) {
-                    let values = self.JSONParseDictionary(data);
-                    if ((values["status"] as Int) == 0) {
-                        let user = TTUser(values["user"] as [String: AnyObject]);
-                        let session = TTSession(values["session"] as [String: String]);
-                        completed(user: user, session: session);
-                    }
-                    completed(user: nil, session: nil);
+    public func registerUser(username: String, password: String, phoneNumber: String, email: String,
+                             success: (user: TTUser?, session: TTSession?) -> Void,
+                             failureDuplicateInfo: (username: Bool, email: Bool, phoneNumber: Bool) -> Void,
+                             failureIncorrectInfo: (username: String?, email: String?, phoneNumber: String?) -> Void) -> Void {
+        let register = ["username": username, "password": password, "phone_number": phoneNumber, "email": email];
+        makeHTTPRequest("/register", bodyData: register, requestMethod: "POST", completionHandler:{ response, data, error in
+            if (response != nil) {
+                let values = self.JSONParseDictionary(data);
+                if ((values["status"] as Int) == 0) {
+                    let user = TTUser(values["user"] as [String: AnyObject]);
+                    let session = TTSession(values["session"] as [String: String]);
+                    success(user: user, session: session);
+                } else if ((values["status"] as Int) == 1) {
+                    let error = values["errors"] as [String: Bool];
+                    failureDuplicateInfo(username: error["username"]!, email: error["email"]!, phoneNumber: error["phonenumber"]!);
+                } else {
+                    let error = values["errors"] as [String: String];
+                    failureIncorrectInfo(username: error["username"], email: error["email"], phoneNumber: error["phone_number"]);
                 }
-            });
-        
-    } */
+            }
+        });
+    }
+
+    public func checkUser(session: TTSession, completed: (user: TTUser?, session: TTSession?) -> Void) {
+        makeHTTPRequest("/check_user", bodyData: session.toDictionary() , requestMethod: "POST", completionHandler: {
+            response, data, error in
+            if (response != nil) {
+                let values = self.JSONParseDictionary(data);
+                let user = TTUser(values["user"] as [String: AnyObject]);
+                let session = TTSession(values["session"] as [String: String])
+                completed(user: user, session: session);
+            } else {
+                completed(user: nil, session: nil);
+            }
+        });
+    }
+
+    public func logoutUser(session: TTSession, completed: (successful: Bool) -> Void) -> Void {
+        makeHTTPRequest("/logout", bodyData: session.toDictionary() , requestMethod: "POST", completionHandler: {
+            response, data, error in
+            if (response != nil) {
+                let values = self.JSONParseDictionary(data);
+                if ((values["status"] as Int) == 0) {
+                    completed(successful: true);
+                    return;
+                }
+            }
+            completed(successful: false);
+        });
+    }
     
-    func makeHTTPRequest(url: String, bodyData data: [String: AnyObject], requestMethod method : String, completionHandler complete: (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void) {
+    func makeHTTPRequest(url: String, bodyData data: [String: AnyObject], requestMethod method : String,
+                         completionHandler complete: (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void) {
         let url = NSURL(string: getPath(url));
         let request = NSMutableURLRequest(URL: url!);
         let queue = NSOperationQueue();
