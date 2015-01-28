@@ -125,6 +125,5 @@ def check_user():
     return Response(response=json.dumps(respond(0, user=user.getdict(), session=sess.__dict__), indent=4),
                     status=200, mimetype='application/json')
 
-
 if __name__ == '__main__':
     app.run()

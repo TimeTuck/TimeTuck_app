@@ -59,6 +59,6 @@
         </view>
     </objects>
     <resources>
-        <image name="splash.png" width="712" height="403"/>
+        <image name="splash.png" width="687" height="397"/>
     </resources>
 </document>
