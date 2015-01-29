@@ -13,8 +13,8 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="aIn-Kf-nVb">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="192" id="gIW-9W-De6"/>
-                        <constraint firstAttribute="height" constant="110" id="mno-CK-mtj"/>
+                        <constraint firstAttribute="width" constant="172" id="gIW-9W-De6"/>
+                        <constraint firstAttribute="height" constant="95" id="mno-CK-mtj"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">

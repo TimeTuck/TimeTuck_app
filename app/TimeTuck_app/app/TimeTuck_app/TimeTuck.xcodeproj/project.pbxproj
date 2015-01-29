@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9E0ACBC71A75A5C600BE6C6B /* TTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */; };
-		9E0B3AD31A79B8B8007651A8 /* icon60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E0B3AD21A79B8B8007651A8 /* icon60@3x.png */; };
-		9E0B3AD51A79B98A007651A8 /* logo60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E0B3AD41A79B98A007651A8 /* logo60@2x.png */; };
 		9E7AEA001A79815300C8BEA9 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E7AE9FF1A79815300C8BEA9 /* splash.png */; };
 		9E7EB8281A78701100442DDF /* Campton-BoldDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EB8261A78701100442DDF /* Campton-BoldDEMO.otf */; };
 		9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EB8271A78701100442DDF /* Campton-LightDEMO.otf */; };
@@ -37,8 +35,6 @@
 
 /* Begin PBXFileReference section */
 		9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTUser.swift; sourceTree = "<group>"; };
-		9E0B3AD21A79B8B8007651A8 /* icon60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon60@3x.png"; sourceTree = "<group>"; };
-		9E0B3AD41A79B98A007651A8 /* logo60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo60@2x.png"; sourceTree = "<group>"; };
 		9E7AE9FF1A79815300C8BEA9 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		9E7EB8261A78701100442DDF /* Campton-BoldDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Campton-BoldDEMO.otf"; sourceTree = "<group>"; };
 		9E7EB8271A78701100442DDF /* Campton-LightDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Campton-LightDEMO.otf"; sourceTree = "<group>"; };
@@ -106,7 +102,6 @@
 		9E941E931A7876F8001B072A /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				9E7AE9FF1A79815300C8BEA9 /* splash.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -132,6 +127,7 @@
 		9EC0D0171A758B2E0013ED31 /* TimeTuck_app */ = {
 			isa = PBXGroup;
 			children = (
+				9E7AE9FF1A79815300C8BEA9 /* splash.png */,
 				9E7EB8241A786FF900442DDF /* Resources */,
 				9E0ACBC51A75A5B400BE6C6B /* Model */,
 				9EC0D03D1A758BA90013ED31 /* DataAccess */,
@@ -150,8 +146,6 @@
 		9EC0D0181A758B2E0013ED31 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9E0B3AD41A79B98A007651A8 /* logo60@2x.png */,
-				9E0B3AD21A79B8B8007651A8 /* icon60@3x.png */,
 				9EC0D0191A758B2E0013ED31 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -231,6 +225,7 @@
 				TargetAttributes = {
 					9EC0D0141A758B2E0013ED31 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = DMWW27CVZW;
 					};
 					9EC0D02C1A758B2E0013ED31 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -238,7 +233,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9EC0D0101A758B2E0013ED31 /* Build configuration list for PBXProject "TimeTuck_app" */;
+			buildConfigurationList = 9EC0D0101A758B2E0013ED31 /* Build configuration list for PBXProject "TimeTuck" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -264,13 +259,11 @@
 			files = (
 				9E7EB8281A78701100442DDF /* Campton-BoldDEMO.otf in Resources */,
 				9E7AEA001A79815300C8BEA9 /* splash.png in Resources */,
-				9E0B3AD31A79B8B8007651A8 /* icon60@3x.png in Resources */,
 				9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */,
 				9EC0D0231A758B2E0013ED31 /* Main.storyboard in Resources */,
 				9EC0D0451A758C810013ED31 /* settings.plist in Resources */,
 				9EC0D0281A758B2E0013ED31 /* LaunchScreen.xib in Resources */,
 				9EC0D0251A758B2E0013ED31 /* Images.xcassets in Resources */,
-				9E0B3AD51A79B98A007651A8 /* logo60@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,10 +409,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TimeTuck_app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -427,10 +423,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TimeTuck_app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -471,7 +470,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9EC0D0101A758B2E0013ED31 /* Build configuration list for PBXProject "TimeTuck_app" */ = {
+		9EC0D0101A758B2E0013ED31 /* Build configuration list for PBXProject "TimeTuck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9EC0D0351A758B2E0013ED31 /* Debug */,
