@@ -16,7 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.        
+        // Override point for customization after application launch. 
+        var appManager = TTAppManager();
+        let mainViewController = MainViewController(appManager);
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds);
+        window!.rootViewController = mainViewController;
+        window!.makeKeyAndVisible();
+        
+        if (!appManager.isUserLoggedIn()) {
+            let log = LoginSignUpViewController(appManager);
+            mainViewController.presentViewController(log, animated: false, completion: nil);
+        }
+        
         return true
     }
 

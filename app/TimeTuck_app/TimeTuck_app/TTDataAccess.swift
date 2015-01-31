@@ -22,7 +22,7 @@ public class TTDataAccess {
     public func loginUser(username: String, password : String, completed:(user: TTUser?, session: TTSession?) -> Void) -> Void {
         let login = ["username": username, "password": password];
         makeHTTPRequest("/login", bodyData: login, requestMethod: "POST", completionHandler:{ response, data, error in
-            if (response != nil) {
+            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
                 if ((values["status"] as Int) == 0) {
                     let user = TTUser(values["user"] as [String: AnyObject]);
@@ -41,7 +41,7 @@ public class TTDataAccess {
                              failureIncorrectInfo: (username: String?, email: String?, phoneNumber: String?) -> Void) -> Void {
         let register = ["username": username, "password": password, "phone_number": phoneNumber, "email": email];
         makeHTTPRequest("/register", bodyData: register, requestMethod: "POST", completionHandler:{ response, data, error in
-            if (response != nil) {
+            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
                 if ((values["status"] as Int) == 0) {
                     let user = TTUser(values["user"] as [String: AnyObject]);
@@ -61,7 +61,7 @@ public class TTDataAccess {
     public func checkUser(session: TTSession, completed: (user: TTUser?, session: TTSession?) -> Void) {
         makeHTTPRequest("/check_user", bodyData: session.toDictionary() , requestMethod: "POST", completionHandler: {
             response, data, error in
-            if (response != nil) {
+            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
                 let user = TTUser(values["user"] as [String: AnyObject]);
                 let session = TTSession(values["session"] as [String: String])
@@ -75,7 +75,7 @@ public class TTDataAccess {
     public func logoutUser(session: TTSession, completed: (successful: Bool) -> Void) -> Void {
         makeHTTPRequest("/logout", bodyData: session.toDictionary() , requestMethod: "POST", completionHandler: {
             response, data, error in
-            if (response != nil) {
+            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
                 if ((values["status"] as Int) == 0) {
                     completed(successful: true);

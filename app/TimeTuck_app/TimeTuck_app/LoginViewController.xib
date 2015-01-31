@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Campton-LightDEMO.otf">
+            <string>Campton-LightDEMO</string>
+            <string>Campton-LightDEMO</string>
+            <string>Campton-LightDEMO</string>
+            <string>Campton-LightDEMO</string>
+            <string>Campton-LightDEMO</string>
+            <string>Campton-LightDEMO</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="TimeTuck_app" customModuleProvider="target">
+            <connections>
+                <outlet property="errorMessage" destination="8jg-LS-Sc1" id="aPO-VL-0c2"/>
+                <outlet property="password" destination="Wrw-iz-MWc" id="U1p-qw-ppq"/>
+                <outlet property="username" destination="JI3-jm-Wce" id="I3M-cf-epQ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wrw-iz-MWc" customClass="LoginTextFields" customModule="TimeTuck_app" customModuleProvider="target">
+                    <rect key="frame" x="10" y="203" width="580" height="55"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="7j9-da-D3k"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqE-uF-SOT">
+                    <rect key="frame" x="272" y="70" width="55.5" height="29"/>
+                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="24"/>
+                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNP-co-CUc">
+                    <rect key="frame" x="10" y="268" width="370" height="55"/>
+                    <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="Rhd-gk-EqZ"/>
+                        <constraint firstAttribute="width" constant="200" id="av5-DZ-Hcq"/>
+                        <constraint firstAttribute="width" constant="248" id="ft7-Qv-Auq"/>
+                        <constraint firstAttribute="height" constant="55" id="gly-4W-Z1q"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="15"/>
+                    <state key="normal" title="back">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="av5-DZ-Hcq"/>
+                            <exclude reference="ft7-Qv-Auq"/>
+                            <exclude reference="gly-4W-Z1q"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="back:" destination="-1" eventType="touchUpInside" id="S60-1f-aDw"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JI3-jm-Wce" customClass="LoginTextFields" customModule="TimeTuck_app" customModuleProvider="target">
+                    <rect key="frame" x="10" y="138" width="580" height="55"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="9a3-Ln-Rdq"/>
+                        <constraint firstAttribute="width" constant="264" id="rXu-1d-cI8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="rXu-1d-cI8"/>
+                        </mask>
+                    </variation>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAp-NN-PF3">
+                    <rect key="frame" x="390" y="268" width="200" height="55"/>
+                    <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="6tJ-eF-PIk"/>
+                        <constraint firstAttribute="width" constant="200" id="BMl-0O-WfG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="15"/>
+                    <state key="normal" title="go">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="login:" destination="-1" eventType="touchUpInside" id="mQC-S5-2tk"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jg-LS-Sc1">
+                    <rect key="frame" x="298" y="110" width="5" height="20.5"/>
+                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="17"/>
+                    <color key="textColor" red="0.84973787010000001" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.59215686270000001" green="0.83137254900000002" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hNP-co-CUc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="1VF-GX-eD7"/>
+                <constraint firstItem="Wrw-iz-MWc" firstAttribute="top" secondItem="JI3-jm-Wce" secondAttribute="bottom" constant="10" id="2nc-LQ-38e"/>
+                <constraint firstItem="Wrw-iz-MWc" firstAttribute="trailing" secondItem="JI3-jm-Wce" secondAttribute="trailing" id="3Cg-6a-Cdz"/>
+                <constraint firstItem="hNP-co-CUc" firstAttribute="top" secondItem="Wrw-iz-MWc" secondAttribute="bottom" constant="10" id="Cau-TG-lUe"/>
+                <constraint firstAttribute="centerX" secondItem="XqE-uF-SOT" secondAttribute="centerX" id="Ega-dw-nNZ"/>
+                <constraint firstItem="dAp-NN-PF3" firstAttribute="top" secondItem="Wrw-iz-MWc" secondAttribute="bottom" constant="10" id="Fji-Co-NUS"/>
+                <constraint firstItem="JI3-jm-Wce" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="184" id="Okr-jX-Fpy"/>
+                <constraint firstAttribute="trailing" secondItem="dAp-NN-PF3" secondAttribute="trailing" constant="10" id="QYv-on-p66"/>
+                <constraint firstItem="8jg-LS-Sc1" firstAttribute="top" secondItem="XqE-uF-SOT" secondAttribute="bottom" constant="11" id="c6N-fB-YGz"/>
+                <constraint firstItem="Wrw-iz-MWc" firstAttribute="top" secondItem="JI3-jm-Wce" secondAttribute="bottom" constant="24" id="gxo-Xa-wSt"/>
+                <constraint firstAttribute="centerX" secondItem="8jg-LS-Sc1" secondAttribute="centerX" id="kuV-b6-s8o"/>
+                <constraint firstItem="JI3-jm-Wce" firstAttribute="top" secondItem="8jg-LS-Sc1" secondAttribute="bottom" constant="8" id="s6L-Ky-5UK"/>
+                <constraint firstItem="XqE-uF-SOT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="sM2-wh-TYP"/>
+                <constraint firstItem="JI3-jm-Wce" firstAttribute="top" secondItem="XqE-uF-SOT" secondAttribute="bottom" constant="40" id="v1B-NP-cBS"/>
+                <constraint firstAttribute="trailing" secondItem="JI3-jm-Wce" secondAttribute="trailing" constant="10" id="vCu-D2-KxK"/>
+                <constraint firstItem="Wrw-iz-MWc" firstAttribute="leading" secondItem="JI3-jm-Wce" secondAttribute="leading" id="xkl-ct-U3G"/>
+                <constraint firstItem="JI3-jm-Wce" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="yxH-7U-oqp"/>
+                <constraint firstItem="dAp-NN-PF3" firstAttribute="leading" secondItem="hNP-co-CUc" secondAttribute="trailing" constant="10" id="zZL-9y-cdZ"/>
+            </constraints>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Okr-jX-Fpy"/>
+                    <exclude reference="v1B-NP-cBS"/>
+                    <exclude reference="gxo-Xa-wSt"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="171" y="247"/>
+        </view>
+    </objects>
+</document>
