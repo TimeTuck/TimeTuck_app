@@ -8,20 +8,28 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     var appManager: TTAppManager?
     @IBOutlet weak var username: LoginTextFields!
     @IBOutlet weak var password: LoginTextFields!
     @IBOutlet weak var errorMessage: UILabel!
     
+    var visibleHeight : CGFloat?
+    var offset: CGFloat?
+    
     init(_ appManager: TTAppManager) {
         super.init(nibName: "LoginViewController", bundle: NSBundle.mainBundle());
-        self.appManager = appManager;
-        modalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
+        initialize();
+        
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
+        initialize();
+    }
+    
+    func initialize() {
+        offset = 0;
         self.appManager = nil;
         modalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
     }
@@ -32,6 +40,10 @@ class LoginViewController: UIViewController {
         view.addGestureRecognizer(tap);
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil);
+        
+        username.delegate = self;
+        password.delegate = self;
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,29 +53,53 @@ class LoginViewController: UIViewController {
     
     func keyboardWillShow(notification: NSNotification) {
         var height = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() as CGRect!;
-        var visibleHeight = view.frame.height - height.size.height;
-        var textBoxHeight: CGFloat!;
-        var textBoxPosition: CGFloat!;
-        
+        visibleHeight = UIScreen.mainScreen().bounds.height - height.size.height;
         for item in view.subviews {
             if item.isFirstResponder() {
-                textBoxHeight = item.frame.height;
-                textBoxPosition = item.frame.origin.y;
+                updateTextFieldPosition(item as UITextField);
                 break;
             }
         }
+    }
+    
+    func keyboardWillHide() {
+        offset = 0;
+        visibleHeight = nil;
+        UIView.animateWithDuration(0.2) {
+            self.view.frame.origin.y = 0;
+        }
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        updateTextFieldPosition(textField);
         
-        if (textBoxPosition != nil && textBoxHeight != nil) {
-            var center = (visibleHeight - textBoxHeight) / 2;
-            var offset = textBoxPosition -  center;
-            if (offset > 0) {
-                view.frame.origin.y -= offset;
+    }
+    
+    func updateTextFieldPosition(textfield: UITextField) {
+        var textBoxHeight: CGFloat!;
+        var textBoxPosition: CGFloat!;
+        
+        textBoxHeight = textfield.frame.height;
+        textBoxPosition = textfield.frame.origin.y;
+        
+        UIView.animateWithDuration(0.2) {
+            if (textBoxPosition != nil && textBoxHeight != nil && self.visibleHeight != nil) {
+                var center = (self.visibleHeight! - textBoxHeight) / 2;
+                self.offset = textBoxPosition -  center;
+                if (self.offset! < 0) {
+                    self.view.frame.origin.y = 0;
+                    self.offset = 0;
+                } else {
+                    self.view.frame.origin.y = self.offset! * -1;
+                }
             }
         }
     }
     
     @IBAction func login(sender: UIButton) {
         var access = TTDataAccess();
+        view.endEditing(true);
+        
         access.loginUser(username.text, password: password.text) {
             user, session in
             NSOperationQueue.mainQueue().addOperationWithBlock() {
@@ -72,7 +108,6 @@ class LoginViewController: UIViewController {
                 } else {
                     self.errorMessage.text = "Username or password is incorrect";
                 }
-                
             }
         }
     }
@@ -85,14 +120,11 @@ class LoginViewController: UIViewController {
         view.endEditing(true);
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func shouldAutorotate() -> Bool {
+        return false;
     }
-    */
-
+    
+    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+        return UIInterfaceOrientation.Portrait;
+    }
 }

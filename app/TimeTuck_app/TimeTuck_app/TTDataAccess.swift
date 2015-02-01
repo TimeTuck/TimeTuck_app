@@ -19,9 +19,11 @@ public class TTDataAccess {
         }
     }
     
-    public func loginUser(username: String, password : String, completed:(user: TTUser?, session: TTSession?) -> Void) -> Void {
+    public func loginUser(username: String, password : String, completed:(user: TTUser?,
+                session: TTSession?) -> Void) {
         let login = ["username": username, "password": password];
-        makeHTTPRequest("/login", bodyData: login, requestMethod: "POST", completionHandler:{ response, data, error in
+        makeHTTPRequest("/login", bodyData: login, requestMethod: "POST") {
+            response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
                 if ((values["status"] as Int) == 0) {
@@ -32,15 +34,16 @@ public class TTDataAccess {
                     completed(user: nil, session: nil);
                 }
             }
-        });
+        }
     }
     
     public func registerUser(username: String, password: String, phoneNumber: String, email: String,
                              success: (user: TTUser?, session: TTSession?) -> Void,
                              failureDuplicateInfo: (username: Bool, email: Bool, phoneNumber: Bool) -> Void,
-                             failureIncorrectInfo: (username: String?, email: String?, phoneNumber: String?) -> Void) -> Void {
+                             failureIncorrectInfo: (username: String?, email: String?, phoneNumber: String?) -> Void) {
         let register = ["username": username, "password": password, "phone_number": phoneNumber, "email": email];
-        makeHTTPRequest("/register", bodyData: register, requestMethod: "POST", completionHandler:{ response, data, error in
+        makeHTTPRequest("/register", bodyData: register, requestMethod: "POST") {
+            response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
                 if ((values["status"] as Int) == 0) {
@@ -55,11 +58,11 @@ public class TTDataAccess {
                     failureIncorrectInfo(username: error["username"], email: error["email"], phoneNumber: error["phone_number"]);
                 }
             }
-        });
+        }
     }
 
     public func checkUser(session: TTSession, completed: (user: TTUser?, session: TTSession?) -> Void) {
-        makeHTTPRequest("/check_user", bodyData: session.toDictionary() , requestMethod: "POST", completionHandler: {
+        makeHTTPRequest("/check_user", bodyData: session.toDictionary() , requestMethod: "POST") {
             response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
@@ -69,11 +72,11 @@ public class TTDataAccess {
             } else {
                 completed(user: nil, session: nil);
             }
-        });
+        };
     }
 
     public func logoutUser(session: TTSession, completed: (successful: Bool) -> Void) -> Void {
-        makeHTTPRequest("/logout", bodyData: session.toDictionary() , requestMethod: "POST", completionHandler: {
+        makeHTTPRequest("/logout", bodyData: session.toDictionary() , requestMethod: "POST") {
             response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
@@ -83,7 +86,7 @@ public class TTDataAccess {
                 }
             }
             completed(successful: false);
-        });
+        };
     }
     
     func makeHTTPRequest(url: String, bodyData data: [String: AnyObject], requestMethod method : String,

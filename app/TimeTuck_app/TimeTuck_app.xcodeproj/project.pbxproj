@@ -10,7 +10,6 @@
 		9E0ACBC71A75A5C600BE6C6B /* TTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */; };
 		9E0B3AD31A79B8B8007651A8 /* icon60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E0B3AD21A79B8B8007651A8 /* icon60@3x.png */; };
 		9E0B3AD51A79B98A007651A8 /* logo60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E0B3AD41A79B98A007651A8 /* logo60@2x.png */; };
-		9E0B3AE31A79CC86007651A8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B3AE21A79CC86007651A8 /* MainViewController.swift */; };
 		9E0B3AE51A79CDF1007651A8 /* TTAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B3AE41A79CDF1007651A8 /* TTAppManager.swift */; };
 		9E0B3AEE1A79D5DB007651A8 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B3AEC1A79D5DB007651A8 /* LoginSignupViewController.swift */; };
 		9E0B3AEF1A79D5DB007651A8 /* LoginSignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E0B3AED1A79D5DB007651A8 /* LoginSignupViewController.xib */; };
@@ -46,7 +45,6 @@
 		9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTUser.swift; sourceTree = "<group>"; };
 		9E0B3AD21A79B8B8007651A8 /* icon60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon60@3x.png"; sourceTree = "<group>"; };
 		9E0B3AD41A79B98A007651A8 /* logo60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo60@2x.png"; sourceTree = "<group>"; };
-		9E0B3AE21A79CC86007651A8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9E0B3AE41A79CDF1007651A8 /* TTAppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTAppManager.swift; sourceTree = "<group>"; };
 		9E0B3AEC1A79D5DB007651A8 /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
 		9E0B3AED1A79D5DB007651A8 /* LoginSignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginSignupViewController.xib; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				9EC0D03D1A758BA90013ED31 /* DataAccess */,
 				9E0B3AE41A79CDF1007651A8 /* TTAppManager.swift */,
 				9EC0D01A1A758B2E0013ED31 /* AppDelegate.swift */,
-				9E0B3AE21A79CC86007651A8 /* MainViewController.swift */,
 				9E0B3AEC1A79D5DB007651A8 /* LoginSignupViewController.swift */,
 				9E0B3AED1A79D5DB007651A8 /* LoginSignupViewController.xib */,
 				9E0B3AF01A79E989007651A8 /* LoginViewController.swift */,
@@ -314,7 +311,6 @@
 				9E276E8B1A7ADF1D0058B91C /* SignUpViewController.swift in Sources */,
 				9E0B3AF21A79E989007651A8 /* LoginViewController.swift in Sources */,
 				9E0B3AE51A79CDF1007651A8 /* TTAppManager.swift in Sources */,
-				9E0B3AE31A79CC86007651A8 /* MainViewController.swift in Sources */,
 				9EB75DA41A7725E800CB6233 /* TTSession.swift in Sources */,
 				9EC0D0411A758BE10013ED31 /* TTDataAccess.swift in Sources */,
 				9E276E881A7AC8360058B91C /* LoginTextFields.swift in Sources */,
