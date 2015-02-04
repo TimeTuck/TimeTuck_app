@@ -130,13 +130,14 @@ class access:
         with self.connection() as db:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
                 try:
-                    cur.callproc("send_friend_request", (user.id, requested_id))
+                    cur.callproc("send_friend_request", (user.id, requested_id, convert_time(time.localtime())))
                 except:
                     return 2
-
                 result = cur.fetchone()
-                db.commit()
-                if result["result"]:
-                    return 0
+                if result["result"] == 1:
+                    val = 0
                 else:
-                    return 1
+                    val = 1
+
+            db.commit()
+            return val

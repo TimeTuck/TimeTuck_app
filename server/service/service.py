@@ -125,11 +125,21 @@ def check_user():
     return Response(response=json.dumps(respond(0, user=user.getdict(), session=sess.__dict__), indent=4),
                     status=200, mimetype='application/json')
 
-@app.route('/send_friend_request<id>', methods=['post'])
+@app.route('/send_friend_request/<id>', methods=['post'])
 def send_friend_request(id):
+    if id is None:
+        abort(400)
+
     user = g.identity.user
 
+    if user.id == id:
+        return Response(response=json.dumps(respond(2), indent=4),
+                    status=200, mimetype='application/json')
 
+    returnedVal = g.db_main.send_friend_request(user, id)
+
+    return Response(response=json.dumps(respond(returnedVal), indent=4),
+                    status=200, mimetype='application/json')
 
 
 if __name__ == '__main__':

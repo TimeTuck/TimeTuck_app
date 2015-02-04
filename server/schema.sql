@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 31, 2015 at 07:13 PM
+-- Generation Time: Feb 04, 2015 at 11:04 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -18,6 +18,17 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `send_friend_request`(IN `u_id` INT(10), IN `req_id` INT(10), IN `date_sent` DATETIME)
+BEGIn
+IF((SELECT COUNT(*) FROM friends where user_primary=u_id AND user_secondary=req_id) > 0)
+THEN
+	SELECT FALSE AS result;
+ELSE
+	INSERT INTO friends(user_primary, user_secondary, created) VALUES(u_id, req_id, date_sent);
+    SELECT TRUE AS result;
+END IF;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `session_create`(IN `uid` INT(10), IN `k` CHAR(36), IN `sec` CHAR(36), IN `date` DATETIME)
 BEGIN
 INSERT INTO user_sessions(user_id, skey, secret, updated) VALUES(uid, k, sec, date );
@@ -98,7 +109,7 @@ CREATE TABLE `users` (
   `created` datetime NOT NULL,
   `activated` tinyint(1) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -143,7 +154,7 @@ ALTER TABLE `user_sessions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=107;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=135;
 --
 -- Constraints for dumped tables
 --
