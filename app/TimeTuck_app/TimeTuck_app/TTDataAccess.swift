@@ -62,7 +62,7 @@ public class TTDataAccess {
     }
 
     public func checkUser(session: TTSession, completed: (user: TTUser?, session: TTSession?) -> Void) {
-        makeHTTPRequest("/check_user", bodyData: session.toDictionary() , requestMethod: "POST") {
+        makeHTTPRequest("/check_user", bodyData: ["session": session.toDictionary()] , requestMethod: "POST") {
             response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
@@ -75,8 +75,8 @@ public class TTDataAccess {
         };
     }
 
-    public func logoutUser(session: TTSession, completed: (successful: Bool) -> Void) -> Void {
-        makeHTTPRequest("/logout", bodyData: session.toDictionary() , requestMethod: "POST") {
+    public func logoutUser(session: TTSession, completed: (successful: Bool) -> Void) {
+        makeHTTPRequest("/logout", bodyData: ["session": session.toDictionary()] , requestMethod: "POST") {
             response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
@@ -86,6 +86,30 @@ public class TTDataAccess {
                 }
             }
             completed(successful: false);
+        };
+    }
+    
+    public func sendFriendRequest(session: TTSession, requestedFriend: Int, completed: (status: Int?) -> Void) {
+        makeHTTPRequest("/send_friend_request/" + String(requestedFriend), bodyData: ["session": session.toDictionary()] , requestMethod: "POST") {
+            response, data, error in
+            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+                let values = self.JSONParseDictionary(data);
+                completed(status: values["status"] as? Int);
+            } else {
+                completed(status: nil);
+            }
+        };
+    }
+    
+    public func respondFriendRequest(session: TTSession, respondedFriend: Int, completed: (status: Int?) -> Void) {
+        makeHTTPRequest("/respond_friend_request/" + String(respondedFriend), bodyData: ["session": session.toDictionary()] , requestMethod: "POST") {
+            response, data, error in
+            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+                let values = self.JSONParseDictionary(data);
+                completed(status: values["status"] as? Int);
+            } else {
+                completed(status: nil);
+            }
         };
     }
     
@@ -102,6 +126,23 @@ public class TTDataAccess {
         request.setValue("application/json", forHTTPHeaderField: "Accept");
         
         NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler: complete);
+    }
+    
+    func urlFromDict(dict: [String: String]) -> String {
+        if (dict.count > 0) {
+            var output: String = "?";
+            var i = 0;
+            for (key, value) in dict {
+                if (i++ > 0) {
+                    output += "&";
+                }
+                output += key.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
+                       + "=" + value.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!;
+            }
+            return output;
+        } else {
+            return "";
+        }
     }
     
     func getPath(path : String) -> String {

@@ -7,7 +7,7 @@ def get_session_data(data):
     if data is None:
         return None
     try:
-        sess = session(data['key'], data['secret'])
+        sess = session(data['session']['key'], data['session']['secret'])
     except KeyError:
         return None
 

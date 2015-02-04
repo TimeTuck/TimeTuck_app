@@ -115,7 +115,6 @@ class access:
                 return user(result['username'], result['email'], result['phone_number'], result['id'], result['active'],
                             result['activated'])
 
-
     def session_logout(self, session):
         if not isinstance(session, dict):
             sess = session.__dict__
@@ -126,3 +125,18 @@ class access:
             with closing(db.cursor()) as cur:
                 cur.callproc("session_logout", (sess['key'], sess['secret']))
                 db.commit()
+
+    def send_friend_request(self, user, requested_id):
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                try:
+                    cur.callproc("send_friend_request", (user.id, requested_id))
+                except:
+                    return 2
+
+                result = cur.fetchone()
+                db.commit()
+                if result["result"]:
+                    return 0
+                else:
+                    return 1

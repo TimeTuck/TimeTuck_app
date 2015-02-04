@@ -222,6 +222,7 @@
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="2dq-wZ-QIe"/>
                     <exclude reference="SsK-Xo-uct"/>
                     <exclude reference="bv1-SI-Bxi"/>
                     <exclude reference="FyL-mf-Nbc"/>
@@ -233,7 +234,6 @@
                     <exclude reference="oRP-MF-9UO"/>
                     <exclude reference="rUA-Wc-k47"/>
                     <exclude reference="btk-BB-V08"/>
-                    <exclude reference="2dq-wZ-QIe"/>
                     <exclude reference="7oq-YP-JIM"/>
                     <exclude reference="z9F-1y-ZlZ"/>
                 </mask>

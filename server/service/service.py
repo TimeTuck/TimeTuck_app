@@ -1,5 +1,5 @@
 from flask import Flask, request, Response, g, abort
-from flask.ext.principal import Principal, Permission, RoleNeed, Identity, identity_loaded, IdentityContext
+from flask.ext.principal import Principal, Permission, RoleNeed, Identity, identity_loaded
 from timetuck.database import access
 from timetuck.model import user
 from timetuck.model import session
@@ -116,14 +116,21 @@ def logout():
     return Response(response=json.dumps(respond(0), indent=4), status=200, mimetype='application/json')
 
 @app.route('/check_user', methods=['post'])
-@activated_user.require(http_exception=403)
 def check_user():
     sess = session(**g.identity.id)
     user = g.identity.user
     sess.update()
+
     g.db_main.session_update(sess)
     return Response(response=json.dumps(respond(0, user=user.getdict(), session=sess.__dict__), indent=4),
                     status=200, mimetype='application/json')
+
+@app.route('/send_friend_request<id>', methods=['post'])
+def send_friend_request(id):
+    user = g.identity.user
+
+
+
 
 if __name__ == '__main__':
     app.run()
