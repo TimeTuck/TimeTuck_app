@@ -1,4 +1,0 @@
-Flask==0.10.1
-MySQL-python==1.2.5
-validate_email==1.2
-Flask-Principal==0.4.0
