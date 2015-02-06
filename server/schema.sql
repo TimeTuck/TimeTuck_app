@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 04, 2015 at 11:04 PM
+-- Generation Time: Feb 06, 2015 at 01:34 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -18,6 +18,18 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `respond_friend_request`(IN `u_id` INT(10), IN `req_id` INT(10), IN `created_date` DATETIME)
+    NO SQL
+BEGIN
+	IF ((SELECT COUNT(*) FROM friends WHERE user_primary=req_id AND user_secondary=u_id) = 1)
+	THEN
+    	INSERT INTO friends(user_primary, user_secondary, created) VALUES(u_id, req_id, created_date);
+        SELECT 1 AS result;
+    ELSE
+    	SELECT 0 AS result;
+    END IF;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `send_friend_request`(IN `u_id` INT(10), IN `req_id` INT(10), IN `date_sent` DATETIME)
 BEGIn
 IF((SELECT COUNT(*) FROM friends where user_primary=u_id AND user_secondary=req_id) > 0)

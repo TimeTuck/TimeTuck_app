@@ -141,3 +141,20 @@ class access:
 
             db.commit()
             return val
+
+    def respond_friend_request(self, user, requestors_id):
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                try:
+                    cur.callproc("respond_friend_request", (user.id, requestors_id, convert_time(time.localtime())))
+                except:
+                    return 1
+
+                result = cur.fetchone()
+                if result["result"] == 1:
+                    val = 0
+                else:
+                    val = 2
+
+            db.commit()
+            return val

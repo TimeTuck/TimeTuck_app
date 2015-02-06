@@ -141,6 +141,21 @@ def send_friend_request(id):
     return Response(response=json.dumps(respond(returnedVal), indent=4),
                     status=200, mimetype='application/json')
 
+@app.route('/respond_friend_request/<id>', methods=['post'])
+def respond_friend_request(id):
+    if id is None:
+        abort(400)
+
+    user = g.identity.user
+
+    if user.id == id:
+        return Response(response=json.dumps(respond(2), indent=4),
+                    status=200, mimetype='application/json')
+
+    returnedVal = g.db_main.respond_friend_request(user, id)
+
+    return Response(response=json.dumps(respond(returnedVal), indent=4),
+                    status=200, mimetype='application/json')
 
 if __name__ == '__main__':
     app.run()

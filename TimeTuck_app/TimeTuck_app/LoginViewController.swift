@@ -104,7 +104,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             user, session in
             NSOperationQueue.mainQueue().addOperationWithBlock() {
                 if (user != nil && session != nil) {
-                    self.errorMessage.text = "Logged in";
+                    self.appManager = TTAppManager(user: user!, session: session!);
+                    var nav = MainNavigationTabBarController(self.appManager!);
+                    self.presentViewController(nav, animated: true, completion: nil);
                 } else {
                     self.errorMessage.text = "Username or password is incorrect";
                 }
