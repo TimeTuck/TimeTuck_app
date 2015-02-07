@@ -17,13 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch. 
-        var appManager = TTAppManager();
-        let loginSignUpViewController = LoginSignUpViewController(appManager);
+        var appManager = TTAppManager.checkUser();
+        var firstNav: UIViewController?;
+        
+        if appManager != nil {
+            firstNav = MainNavigationTabBarController(appManager!);
+        } else {
+            appManager = TTAppManager();
+            firstNav = LoginSignUpViewController(appManager!);
+        }
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds);
-        window!.rootViewController = loginSignUpViewController;
+        window!.rootViewController = firstNav!;
         window!.makeKeyAndVisible();
-    
+        
         return true
     }
 

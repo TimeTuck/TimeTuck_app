@@ -118,7 +118,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     func registerSuccess(user: TTUser?, session: TTSession?) {
         NSOperationQueue.mainQueue().addOperationWithBlock() {
-            self.errorMessage.text = "Registered!";
+            if (user != nil && session != nil) {
+                self.appManager = TTAppManager(user: user!, session: session!);
+                self.appManager!.saveSession();
+                var nav = MainNavigationTabBarController(self.appManager!);
+                self.presentViewController(nav, animated: true, completion: nil);
+            } else {
+                self.errorMessage.text = "An Error Occured, Please Try Again";
+            }
         }
     }
     

@@ -26,7 +26,7 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        var friends = FriendsNavigationController();
+        var friends = FriendsNavigationController(self.appManager!);
         friends.title = "friends";
         setViewControllers([friends], animated: false);
         // Do any additional setup after loading the view.

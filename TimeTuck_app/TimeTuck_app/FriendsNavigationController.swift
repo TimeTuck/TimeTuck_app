@@ -9,26 +9,32 @@
 import UIKit
 
 class FriendsNavigationController: UINavigationController {
+    var appManager: TTAppManager?
+    
+    init(_ appManager: TTAppManager) {
+        self.appManager = appManager;
+        super.init(nibName: nil, bundle: nil);
+        var val: UIFont = UIFont(name: "Campton-LightDEMO", size: 20)!
+        navigationBar.titleTextAttributes = [NSFontAttributeName: val];
+        navigationBar.barTintColor = UIColor(red: 151 / 255.0, green: 212 / 255.0, blue: 97 / 255.0, alpha: 1);
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder);
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated);
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        var friends = FriendsTableViewController(appManager!);
+        setViewControllers([friends], animated: true);
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

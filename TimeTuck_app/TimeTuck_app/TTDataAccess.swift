@@ -113,14 +113,28 @@ public class TTDataAccess {
         };
     }
     
-    func makeHTTPRequest(url: String, bodyData data: [String: AnyObject], requestMethod method : String,
+    public func getFriends(session: TTSession, completed: (friends: [[String: AnyObject]]) -> Void) {
+        var sessData = urlFromDict(session.toDictionary());
+        makeHTTPRequest("/get_friends" + sessData, bodyData: nil, requestMethod: "GET") {
+          response, data, error in
+            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+                let values = self.JSONParseDictionary(data);
+                completed(friends: values["friends"] as [[String: AnyObject]]);
+            } else {
+                completed(friends: []);
+            }
+        };
+    }
+    
+    func makeHTTPRequest(url: String, bodyData data: [String: AnyObject]?, requestMethod method : String,
                          completionHandler complete: (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void) {
         let url = NSURL(string: getPath(url));
         let request = NSMutableURLRequest(URL: url!);
         let queue = NSOperationQueue();
-        let jsonBody = jsonify(data);
-
-        request.HTTPBody = jsonBody;
+        if data != nil {
+            let jsonBody = jsonify(data!);
+            request.HTTPBody = jsonBody;
+        }
         request.HTTPMethod = method;
         request.setValue("application/json", forHTTPHeaderField: "Content-Type");
         request.setValue("application/json", forHTTPHeaderField: "Accept");

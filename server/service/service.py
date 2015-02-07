@@ -32,7 +32,15 @@ def before_request():
 
 @principals.identity_loader
 def identity_loader():
-    sess = get_session_data(request.get_json())
+    sess = None
+    if request.method == 'POST':
+        sess = get_session_data(request.get_json())
+    elif request.method == 'GET':
+        try:
+            sess = session(request.args['key'], request.args['secret'])
+        except:
+            pass
+
     if sess is None:
         return None
 
@@ -116,6 +124,7 @@ def logout():
     return Response(response=json.dumps(respond(0), indent=4), status=200, mimetype='application/json')
 
 @app.route('/check_user', methods=['post'])
+@login_required
 def check_user():
     sess = session(**g.identity.id)
     user = g.identity.user
@@ -126,6 +135,7 @@ def check_user():
                     status=200, mimetype='application/json')
 
 @app.route('/send_friend_request/<id>', methods=['post'])
+@login_required
 def send_friend_request(id):
     if id is None:
         abort(400)
@@ -142,6 +152,7 @@ def send_friend_request(id):
                     status=200, mimetype='application/json')
 
 @app.route('/respond_friend_request/<id>', methods=['post'])
+@login_required
 def respond_friend_request(id):
     if id is None:
         abort(400)
@@ -156,6 +167,17 @@ def respond_friend_request(id):
 
     return Response(response=json.dumps(respond(returnedVal), indent=4),
                     status=200, mimetype='application/json')
+
+
+@app.route('/get_friends', methods=['get'])
+@login_required
+def get_friends():
+    user = g.identity.user
+    results = g.db_main.get_friends(user)
+
+    return Response(response=json.dumps(respond(0,friends=results), indent=4),
+                    status=200, mimetype='application/json')
+
 
 if __name__ == '__main__':
     app.run()

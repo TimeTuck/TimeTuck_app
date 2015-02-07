@@ -20,10 +20,11 @@
 		9E276E8B1A7ADF1D0058B91C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E276E891A7ADF1D0058B91C /* SignUpViewController.swift */; };
 		9E276E8C1A7ADF1D0058B91C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E276E8A1A7ADF1D0058B91C /* SignUpViewController.xib */; };
 		9E39F51C1A84422300D8ABFB /* FriendsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E39F51A1A84422300D8ABFB /* FriendsNavigationController.swift */; };
-		9E39F51D1A84422300D8ABFB /* FriendsNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E39F51B1A84422300D8ABFB /* FriendsNavigationController.xib */; };
 		9E7AEA001A79815300C8BEA9 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E7AE9FF1A79815300C8BEA9 /* splash.png */; };
 		9E7EB8281A78701100442DDF /* Campton-BoldDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EB8261A78701100442DDF /* Campton-BoldDEMO.otf */; };
 		9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EB8271A78701100442DDF /* Campton-LightDEMO.otf */; };
+		9E9A13A41A864FA200592527 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A13A21A864FA200592527 /* FriendCell.swift */; };
+		9E9A13A51A864FA200592527 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E9A13A31A864FA200592527 /* FriendCell.xib */; };
 		9EB75DA41A7725E800CB6233 /* TTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB75DA31A7725E800CB6233 /* TTSession.swift */; };
 		9EC0D01B1A758B2E0013ED31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D01A1A758B2E0013ED31 /* AppDelegate.swift */; };
 		9EC0D01E1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D01C1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld */; };
@@ -32,6 +33,8 @@
 		9EC0D0341A758B2E0013ED31 /* TimeTuck_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D0331A758B2E0013ED31 /* TimeTuck_appTests.swift */; };
 		9EC0D0411A758BE10013ED31 /* TTDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D0401A758BE10013ED31 /* TTDataAccess.swift */; };
 		9EC0D0451A758C810013ED31 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EC0D0441A758C810013ED31 /* settings.plist */; };
+		9EEB2A421A8587DE000CB644 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEB2A401A8587DE000CB644 /* FriendsTableViewController.swift */; };
+		9EEB2A431A8587DE000CB644 /* FriendsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EEB2A411A8587DE000CB644 /* FriendsTableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,10 +61,11 @@
 		9E276E891A7ADF1D0058B91C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9E276E8A1A7ADF1D0058B91C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		9E39F51A1A84422300D8ABFB /* FriendsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsNavigationController.swift; sourceTree = "<group>"; };
-		9E39F51B1A84422300D8ABFB /* FriendsNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsNavigationController.xib; sourceTree = "<group>"; };
 		9E7AE9FF1A79815300C8BEA9 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		9E7EB8261A78701100442DDF /* Campton-BoldDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Campton-BoldDEMO.otf"; sourceTree = "<group>"; };
 		9E7EB8271A78701100442DDF /* Campton-LightDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Campton-LightDEMO.otf"; sourceTree = "<group>"; };
+		9E9A13A21A864FA200592527 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		9E9A13A31A864FA200592527 /* FriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		9EB75DA31A7725E800CB6233 /* TTSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTSession.swift; sourceTree = "<group>"; };
 		9EC0D0151A758B2E0013ED31 /* TimeTuck_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTuck_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EC0D0191A758B2E0013ED31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 		9EC0D0331A758B2E0013ED31 /* TimeTuck_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTuck_appTests.swift; sourceTree = "<group>"; };
 		9EC0D0401A758BE10013ED31 /* TTDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTDataAccess.swift; sourceTree = "<group>"; };
 		9EC0D0441A758C810013ED31 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
+		9EEB2A401A8587DE000CB644 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		9EEB2A411A8587DE000CB644 /* FriendsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +149,11 @@
 		9E39F51E1A8442B800D8ABFB /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				9E9A13A21A864FA200592527 /* FriendCell.swift */,
+				9E9A13A31A864FA200592527 /* FriendCell.xib */,
 				9E39F51A1A84422300D8ABFB /* FriendsNavigationController.swift */,
-				9E39F51B1A84422300D8ABFB /* FriendsNavigationController.xib */,
+				9EEB2A401A8587DE000CB644 /* FriendsTableViewController.swift */,
+				9EEB2A411A8587DE000CB644 /* FriendsTableViewController.xib */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -336,11 +345,12 @@
 				9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */,
 				9E276E8C1A7ADF1D0058B91C /* SignUpViewController.xib in Resources */,
 				9EC0D0451A758C810013ED31 /* settings.plist in Resources */,
-				9E39F51D1A84422300D8ABFB /* FriendsNavigationController.xib in Resources */,
+				9EEB2A431A8587DE000CB644 /* FriendsTableViewController.xib in Resources */,
 				9EC0D0281A758B2E0013ED31 /* LaunchScreen.xib in Resources */,
 				9EC0D0251A758B2E0013ED31 /* Images.xcassets in Resources */,
 				9E0B3AD51A79B98A007651A8 /* logo60@2x.png in Resources */,
 				9E0B3AEF1A79D5DB007651A8 /* LoginSignupViewController.xib in Resources */,
+				9E9A13A51A864FA200592527 /* FriendCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,10 +370,12 @@
 			files = (
 				9E276E8B1A7ADF1D0058B91C /* SignUpViewController.swift in Sources */,
 				9E0B3AF21A79E989007651A8 /* LoginViewController.swift in Sources */,
+				9EEB2A421A8587DE000CB644 /* FriendsTableViewController.swift in Sources */,
 				9E0B3AE51A79CDF1007651A8 /* TTAppManager.swift in Sources */,
 				9E1488181A84146000552B9C /* MainNavigationTabBarController.swift in Sources */,
 				9EB75DA41A7725E800CB6233 /* TTSession.swift in Sources */,
 				9E39F51C1A84422300D8ABFB /* FriendsNavigationController.swift in Sources */,
+				9E9A13A41A864FA200592527 /* FriendCell.swift in Sources */,
 				9EC0D0411A758BE10013ED31 /* TTDataAccess.swift in Sources */,
 				9E276E881A7AC8360058B91C /* LoginTextFields.swift in Sources */,
 				9E0B3AEE1A79D5DB007651A8 /* LoginSignupViewController.swift in Sources */,

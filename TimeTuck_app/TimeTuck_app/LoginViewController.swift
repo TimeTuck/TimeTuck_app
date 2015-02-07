@@ -105,6 +105,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             NSOperationQueue.mainQueue().addOperationWithBlock() {
                 if (user != nil && session != nil) {
                     self.appManager = TTAppManager(user: user!, session: session!);
+                    self.appManager!.saveSession();
                     var nav = MainNavigationTabBarController(self.appManager!);
                     self.presentViewController(nav, animated: true, completion: nil);
                 } else {

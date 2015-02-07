@@ -158,3 +158,13 @@ class access:
 
             db.commit()
             return val
+
+    def get_friends(self, user):
+         with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                try:
+                     cur.callproc("get_friends", (user.id,))
+                except:
+                    return None
+
+                return cur.fetchall()
