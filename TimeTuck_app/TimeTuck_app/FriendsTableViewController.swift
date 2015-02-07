@@ -27,6 +27,8 @@ class FriendsTableViewController: UITableViewController {
         var nib = UINib(nibName: "FriendCell", bundle: nil);
         tableView.registerNib(nib, forCellReuseIdentifier: "mainCell");
         var access = TTDataAccess();
+        var addFriendButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addFriends");
+        navigationItem.rightBarButtonItem = addFriendButton;
         access.getFriends(appManager!.session!) {
             friends in
             NSOperationQueue.mainQueue().addOperationWithBlock() {
@@ -70,6 +72,10 @@ class FriendsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50;
+    }
+    
+    func addFriends() {
+        NSLog("addFriends");
     }
 
     /*
