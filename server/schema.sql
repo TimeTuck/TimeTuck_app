@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 06, 2015 at 01:34 AM
+-- Generation Time: Feb 07, 2015 at 04:01 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -18,6 +18,16 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_friends`(IN `u_id` INT(10))
+    NO SQL
+SELECT u.id as id, u.username as username, u.phone_number as phone_number, u.email as email, u.activated as activated, u.active as active
+FROM friends f1 
+	INNER JOIN friends f2 ON f1.user_primary = f2.user_secondary 
+    INNER JOIN users u ON u.id = f1.user_secondary 
+WHERE f1.user_primary = u_id 
+	AND f1.user_secondary = f2.user_primary
+ORDER BY u.username ASC$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `respond_friend_request`(IN `u_id` INT(10), IN `req_id` INT(10), IN `created_date` DATETIME)
     NO SQL
 BEGIN
@@ -121,7 +131,7 @@ CREATE TABLE `users` (
   `created` datetime NOT NULL,
   `activated` tinyint(1) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -130,11 +140,12 @@ CREATE TABLE `users` (
 --
 
 CREATE TABLE `user_sessions` (
+`session_id` int(100) NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
   `skey` char(36) NOT NULL,
   `secret` char(36) NOT NULL,
   `updated` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=304 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -156,7 +167,7 @@ ALTER TABLE `users`
 -- Indexes for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
- ADD KEY `user_id` (`user_id`,`skey`,`secret`);
+ ADD PRIMARY KEY (`session_id`), ADD KEY `user_id` (`user_id`,`skey`,`secret`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -166,7 +177,12 @@ ALTER TABLE `user_sessions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=135;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=137;
+--
+-- AUTO_INCREMENT for table `user_sessions`
+--
+ALTER TABLE `user_sessions`
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=304;
 --
 -- Constraints for dumped tables
 --
