@@ -101,8 +101,23 @@ public class TTDataAccess {
         };
     }
     
-    public func respondFriendRequest(session: TTSession, respondedFriend: Int, completed: (status: Int?) -> Void) {
-        makeHTTPRequest("/respond_friend_request/" + String(respondedFriend), bodyData: ["session": session.toDictionary()] , requestMethod: "POST") {
+    public func searchUsers(session: TTSession, search: String, completed: (users: [[String: AnyObject]]) -> Void) {
+        var params = session.toDictionary();
+        params["search"] = search;
+        var sessData = urlFromDict(params);
+        makeHTTPRequest("/search_users" + sessData, bodyData: nil, requestMethod: "GET") {
+            response, data, error in
+            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+                let values = self.JSONParseDictionary(data);
+                completed(users: values["users"] as [[String: AnyObject]]);
+            } else {
+                completed(users: []);
+            }
+        };
+    }
+    
+    public func respondFriendRequest(session: TTSession, respondedFriend: Int, accept: Bool, completed: (status: Int?) -> Void) {
+        makeHTTPRequest("/respond_friend_request/" + String(respondedFriend), bodyData: ["session": session.toDictionary(), "accept": accept] , requestMethod: "POST") {
             response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
@@ -113,15 +128,15 @@ public class TTDataAccess {
         };
     }
     
-    public func getFriends(session: TTSession, completed: (friends: [[String: AnyObject]]) -> Void) {
+    public func getFriends(session: TTSession, completed: (friends: [[String: AnyObject]], requests: [[String: AnyObject]]) -> Void) {
         var sessData = urlFromDict(session.toDictionary());
         makeHTTPRequest("/get_friends" + sessData, bodyData: nil, requestMethod: "GET") {
           response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
-                completed(friends: values["friends"] as [[String: AnyObject]]);
+                completed(friends: values["friends"] as [[String: AnyObject]], requests: values["requests"] as [[String: AnyObject]]);
             } else {
-                completed(friends: []);
+                completed(friends: [], requests: []);
             }
         };
     }

@@ -142,11 +142,12 @@ class access:
             db.commit()
             return val
 
-    def respond_friend_request(self, user, requestors_id):
+    def respond_friend_request(self, user, requestors_id, accept):
         with self.connection() as db:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
                 try:
-                    cur.callproc("respond_friend_request", (user.id, requestors_id, convert_time(time.localtime())))
+                    cur.callproc("respond_friend_request", (user.id, requestors_id, convert_time(time.localtime()),
+                                                            accept))
                 except:
                     return 1
 
@@ -165,6 +166,24 @@ class access:
                 try:
                      cur.callproc("get_friends", (user.id,))
                 except:
-                    return None
-
+                    return []
                 return cur.fetchall()
+
+    def get_friend_requests(self, user):
+         with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                try:
+                     cur.callproc("get_friend_requests", (user.id,))
+                except:
+                    return []
+                return cur.fetchall()
+
+    def search_users(self, user, search):
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                try:
+                    cur.callproc("search_users", (user.id, search))
+                except:
+                    return []
+                results = cur.fetchall()
+                return results

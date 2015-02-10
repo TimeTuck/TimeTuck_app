@@ -156,6 +156,12 @@ def send_friend_request(id):
 def respond_friend_request(id):
     if id is None:
         abort(400)
+    accept = True
+    try:
+        data = request.get_json()
+        accept = data["accept"]
+    except:
+        abort(400)
 
     user = g.identity.user
 
@@ -163,7 +169,7 @@ def respond_friend_request(id):
         return Response(response=json.dumps(respond(2), indent=4),
                     status=200, mimetype='application/json')
 
-    returnedVal = g.db_main.respond_friend_request(user, id)
+    returnedVal = g.db_main.respond_friend_request(user, id, accept)
 
     return Response(response=json.dumps(respond(returnedVal), indent=4),
                     status=200, mimetype='application/json')
@@ -173,9 +179,27 @@ def respond_friend_request(id):
 @login_required
 def get_friends():
     user = g.identity.user
-    results = g.db_main.get_friends(user)
 
-    return Response(response=json.dumps(respond(0,friends=results), indent=4),
+    results = g.db_main.get_friends(user)
+    requests = g.db_main.get_friend_requests(user)
+
+    return Response(response=json.dumps(respond(0,requests=requests,friends=results), indent=4),
+                    status=200, mimetype='application/json')
+
+@app.route('/search_users', methods=['get'])
+@login_required
+def search_users():
+    user = g.identity.user
+    try:
+        search = request.args['search']
+    except:
+        abort(400)
+
+    if search == '':
+        results = []
+    else:
+        results = g.db_main.search_users(user, search)
+    return Response(response=json.dumps(respond(0,users=results), indent=4),
                     status=200, mimetype='application/json')
 
 

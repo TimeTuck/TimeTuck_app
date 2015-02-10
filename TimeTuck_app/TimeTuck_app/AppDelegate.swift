@@ -21,8 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var firstNav: UIViewController?;
         
         if appManager != nil {
+            // User is logged in
             firstNav = MainNavigationTabBarController(appManager!);
         } else {
+            // User is not logged in
             appManager = TTAppManager();
             firstNav = LoginSignUpViewController(appManager!);
         }

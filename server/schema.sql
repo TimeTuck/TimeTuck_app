@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 07, 2015 at 04:01 PM
+-- Generation Time: Feb 10, 2015 at 01:29 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -28,17 +28,35 @@ WHERE f1.user_primary = u_id
 	AND f1.user_secondary = f2.user_primary
 ORDER BY u.username ASC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `respond_friend_request`(IN `u_id` INT(10), IN `req_id` INT(10), IN `created_date` DATETIME)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_friend_requests`(IN `u_id` INT(10))
+    NO SQL
+SELECT u.id, u.username, u.phone_number, u.email, u.activated, u.active FROM friends f1 LEFT JOIN friends f2 ON f1.user_primary = f2.user_secondary INNER JOIN users u ON f1.user_primary = u.id WHERE f1.user_secondary = u_id AND f2.user_primary IS NULL$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `respond_friend_request`(IN `u_id` INT(10), IN `req_id` INT(10), IN `created_date` DATETIME, IN `accept` BOOLEAN)
     NO SQL
 BEGIN
 	IF ((SELECT COUNT(*) FROM friends WHERE user_primary=req_id AND user_secondary=u_id) = 1)
 	THEN
-    	INSERT INTO friends(user_primary, user_secondary, created) VALUES(u_id, req_id, created_date);
+    	IF (accept = TRUE)
+        THEN
+    		INSERT INTO friends(user_primary, user_secondary, created) VALUES(u_id, req_id, created_date);
+        ELSE
+        	DELETE FROM friends WHERE user_primary=req_id AND user_secondary=u_id;
+        END IF;
         SELECT 1 AS result;
     ELSE
     	SELECT 0 AS result;
     END IF;
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `search_users`(IN `u_id` INT(10), IN `search` VARCHAR(255))
+    NO SQL
+select u.id as id, u.username as username, u.phone_number as phone_number, u.email as email, u.activated as activated, u.active as active from 
+		(SELECT id from users) as a 
+    LEFT JOIN 
+    	(SELECT CASE WHEN f1.user_primary = u_id THEN f1.user_secondary ELSE f1.user_primary end as id
+         FROM friends f1 where f1.user_primary = u_id or f1.user_secondary = u_id)
+    as b ON a.id = b.id INNER JOIN users u on a.id = u.id WHERE b.id is null AND a.id <> u_id AND u.username LIKE CONCAT(search,'%') order by u.username ASC$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `send_friend_request`(IN `u_id` INT(10), IN `req_id` INT(10), IN `date_sent` DATETIME)
 BEGIn
@@ -145,7 +163,7 @@ CREATE TABLE `user_sessions` (
   `skey` char(36) NOT NULL,
   `secret` char(36) NOT NULL,
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=304 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -182,7 +200,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=137;
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=304;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --

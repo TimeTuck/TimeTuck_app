@@ -11,6 +11,8 @@ import UIKit
 class FriendsTableViewController: UITableViewController {
     var appManager: TTAppManager?
     var friends: [[String: AnyObject]]?
+    var requests: [[String: AnyObject]]?
+    var friendSect = 0;
     
     init(_ appManager: TTAppManager) {
         self.appManager = appManager;
@@ -25,22 +27,13 @@ class FriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         var nib = UINib(nibName: "FriendCell", bundle: nil);
+        var nibResponse = UINib(nibName: "FriendResponseTableCell", bundle: nil);
         tableView.registerNib(nib, forCellReuseIdentifier: "mainCell");
-        var access = TTDataAccess();
+        tableView.registerNib(nibResponse, forCellReuseIdentifier: "responseCell");
         var addFriendButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addFriends");
         navigationItem.rightBarButtonItem = addFriendButton;
-        access.getFriends(appManager!.session!) {
-            friends in
-            NSOperationQueue.mainQueue().addOperationWithBlock() {
-                self.friends = friends;
-                self.tableView.reloadData();
-            }
-        }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        var access = TTDataAccess();
+        retrieveFriends();
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,26 +41,60 @@ class FriendsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        var sections: Int = 0;
+        
+        if (friends != nil && friends!.count > 0) {
+            ++sections;
+            friendSect = 0
+        }
+        if (requests != nil && requests!.count > 0) {
+            ++sections;
+            friendSect = 1;
+        }
+        return sections;
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if friends != nil {
-            return friends!.count;
+        if section == friendSect {
+            if friends != nil {
+                return friends!.count;
+            } else {
+                return 0;
+            }
         } else {
-            return 0;
+            if requests != nil {
+                return requests!.count;
+            } else {
+                return 0;
+            }
         }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("mainCell", forIndexPath: indexPath) as FriendCell
-        cell.mainLabel!.text = ((friends![indexPath.row] as [String: AnyObject])["username"] as String)
-        // Configure the cell...
+        var cell: UITableViewCell?;
+        
+        if indexPath.section == friendSect {
+            cell = tableView.dequeueReusableCellWithIdentifier("mainCell", forIndexPath: indexPath) as? UITableViewCell;
+            (cell as FriendCell).mainLabel!.text = ((friends![indexPath.row] as [String: AnyObject])["username"] as String)
+        } else {
+            cell = tableView.dequeueReusableCellWithIdentifier("responseCell", forIndexPath: indexPath) as? UITableViewCell;
+            (cell as FriendResponseTableCell).usernameLabel!.text = ((requests![indexPath.row] as [String: AnyObject])["username"] as String)
+            (cell as FriendResponseTableCell).accept!.addTarget(self, action: "acceptRequest:", forControlEvents: UIControlEvents.TouchUpInside);
+            (cell as FriendResponseTableCell).decline!.addTarget(self, action: "declineRequest:", forControlEvents: UIControlEvents.TouchUpInside);
+            (cell as FriendResponseTableCell).accept!.tag = ((requests![indexPath.row] as [String: AnyObject])["id"] as Int);
+            (cell as FriendResponseTableCell).decline!.tag = ((requests![indexPath.row] as [String: AnyObject])["id"] as Int);
+        }
 
-        return cell
+        return cell!;
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (section != friendSect) {
+            return "requests";
+        } else {
+            return "friends";
+        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -75,52 +102,41 @@ class FriendsTableViewController: UITableViewController {
     }
     
     func addFriends() {
-        NSLog("addFriends");
+        var searchUsers = SearchUsersNavigationController(self.appManager!);
+        self.presentViewController(searchUsers, animated: true, completion: nil);
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
     
+    func acceptRequest(sender: UIControl) {
+        var access = TTDataAccess();
+        access.respondFriendRequest(self.appManager!.session!, respondedFriend: sender.tag, accept: true, completed: responseComplete);
+    }
+    
+    func declineRequest(sender: UIControl) {
+        var access = TTDataAccess();
+        access.respondFriendRequest(self.appManager!.session!, respondedFriend: sender.tag, accept: false, completed: responseComplete);
+    }
+    
+    func responseComplete(status: Int?) {
+        if (status != nil && status == 0) {
+            NSOperationQueue.mainQueue().addOperationWithBlock() {
+                self.retrieveFriends();
+            };
+        } else if (status != nil && status == 2) {
+            NSOperationQueue.mainQueue().addOperationWithBlock() {
+                UIAlertView(title: "Error", message: "An error occured, please try again", delegate: nil, cancelButtonTitle: "OK").show();
+            };
+        }
+    }
+    
+    func retrieveFriends() {
+        var access = TTDataAccess();
+        access.getFriends(appManager!.session!) {
+            friends, requests in
+            NSOperationQueue.mainQueue().addOperationWithBlock() {
+                self.friends = friends;
+                self.requests = requests;
+                self.tableView.reloadData();
+            }
+        }
+    }
 }

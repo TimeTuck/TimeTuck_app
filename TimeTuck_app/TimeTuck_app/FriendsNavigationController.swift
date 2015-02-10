@@ -8,15 +8,12 @@
 
 import UIKit
 
-class FriendsNavigationController: UINavigationController {
+class FriendsNavigationController: StandardNavigationController {
     var appManager: TTAppManager?
     
     init(_ appManager: TTAppManager) {
         self.appManager = appManager;
         super.init(nibName: nil, bundle: nil);
-        var val: UIFont = UIFont(name: "Campton-LightDEMO", size: 20)!
-        navigationBar.titleTextAttributes = [NSFontAttributeName: val];
-        navigationBar.barTintColor = UIColor(red: 151 / 255.0, green: 212 / 255.0, blue: 97 / 255.0, alpha: 1);
     }
 
     required init(coder aDecoder: NSCoder) {
