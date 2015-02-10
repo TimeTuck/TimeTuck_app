@@ -27,7 +27,7 @@ class FriendsNavigationController: StandardNavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         var friends = FriendsTableViewController(appManager!);
-        setViewControllers([friends], animated: true);
+        setViewControllers([friends], animated: false);
     }
 
     override func didReceiveMemoryWarning() {

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 10, 2015 at 01:29 AM
+-- Generation Time: Feb 10, 2015 at 09:11 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -20,17 +20,12 @@ DELIMITER $$
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_friends`(IN `u_id` INT(10))
     NO SQL
-SELECT u.id as id, u.username as username, u.phone_number as phone_number, u.email as email, u.activated as activated, u.active as active
-FROM friends f1 
-	INNER JOIN friends f2 ON f1.user_primary = f2.user_secondary 
-    INNER JOIN users u ON u.id = f1.user_secondary 
-WHERE f1.user_primary = u_id 
-	AND f1.user_secondary = f2.user_primary
-ORDER BY u.username ASC$$
+SELECT u.id, u.username, u.email, u.phone_number, u.activated, u.active
+FROM friends f1 INNER JOIN friends f2 ON f1.user_secondary = f2.user_primary AND f1.user_primary = f2.user_secondary INNER JOIN users u ON f1.user_secondary = u.id WHERE f1.user_primary = u_id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_friend_requests`(IN `u_id` INT(10))
     NO SQL
-SELECT u.id, u.username, u.phone_number, u.email, u.activated, u.active FROM friends f1 LEFT JOIN friends f2 ON f1.user_primary = f2.user_secondary INNER JOIN users u ON f1.user_primary = u.id WHERE f1.user_secondary = u_id AND f2.user_primary IS NULL$$
+SELECT u.id, u.username, u.phone_number, u.email, u.activated, u.active FROM friends f1 LEFT JOIN friends f2 ON f1.user_primary = f2.user_secondary AND f1.user_secondary = f2.user_primary INNER JOIN users u ON f1.user_primary = u.id WHERE f1.user_secondary = u_id AND f2.user_primary IS NULL$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `respond_friend_request`(IN `u_id` INT(10), IN `req_id` INT(10), IN `created_date` DATETIME, IN `accept` BOOLEAN)
     NO SQL
@@ -163,7 +158,7 @@ CREATE TABLE `user_sessions` (
   `skey` char(36) NOT NULL,
   `secret` char(36) NOT NULL,
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -200,7 +195,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=137;
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --

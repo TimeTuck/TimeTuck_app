@@ -56,4 +56,12 @@ class TTAppManager {
         userInfo.setObject(session?.toDictionary(), forKey: "session");
         userInfo.synchronize();
     }
+    
+    func clearSession() {
+        var userInfo = NSUserDefaults();
+        userInfo.removeObjectForKey("session");
+        userInfo.synchronize();
+        session = nil;
+        user = nil;
+    }
 }

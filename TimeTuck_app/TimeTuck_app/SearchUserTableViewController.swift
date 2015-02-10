@@ -41,7 +41,7 @@ class SearchUserTableViewController: UITableViewController, UISearchBarDelegate 
     }
     
     func exit() {
-        dismissViewControllerAnimated(true, completion: nil);
+        dismissViewControllerAnimated(false, completion: nil);
     }
 
     override func didReceiveMemoryWarning() {

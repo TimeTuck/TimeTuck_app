@@ -32,8 +32,24 @@ class FriendsTableViewController: UITableViewController {
         tableView.registerNib(nibResponse, forCellReuseIdentifier: "responseCell");
         var addFriendButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addFriends");
         navigationItem.rightBarButtonItem = addFriendButton;
-        var access = TTDataAccess();
+        var logoutButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "logout");
+        navigationItem.leftBarButtonItem = logoutButton;
         retrieveFriends();
+    }
+    
+    // Move this eventually
+    func logout() {
+        var access = TTDataAccess();
+        access.logoutUser(appManager!.session!) {
+            successful in
+            NSOperationQueue.mainQueue().addOperationWithBlock() {
+                if (successful) {
+                    self.appManager!.clearSession();
+                    var logoutScreen = LoginSignUpViewController(self.appManager!);
+                    self.presentViewController(logoutScreen, animated: true, completion: nil);
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,7 +119,7 @@ class FriendsTableViewController: UITableViewController {
     
     func addFriends() {
         var searchUsers = SearchUsersNavigationController(self.appManager!);
-        self.presentViewController(searchUsers, animated: true, completion: nil);
+        self.presentViewController(searchUsers, animated: false, completion: nil);
     }
     
     func acceptRequest(sender: UIControl) {
