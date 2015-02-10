@@ -850,12 +850,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTuck_app/MainNavigationTabBarController.swift"
-            timestampString = "445295620.527357"
+            timestampString = "445299240.523498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "tabBarController(_:shouldSelectViewController:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "didReceiveMemoryWarning()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

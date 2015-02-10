@@ -16,6 +16,8 @@
 		9E0B3AF21A79E989007651A8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B3AF01A79E989007651A8 /* LoginViewController.swift */; };
 		9E0B3AF31A79E989007651A8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E0B3AF11A79E989007651A8 /* LoginViewController.xib */; };
 		9E1488181A84146000552B9C /* MainNavigationTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1488161A84146000552B9C /* MainNavigationTabBarController.swift */; };
+		9E224C341A8ABA0E008FF6E9 /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E224C321A8ABA0E008FF6E9 /* SettingsVC.xib */; };
+		9E224C351A8ABA0E008FF6E9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E224C331A8ABA0E008FF6E9 /* SettingsVC.swift */; };
 		9E276E881A7AC8360058B91C /* LoginTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E276E871A7AC8360058B91C /* LoginTextFields.swift */; };
 		9E276E8B1A7ADF1D0058B91C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E276E891A7ADF1D0058B91C /* SignUpViewController.swift */; };
 		9E276E8C1A7ADF1D0058B91C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E276E8A1A7ADF1D0058B91C /* SignUpViewController.xib */; };
@@ -67,6 +69,8 @@
 		9E0B3AF01A79E989007651A8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9E0B3AF11A79E989007651A8 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		9E1488161A84146000552B9C /* MainNavigationTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationTabBarController.swift; sourceTree = "<group>"; };
+		9E224C321A8ABA0E008FF6E9 /* SettingsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsVC.xib; sourceTree = "<group>"; };
+		9E224C331A8ABA0E008FF6E9 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		9E276E871A7AC8360058B91C /* LoginTextFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextFields.swift; sourceTree = "<group>"; };
 		9E276E891A7ADF1D0058B91C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9E276E8A1A7ADF1D0058B91C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
@@ -160,11 +164,21 @@
 		9E14881D1A841A4A00552B9C /* MainNavigation */ = {
 			isa = PBXGroup;
 			children = (
+				9E224C361A8ABA1C008FF6E9 /* Settings */,
 				9EEC3C151A8AA47E007A460B /* Camera */,
 				9E1488161A84146000552B9C /* MainNavigationTabBarController.swift */,
 				9E39F51E1A8442B800D8ABFB /* Friends */,
 			);
 			name = MainNavigation;
+			sourceTree = "<group>";
+		};
+		9E224C361A8ABA1C008FF6E9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9E224C321A8ABA0E008FF6E9 /* SettingsVC.xib */,
+				9E224C331A8ABA0E008FF6E9 /* SettingsVC.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		9E39F51E1A8442B800D8ABFB /* Friends */ = {
@@ -391,6 +405,7 @@
 				9EDD9B361A89777B00FBEFDF /* FriendResponseTableCell.xib in Resources */,
 				9E0B3AD51A79B98A007651A8 /* logo60@2x.png in Resources */,
 				9E0B3AEF1A79D5DB007651A8 /* LoginSignupViewController.xib in Resources */,
+				9E224C341A8ABA0E008FF6E9 /* SettingsVC.xib in Resources */,
 				9EC405371A8962FE00DC603A /* RequestFriendCell.xib in Resources */,
 				9E9A13A51A864FA200592527 /* FriendCell.xib in Resources */,
 			);
@@ -430,6 +445,7 @@
 				9E68BA491A895EEE0033F85B /* StandardNavigationController.swift in Sources */,
 				9EC0D01E1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld in Sources */,
 				9EC405361A8962FE00DC603A /* RequestFriendCell.swift in Sources */,
+				9E224C351A8ABA0E008FF6E9 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

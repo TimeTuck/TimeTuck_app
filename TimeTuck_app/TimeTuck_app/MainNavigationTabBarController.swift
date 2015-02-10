@@ -29,14 +29,10 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
         super.viewDidLoad();
         var friends = FriendsNavigationController(self.appManager!);
         friends.title = "friends";
-<<<<<<< HEAD
-        cameraControl.title = "camera";
-        setViewControllers([friends, cameraControl], animated: false);
-=======
         var settings = SettingsVC(self.appManager!);
+        cameraControl.title = "camera";
         settings.title = "settings";
-        setViewControllers([friends, settings], animated: false);
->>>>>>> 5d723c35477c4efe00ea9b2ba01a80b21fdb3890
+        setViewControllers([friends, cameraControl, settings], animated: false);
         // Do any additional setup after loading the view.
     }
 
