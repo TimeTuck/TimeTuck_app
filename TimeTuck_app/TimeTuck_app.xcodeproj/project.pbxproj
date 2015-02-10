@@ -18,6 +18,8 @@
 		9E1488181A84146000552B9C /* MainNavigationTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1488161A84146000552B9C /* MainNavigationTabBarController.swift */; };
 		9E224C341A8ABA0E008FF6E9 /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E224C321A8ABA0E008FF6E9 /* SettingsVC.xib */; };
 		9E224C351A8ABA0E008FF6E9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E224C331A8ABA0E008FF6E9 /* SettingsVC.swift */; };
+		9E224C391A8ABC58008FF6E9 /* CameraController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E224C371A8ABC58008FF6E9 /* CameraController.xib */; };
+		9E224C3A1A8ABC58008FF6E9 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E224C381A8ABC58008FF6E9 /* CameraController.swift */; };
 		9E276E881A7AC8360058B91C /* LoginTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E276E871A7AC8360058B91C /* LoginTextFields.swift */; };
 		9E276E8B1A7ADF1D0058B91C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E276E891A7ADF1D0058B91C /* SignUpViewController.swift */; };
 		9E276E8C1A7ADF1D0058B91C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E276E8A1A7ADF1D0058B91C /* SignUpViewController.xib */; };
@@ -45,8 +47,6 @@
 		9EDD9B371A89777B00FBEFDF /* FriendResponseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDD9B351A89777B00FBEFDF /* FriendResponseTableCell.swift */; };
 		9EEB2A421A8587DE000CB644 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEB2A401A8587DE000CB644 /* FriendsTableViewController.swift */; };
 		9EEB2A431A8587DE000CB644 /* FriendsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EEB2A411A8587DE000CB644 /* FriendsTableViewController.xib */; };
-		9EEC3C1E1A8AA64F007A460B /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEC3C1C1A8AA64F007A460B /* CameraController.swift */; };
-		9EEC3C1F1A8AA64F007A460B /* CameraController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EEC3C1D1A8AA64F007A460B /* CameraController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +71,8 @@
 		9E1488161A84146000552B9C /* MainNavigationTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationTabBarController.swift; sourceTree = "<group>"; };
 		9E224C321A8ABA0E008FF6E9 /* SettingsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsVC.xib; sourceTree = "<group>"; };
 		9E224C331A8ABA0E008FF6E9 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		9E224C371A8ABC58008FF6E9 /* CameraController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraController.xib; sourceTree = "<group>"; };
+		9E224C381A8ABC58008FF6E9 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		9E276E871A7AC8360058B91C /* LoginTextFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextFields.swift; sourceTree = "<group>"; };
 		9E276E891A7ADF1D0058B91C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9E276E8A1A7ADF1D0058B91C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
@@ -102,8 +104,6 @@
 		9EDD9B351A89777B00FBEFDF /* FriendResponseTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendResponseTableCell.swift; sourceTree = "<group>"; };
 		9EEB2A401A8587DE000CB644 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		9EEB2A411A8587DE000CB644 /* FriendsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewController.xib; sourceTree = "<group>"; };
-		9EEC3C1C1A8AA64F007A460B /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraController.swift; path = ../CameraController.swift; sourceTree = "<group>"; };
-		9EEC3C1D1A8AA64F007A460B /* CameraController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraController.xib; path = ../CameraController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,8 +304,8 @@
 		9EEC3C151A8AA47E007A460B /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				9EEC3C1C1A8AA64F007A460B /* CameraController.swift */,
-				9EEC3C1D1A8AA64F007A460B /* CameraController.xib */,
+				9E224C371A8ABC58008FF6E9 /* CameraController.xib */,
+				9E224C381A8ABC58008FF6E9 /* CameraController.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -392,6 +392,7 @@
 			files = (
 				9E0B3AF31A79E989007651A8 /* LoginViewController.xib in Resources */,
 				9E7EB8281A78701100442DDF /* Campton-BoldDEMO.otf in Resources */,
+				9E224C391A8ABC58008FF6E9 /* CameraController.xib in Resources */,
 				9E7AEA001A79815300C8BEA9 /* splash.png in Resources */,
 				9E0B3AD31A79B8B8007651A8 /* icon60@3x.png in Resources */,
 				9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */,
@@ -401,7 +402,6 @@
 				9EEB2A431A8587DE000CB644 /* FriendsTableViewController.xib in Resources */,
 				9EC0D0281A758B2E0013ED31 /* LaunchScreen.xib in Resources */,
 				9EC0D0251A758B2E0013ED31 /* Images.xcassets in Resources */,
-				9EEC3C1F1A8AA64F007A460B /* CameraController.xib in Resources */,
 				9EDD9B361A89777B00FBEFDF /* FriendResponseTableCell.xib in Resources */,
 				9E0B3AD51A79B98A007651A8 /* logo60@2x.png in Resources */,
 				9E0B3AEF1A79D5DB007651A8 /* LoginSignupViewController.xib in Resources */,
@@ -434,12 +434,12 @@
 				9EB75DA41A7725E800CB6233 /* TTSession.swift in Sources */,
 				9E929F621A86B90800347C60 /* SearchUserTableViewController.swift in Sources */,
 				9E39F51C1A84422300D8ABFB /* FriendsNavigationController.swift in Sources */,
+				9E224C3A1A8ABC58008FF6E9 /* CameraController.swift in Sources */,
 				9E9A13A41A864FA200592527 /* FriendCell.swift in Sources */,
 				9EC0D0411A758BE10013ED31 /* TTDataAccess.swift in Sources */,
 				9E276E881A7AC8360058B91C /* LoginTextFields.swift in Sources */,
 				9EDD9B371A89777B00FBEFDF /* FriendResponseTableCell.swift in Sources */,
 				9E0B3AEE1A79D5DB007651A8 /* LoginSignupViewController.swift in Sources */,
-				9EEC3C1E1A8AA64F007A460B /* CameraController.swift in Sources */,
 				9EC0D01B1A758B2E0013ED31 /* AppDelegate.swift in Sources */,
 				9E0ACBC71A75A5C600BE6C6B /* TTUser.swift in Sources */,
 				9E68BA491A895EEE0033F85B /* StandardNavigationController.swift in Sources */,
