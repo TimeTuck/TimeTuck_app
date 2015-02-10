@@ -32,26 +32,9 @@ class FriendsTableViewController: UITableViewController {
         tableView.registerNib(nibResponse, forCellReuseIdentifier: "responseCell");
         var addFriendButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addFriends");
         navigationItem.rightBarButtonItem = addFriendButton;
-        var logoutButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "logout");
-        navigationItem.leftBarButtonItem = logoutButton;
         retrieveFriends();
     }
     
-    // Move this eventually
-    func logout() {
-        var access = TTDataAccess();
-        access.logoutUser(appManager!.session!) {
-            successful in
-            NSOperationQueue.mainQueue().addOperationWithBlock() {
-                if (successful) {
-                    self.appManager!.clearSession();
-                    var logoutScreen = LoginSignUpViewController(self.appManager!);
-                    self.presentViewController(logoutScreen, animated: true, completion: nil);
-                }
-            }
-        }
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

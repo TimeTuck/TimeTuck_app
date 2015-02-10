@@ -29,11 +29,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             firstNav = LoginSignUpViewController(appManager!);
         }
         
+        var notification = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert
+            , categories: nil);
+        UIApplication.sharedApplication().registerUserNotificationSettings(notification)
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds);
         window!.rootViewController = firstNav!;
         window!.makeKeyAndVisible();
         
         return true
+    }
+
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        NSLog("%@", deviceToken);
     }
 
     func applicationWillResignActive(application: UIApplication) {

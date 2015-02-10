@@ -472,11 +472,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTuck_app/MainNavigationTabBarController.swift"
-            timestampString = "444873247.679944"
+            timestampString = "445295217.72213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "init(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -849,13 +849,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TimeTuck_app/FriendsTableViewController.swift"
-            timestampString = "445267158.712247"
+            filePath = "TimeTuck_app/MainNavigationTabBarController.swift"
+            timestampString = "445295620.527357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "logout()"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "tabBarController(_:shouldSelectViewController:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

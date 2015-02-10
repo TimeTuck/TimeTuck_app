@@ -43,6 +43,8 @@
 		9EDD9B371A89777B00FBEFDF /* FriendResponseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDD9B351A89777B00FBEFDF /* FriendResponseTableCell.swift */; };
 		9EEB2A421A8587DE000CB644 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEB2A401A8587DE000CB644 /* FriendsTableViewController.swift */; };
 		9EEB2A431A8587DE000CB644 /* FriendsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EEB2A411A8587DE000CB644 /* FriendsTableViewController.xib */; };
+		9EEC3C1E1A8AA64F007A460B /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEC3C1C1A8AA64F007A460B /* CameraController.swift */; };
+		9EEC3C1F1A8AA64F007A460B /* CameraController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EEC3C1D1A8AA64F007A460B /* CameraController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +98,8 @@
 		9EDD9B351A89777B00FBEFDF /* FriendResponseTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendResponseTableCell.swift; sourceTree = "<group>"; };
 		9EEB2A401A8587DE000CB644 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		9EEB2A411A8587DE000CB644 /* FriendsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewController.xib; sourceTree = "<group>"; };
+		9EEC3C1C1A8AA64F007A460B /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraController.swift; path = ../CameraController.swift; sourceTree = "<group>"; };
+		9EEC3C1D1A8AA64F007A460B /* CameraController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraController.xib; path = ../CameraController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,7 @@
 		9E14881D1A841A4A00552B9C /* MainNavigation */ = {
 			isa = PBXGroup;
 			children = (
+				9EEC3C151A8AA47E007A460B /* Camera */,
 				9E1488161A84146000552B9C /* MainNavigationTabBarController.swift */,
 				9E39F51E1A8442B800D8ABFB /* Friends */,
 			);
@@ -282,6 +287,15 @@
 			name = DataAccess;
 			sourceTree = "<group>";
 		};
+		9EEC3C151A8AA47E007A460B /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				9EEC3C1C1A8AA64F007A460B /* CameraController.swift */,
+				9EEC3C1D1A8AA64F007A460B /* CameraController.xib */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -373,6 +387,7 @@
 				9EEB2A431A8587DE000CB644 /* FriendsTableViewController.xib in Resources */,
 				9EC0D0281A758B2E0013ED31 /* LaunchScreen.xib in Resources */,
 				9EC0D0251A758B2E0013ED31 /* Images.xcassets in Resources */,
+				9EEC3C1F1A8AA64F007A460B /* CameraController.xib in Resources */,
 				9EDD9B361A89777B00FBEFDF /* FriendResponseTableCell.xib in Resources */,
 				9E0B3AD51A79B98A007651A8 /* logo60@2x.png in Resources */,
 				9E0B3AEF1A79D5DB007651A8 /* LoginSignupViewController.xib in Resources */,
@@ -409,6 +424,7 @@
 				9E276E881A7AC8360058B91C /* LoginTextFields.swift in Sources */,
 				9EDD9B371A89777B00FBEFDF /* FriendResponseTableCell.swift in Sources */,
 				9E0B3AEE1A79D5DB007651A8 /* LoginSignupViewController.swift in Sources */,
+				9EEC3C1E1A8AA64F007A460B /* CameraController.swift in Sources */,
 				9EC0D01B1A758B2E0013ED31 /* AppDelegate.swift in Sources */,
 				9E0ACBC71A75A5C600BE6C6B /* TTUser.swift in Sources */,
 				9E68BA491A895EEE0033F85B /* StandardNavigationController.swift in Sources */,
