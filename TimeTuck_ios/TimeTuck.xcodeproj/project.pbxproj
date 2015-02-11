@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58DE49341A8B07C400361BF7 /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE49311A8B07C400361BF7 /* camera@2x.png */; };
+		58DE49351A8B07C400361BF7 /* happy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE49321A8B07C400361BF7 /* happy@2x.png */; };
+		58DE493C1A8B0E7F00361BF7 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE49381A8B0E7F00361BF7 /* camera.png */; };
+		58DE493D1A8B0E7F00361BF7 /* gears.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE49391A8B0E7F00361BF7 /* gears.png */; };
+		58DE493E1A8B0E7F00361BF7 /* happy.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE493A1A8B0E7F00361BF7 /* happy.png */; };
+		58DE49411A8BBAAE00361BF7 /* gears@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE49401A8BBAAE00361BF7 /* gears@2x.png */; };
 		9E0ACBC71A75A5C600BE6C6B /* TTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */; };
 		9E0B3AD31A79B8B8007651A8 /* icon60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E0B3AD21A79B8B8007651A8 /* icon60@3x.png */; };
 		9E0B3AD51A79B98A007651A8 /* logo60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E0B3AD41A79B98A007651A8 /* logo60@2x.png */; };
@@ -60,6 +66,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58DE49311A8B07C400361BF7 /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
+		58DE49321A8B07C400361BF7 /* happy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy@2x.png"; sourceTree = "<group>"; };
+		58DE49381A8B0E7F00361BF7 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		58DE49391A8B0E7F00361BF7 /* gears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gears.png; sourceTree = "<group>"; };
+		58DE493A1A8B0E7F00361BF7 /* happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happy.png; sourceTree = "<group>"; };
+		58DE49401A8BBAAE00361BF7 /* gears@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gears@2x.png"; sourceTree = "<group>"; };
 		9E0ACBC61A75A5C600BE6C6B /* TTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTUser.swift; sourceTree = "<group>"; };
 		9E0B3AD21A79B8B8007651A8 /* icon60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon60@3x.png"; sourceTree = "<group>"; };
 		9E0B3AD41A79B98A007651A8 /* logo60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo60@2x.png"; sourceTree = "<group>"; };
@@ -221,6 +233,12 @@
 		9E941E931A7876F8001B072A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				58DE49381A8B0E7F00361BF7 /* camera.png */,
+				58DE49401A8BBAAE00361BF7 /* gears@2x.png */,
+				58DE49391A8B0E7F00361BF7 /* gears.png */,
+				58DE493A1A8B0E7F00361BF7 /* happy.png */,
+				58DE49311A8B07C400361BF7 /* camera@2x.png */,
+				58DE49321A8B07C400361BF7 /* happy@2x.png */,
 				9E7AE9FF1A79815300C8BEA9 /* splash.png */,
 			);
 			name = Images;
@@ -391,18 +409,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58DE49341A8B07C400361BF7 /* camera@2x.png in Resources */,
+				58DE493C1A8B0E7F00361BF7 /* camera.png in Resources */,
 				9E0B3AF31A79E989007651A8 /* LoginViewController.xib in Resources */,
 				9E7EB8281A78701100442DDF /* Campton-BoldDEMO.otf in Resources */,
 				9E224C391A8ABC58008FF6E9 /* CameraController.xib in Resources */,
 				9E7AEA001A79815300C8BEA9 /* splash.png in Resources */,
+				58DE493E1A8B0E7F00361BF7 /* happy.png in Resources */,
 				9E0B3AD31A79B8B8007651A8 /* icon60@3x.png in Resources */,
 				9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */,
 				9E929F631A86B90800347C60 /* SearchUserTableViewController.xib in Resources */,
 				9E276E8C1A7ADF1D0058B91C /* SignUpViewController.xib in Resources */,
+				58DE49351A8B07C400361BF7 /* happy@2x.png in Resources */,
+				58DE49411A8BBAAE00361BF7 /* gears@2x.png in Resources */,
 				9EC0D0451A758C810013ED31 /* settings.plist in Resources */,
 				9EEB2A431A8587DE000CB644 /* FriendsTableViewController.xib in Resources */,
 				9EC0D0281A758B2E0013ED31 /* LaunchScreen.xib in Resources */,
 				9EC0D0251A758B2E0013ED31 /* Images.xcassets in Resources */,
+				58DE493D1A8B0E7F00361BF7 /* gears.png in Resources */,
 				9EDD9B361A89777B00FBEFDF /* FriendResponseTableCell.xib in Resources */,
 				9E0B3AD51A79B98A007651A8 /* logo60@2x.png in Resources */,
 				9E0B3AEF1A79D5DB007651A8 /* LoginSignupViewController.xib in Resources */,

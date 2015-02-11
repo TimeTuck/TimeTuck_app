@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.rootViewController = firstNav!;
         window!.makeKeyAndVisible();
         
+        
         return true
     }
 

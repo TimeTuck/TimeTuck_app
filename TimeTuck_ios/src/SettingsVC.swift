@@ -50,9 +50,9 @@ class SettingsVC: UIViewController {
             access.logoutUser(foundSession) {
                 successful in
                 if (successful == true){
-                    /*let vc = UIViewController(nibName: "LoginSignupViewController", bundle: NSBundle.mainBundle())
-                    self.presentViewController(vc, animated: true, completion: nil)*/
-                    self.dismissViewControllerAnimated(true, completion: nil);
+                    var nav = LoginSignUpViewController(self.appManager!);
+                    self.presentViewController(nav, animated: true, completion: nil);
+                   // self.dismissViewControllerAnimated(true, completion: nil);
                 }
                 else {
                         println ("This did not work"); }
