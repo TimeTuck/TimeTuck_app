@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 import XCTest
-import TimeTuck_app
+import TimeTuck
 
 class TimeTuck_appTests: XCTestCase {
 

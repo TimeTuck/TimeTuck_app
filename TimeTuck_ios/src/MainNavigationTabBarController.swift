@@ -42,15 +42,20 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         if viewController == cameraControl {
+            var camera = CameraController();
+            
+            if (!UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
+                UIAlertView(title: "Error", message: "Your device does not have a camera", delegate: nil, cancelButtonTitle: "Ok").show();
+                return false;
+            }
+            
+            camera.sourceType = UIImagePickerControllerSourceType.Camera;
             presentViewController(CameraController(), animated: true, completion: nil);
-            return false;
-        } else {
-            return true;
         }
+        return false;
     }
 }
