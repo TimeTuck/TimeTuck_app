@@ -202,6 +202,12 @@ def search_users():
     return Response(response=json.dumps(respond(0,users=results), indent=4),
                     status=200, mimetype='application/json')
 
+@app.route('/image_upload', methods=['post'])
+@login_required
+def upload_image():
+    
+
+
 
 if __name__ == '__main__':
     app.run()

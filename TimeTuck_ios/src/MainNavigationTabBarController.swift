@@ -55,7 +55,9 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
             
             camera.sourceType = UIImagePickerControllerSourceType.Camera;
             presentViewController(CameraController(), animated: true, completion: nil);
+            return false;
+        } else {
+            return true;
         }
-        return false;
     }
 }
