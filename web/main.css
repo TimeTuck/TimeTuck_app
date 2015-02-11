@@ -1,0 +1,115 @@
+﻿a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+@font-face {
+	font-family: Campton;
+	src: url("font/Rene.Bieder_Campton.Light.otf") format("opentype");
+}
+
+body{
+	/*background-image:url('img/TimeTuck_logo.jpg');
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position:center;*/
+	background-color:#97D461;
+}
+
+.popup-position{
+	display:none;
+	position:fixed;
+	top:0;
+	left:0;
+	background-color:rgba(0,0,0,0.7);
+	width:100%;
+	height:100%;
+	z-index:2;
+}
+
+#popup-wrapper{
+	width:500px;
+	margin:70px auto;
+	text-align:left;
+}
+
+#popup-container{
+	/*background-color:#FFF;
+	padding:20px;*/
+}
+
+/* NOT NEEDED? */
+#wrapper{
+	width:1000px; 
+	margin:40px auto;
+	text-align:left;
+}
+
+.a{
+	display:block;
+}
+
+.main{
+	width:1000px;
+	height:auto;
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+	z-index:1;
+	/*background-color:aqua;*/	
+}
+.imgBox{
+	width:1000px;
+	height:500px;
+	background-image:url('img/TimeTuck_logo.jpg');
+	background-repeat:no-repeat;
+	background-position:center;
+	background-color:#97D461;
+	float:left;
+}
+.mainButton{
+	width:500px;
+	height:50px;
+	text-align:center;
+	float:left;
+	line-height:50px;
+	font-family: Campton;
+	margin-left:25%; /* depends on the width of mainButton and main */
+}
+
+a.fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
+.wrapper{
+	width:1000px;
+	height:auto;
+	float:left;
+}
+
+.footerButton{
+	width:200px;
+	height:50px;
+	text-align:center;
+	float:left;
+	line-height:50px;
+	color:#555555;
+	font-family: Campton;
+}
