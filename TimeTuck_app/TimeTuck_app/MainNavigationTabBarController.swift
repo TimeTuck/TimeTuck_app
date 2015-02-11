@@ -27,11 +27,15 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        self.tabBar.tintColor = UIColor(red: 109.0/255, green: 155.0/255, blue: 68.0/255, alpha:1.0);
         var friends = FriendsNavigationController(self.appManager!);
-        friends.title = "friends";
+        let friendsImg = UIImage(named: "happy");
+        friends.tabBarItem = UITabBarItem(title: "friends", image: friendsImg, tag: 1);
         var settings = SettingsVC(self.appManager!);
-        cameraControl.title = "camera";
-        settings.title = "settings";
+        let settingImg = UIImage(named: "gears");
+        settings.tabBarItem = UITabBarItem(title: "settings", image: settingImg, tag: 3);
+        let cameraImg = UIImage(named: "camera");
+        cameraControl.tabBarItem = UITabBarItem(title: "camera", image: cameraImg, tag: 2);
         setViewControllers([friends, cameraControl, settings], animated: false);
         // Do any additional setup after loading the view.
     }
