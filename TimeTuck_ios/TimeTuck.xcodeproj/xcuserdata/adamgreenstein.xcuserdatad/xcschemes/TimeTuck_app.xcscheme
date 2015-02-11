@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9EC0D0141A758B2E0013ED31"
-               BuildableName = "TimeTuck_app.app"
-               BlueprintName = "TimeTuck_app"
-               ReferencedContainer = "container:TimeTuck_app.xcodeproj">
+               BuildableName = "TimeTuck.app"
+               BlueprintName = "TimeTuck"
+               ReferencedContainer = "container:TimeTuck.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9EC0D02C1A758B2E0013ED31"
-               BuildableName = "TimeTuck_appTests.xctest"
-               BlueprintName = "TimeTuck_appTests"
-               ReferencedContainer = "container:TimeTuck_app.xcodeproj">
+               BuildableName = "TimeTuck_Tests.xctest"
+               BlueprintName = "TimeTuck_Tests"
+               ReferencedContainer = "container:TimeTuck.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9EC0D02C1A758B2E0013ED31"
-               BuildableName = "TimeTuck_appTests.xctest"
-               BlueprintName = "TimeTuck_appTests"
-               ReferencedContainer = "container:TimeTuck_app.xcodeproj">
+               BuildableName = "TimeTuck_Tests.xctest"
+               BlueprintName = "TimeTuck_Tests"
+               ReferencedContainer = "container:TimeTuck.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9EC0D0141A758B2E0013ED31"
-            BuildableName = "TimeTuck_app.app"
-            BlueprintName = "TimeTuck_app"
-            ReferencedContainer = "container:TimeTuck_app.xcodeproj">
+            BuildableName = "TimeTuck.app"
+            BlueprintName = "TimeTuck"
+            ReferencedContainer = "container:TimeTuck.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9EC0D0141A758B2E0013ED31"
-            BuildableName = "TimeTuck_app.app"
-            BlueprintName = "TimeTuck_app"
-            ReferencedContainer = "container:TimeTuck_app.xcodeproj">
+            BuildableName = "TimeTuck.app"
+            BlueprintName = "TimeTuck"
+            ReferencedContainer = "container:TimeTuck.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9EC0D0141A758B2E0013ED31"
-            BuildableName = "TimeTuck_app.app"
-            BlueprintName = "TimeTuck_app"
-            ReferencedContainer = "container:TimeTuck_app.xcodeproj">
+            BuildableName = "TimeTuck.app"
+            BlueprintName = "TimeTuck"
+            ReferencedContainer = "container:TimeTuck.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

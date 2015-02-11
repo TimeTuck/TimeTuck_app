@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:TimeTuck_app.xcodeproj">
+      location = "self:TimeTuck.xcodeproj">
    </FileRef>
 </Workspace>
