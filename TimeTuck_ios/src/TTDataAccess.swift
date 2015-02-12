@@ -141,6 +141,32 @@ public class TTDataAccess {
         };
     }
     
+    func upload_image(session: TTSession, imageData: NSData?) {
+        let url = NSURL(string: getPath("/image_upload"));
+        let request = NSMutableURLRequest(URL: url!);
+        let queue = NSOperationQueue();
+        let boundary = "------------abiu2132iu1dfuho1h89234hfflkadsf";
+        let contentType = "multipart/form-data; boundary=" + boundary;
+        let body = NSMutableData();
+        
+        request.HTTPMethod = "POST";
+        request.setValue(contentType, forHTTPHeaderField: "Content-Type");
+        request.setValue("application/json", forHTTPHeaderField: "Accept");
+        
+        body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
+        body.appendData(NSString(format: "Content-Disposition: form-data; name=\"key\"\n\n%@", session.key).dataUsingEncoding(NSUTF8StringEncoding)!);
+        body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
+        body.appendData(NSString(format: "Content-Disposition: form-data; name=\"secret\"\n\n%@", session.secret).dataUsingEncoding(NSUTF8StringEncoding)!);
+        body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
+        body.appendData(NSString(format: "Content-Disposition: form-data; name=\"image\"; filename=\"%@\"\n\n", "image.png").dataUsingEncoding(NSUTF8StringEncoding)!);
+        body.appendData(imageData!);
+        body.appendData(NSString(format: "\r\n--%@--\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
+        request.HTTPBody = body;
+        NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil);
+        //NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler: complete);
+        
+    }
+    
     func makeHTTPRequest(url: String, bodyData data: [String: AnyObject]?, requestMethod method : String,
                          completionHandler complete: (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void) {
         let url = NSURL(string: getPath(url));

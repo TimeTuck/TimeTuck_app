@@ -4,8 +4,10 @@ from timetuck.database import access
 from timetuck.model import user
 from timetuck.model import session
 from timetuck.helpers import respond
-from service_info import get_session_data
+from service_info import get_session_data, get_session_form_data, allowed_file
 from functools import wraps
+from werkzeug.utils import secure_filename
+import os
 import json
 
 app = Flask(__name__)
@@ -34,7 +36,10 @@ def before_request():
 def identity_loader():
     sess = None
     if request.method == 'POST':
-        sess = get_session_data(request.get_json())
+        if request.content_type == 'application/json':
+            sess = get_session_data(request.get_json())
+        elif 'multipart/form-data' in request.content_type:
+            sess = get_session_form_data(request.form)
     elif request.method == 'GET':
         try:
             sess = session(request.args['key'], request.args['secret'])
@@ -205,9 +210,16 @@ def search_users():
 @app.route('/image_upload', methods=['post'])
 @login_required
 def upload_image():
-    
+    if request.method == 'POST':
+        try:
+            file = request.files['image']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        except:
+            abort(400)
 
-
+    return Response(response=json.dumps(respond(0, response=1), indent=4), status=200, mimetype='application/json')
 
 if __name__ == '__main__':
     app.run()

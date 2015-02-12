@@ -8,23 +8,29 @@
 
 import UIKit
 
-class CameraController: UIImagePickerController {
-
+class CameraController: UIImagePickerController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    var appManager: TTAppManager?;
+    
+    class func initialize(appManager: TTAppManager) -> CameraController {
+        var camera = CameraController();
+        camera.appManager = appManager;
+        return camera;
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
-            sourceType = UIImagePickerControllerSourceType.Camera;
-        } else {
-            UIAlertView(title: "Error", message: "Your device does not have a camera", delegate: nil, cancelButtonTitle: "Ok").show();
-        }
-
-
         // Do any additional setup after loading the view.
+        delegate = self;
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        var data = TTDataAccess();
+        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(image));
     }
     
 
