@@ -29,10 +29,23 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil);
         var data = TTDataAccess();
-        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(image));
+        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(image, scale: 0.20))) {
+            NSLog("Uploaded");
+        };
     }
     
+    func compressImage(image: UIImage, scale: CGFloat) -> UIImage {
+        var originalSize = image.size;
+        var newRect = CGRectMake(0, 0, originalSize.width * scale, originalSize.height * scale);
+        
+        UIGraphicsBeginImageContext(newRect.size);
+        image.drawInRect(newRect);
+        var newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return newImage;
+    }
 
     /*
     // MARK: - Navigation

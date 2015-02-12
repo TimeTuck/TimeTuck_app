@@ -141,7 +141,7 @@ public class TTDataAccess {
         };
     }
     
-    func upload_image(session: TTSession, imageData: NSData?) {
+    func upload_image(session: TTSession, imageData: NSData?, complete: () -> Void) {
         let url = NSURL(string: getPath("/image_upload"));
         let request = NSMutableURLRequest(URL: url!);
         let queue = NSOperationQueue();
@@ -158,13 +158,16 @@ public class TTDataAccess {
         body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
         body.appendData(NSString(format: "Content-Disposition: form-data; name=\"secret\"\n\n%@", session.secret).dataUsingEncoding(NSUTF8StringEncoding)!);
         body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
-        body.appendData(NSString(format: "Content-Disposition: form-data; name=\"image\"; filename=\"%@\"\n\n", "image.png").dataUsingEncoding(NSUTF8StringEncoding)!);
+        body.appendData(NSString(format: "Content-Disposition: form-data; name=\"image\"; filename=\"%@\"\n\n", "image" + NSDate().timeIntervalSince1970.description + ".png").dataUsingEncoding(NSUTF8StringEncoding)!);
         body.appendData(imageData!);
         body.appendData(NSString(format: "\r\n--%@--\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
         request.HTTPBody = body;
-        NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil);
-        //NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler: complete);
-        
+        NSURLConnection.sendAsynchronousRequest(request, queue: queue) {
+            response, data, error in
+            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+                complete();
+            }
+        }
     }
     
     func makeHTTPRequest(url: String, bodyData data: [String: AnyObject]?, requestMethod method : String,
