@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 10, 2015 at 09:11 PM
+-- Generation Time: Feb 15, 2015 at 07:49 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -18,6 +18,18 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `device_token_from_session`(IN `k` CHAR(36), IN `s` CHAR(36))
+    NO SQL
+SELECT device_token AS result FROM user_sessions WHERE skey = k AND secret = s$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `device_token_get_all`(IN `u_id` INT(10))
+    NO SQL
+SELECT device_token from user_sessions WHERE user_id = u_id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `device_token_update`(IN `k` CHAR(36), IN `s` CHAR(36), IN `token` CHAR(64))
+    NO SQL
+UPDATE user_sessions SET device_token=token WHERE skey = k AND secret = s$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_friends`(IN `u_id` INT(10))
     NO SQL
 SELECT u.id, u.username, u.email, u.phone_number, u.activated, u.active
@@ -64,9 +76,9 @@ ELSE
 END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `session_create`(IN `uid` INT(10), IN `k` CHAR(36), IN `sec` CHAR(36), IN `date` DATETIME)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `session_create`(IN `uid` INT(10), IN `k` CHAR(36), IN `sec` CHAR(36), IN `date` DATETIME, IN `token` CHAR(64))
 BEGIN
-INSERT INTO user_sessions(user_id, skey, secret, updated) VALUES(uid, k, sec, date );
+INSERT INTO user_sessions(user_id, skey, secret, device_token, updated) VALUES(uid, k, sec, token, date );
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `session_get_user`(IN `k` CHAR(36), IN `sec` CHAR(36))
@@ -144,7 +156,7 @@ CREATE TABLE `users` (
   `created` datetime NOT NULL,
   `activated` tinyint(1) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -157,8 +169,9 @@ CREATE TABLE `user_sessions` (
   `user_id` int(10) unsigned NOT NULL,
   `skey` char(36) NOT NULL,
   `secret` char(36) NOT NULL,
+  `device_token` char(64) DEFAULT NULL,
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -190,12 +203,12 @@ ALTER TABLE `user_sessions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=137;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=138;
 --
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
 --
 -- Constraints for dumped tables
 --
