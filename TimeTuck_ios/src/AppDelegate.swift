@@ -13,12 +13,12 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var appManager: TTAppManager?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch. 
-        var appManager = TTAppManager.checkUser();
+        // Override point for customization after application launch.
         var firstNav: UIViewController?;
+        appManager = TTAppManager.checkUser();
         
         if appManager != nil {
             // User is logged in
@@ -32,17 +32,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var notification = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert
             , categories: nil);
         UIApplication.sharedApplication().registerUserNotificationSettings(notification)
+        application.registerForRemoteNotifications();
+        
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds);
         window!.rootViewController = firstNav!;
         window!.makeKeyAndVisible();
-        
-        
-        return true
+
+        return true;
     }
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         NSLog("%@", deviceToken);
+        appManager?.updateDeviceToken(deviceToken.description);
+        
+        
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        NSLog("%@", error);
+        appManager?.updateDeviceToken(nil);
     }
 
     func applicationWillResignActive(application: UIApplication) {

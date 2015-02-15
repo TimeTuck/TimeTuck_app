@@ -110,6 +110,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                 password: password.text,
                                 phoneNumber: phoneNumber.text,
                                 email: email.text,
+                                deviceToken: appManager?.deviceToken,
                                 success: registerSuccess,
                                 failureDuplicateInfo: registerFailDup,
                                 failureIncorrectInfo: registerIncorrectInfo);
@@ -119,7 +120,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func registerSuccess(user: TTUser?, session: TTSession?) {
         NSOperationQueue.mainQueue().addOperationWithBlock() {
             if (user != nil && session != nil) {
+                var token = self.appManager!.deviceToken;
                 self.appManager = TTAppManager(user: user!, session: session!);
+                self.appManager!.deviceToken = token;
                 self.appManager!.saveSession();
                 var nav = MainNavigationTabBarController(self.appManager!);
                 self.presentViewController(nav, animated: true, completion: nil);

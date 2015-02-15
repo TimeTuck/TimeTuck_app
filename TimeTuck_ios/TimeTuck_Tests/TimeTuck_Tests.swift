@@ -28,7 +28,7 @@ class TimeTuck_appTests: XCTestCase {
     func testLoginCheckLogout() {
         var shouldLoop = true;
         var access = TTDataAccess();
-        access.loginUser("admgrn12", password: "123456", completed:{ user, session in
+        access.loginUser("admgrn12", password: "123456", deviceToken: nil, completed:{ user, session in
             self.sess = session;
             XCTAssertNotNil(user, "User login Failed");
             XCTAssertNotNil(session, "Session login Failed");
@@ -41,7 +41,7 @@ class TimeTuck_appTests: XCTestCase {
 
         if (self.sess != nil) {
             access.checkUser(self.sess!, completed: {
-                user, session in
+                user, session, token in
                 self.sess = session;
                 XCTAssertNotNil(user, "User Check Failed For Session");
                 XCTAssertNotNil(session, "User Check Failed For User");
@@ -81,7 +81,7 @@ class TimeTuck_appTests: XCTestCase {
         var worked = false;
         var access = TTDataAccess();
         
-        access.registerUser("admgrn12", password: "132456", phoneNumber: "561-445-9699", email: "admgrn@comcast.net",
+        access.registerUser("admgrn12", password: "132456", phoneNumber: "561-445-9699", email: "admgrn@comcast.net", deviceToken: nil,
             success:{user, session in
                 shouldLoop = false;
             }, failureDuplicateInfo: {username, email, phoneNumber in

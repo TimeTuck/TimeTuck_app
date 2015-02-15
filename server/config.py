@@ -2,3 +2,5 @@ DB_CONNECTION = {'user': 'root', 'passwd': 'root', 'port': 8889, 'host': '127.0.
 DEBUG = True
 SECRET_KEY = 'A0Zr98j/3yX R~XKS!jmN]LWX/,DL*T'
 UPLOAD_FOLDER = '/Users/adamgreenstein/Desktop'
+PUSH_KEY_LOCATION = "../../../keys/push_ssl/dev/devPush.pem"
+PUSH_METHOD = "push_sandbox"

@@ -19,18 +19,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     init(_ appManager: TTAppManager) {
         super.init(nibName: "LoginViewController", bundle: NSBundle.mainBundle());
-        initialize();
+        initialize(appManager);
         
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
-        initialize();
+        initialize(nil);
     }
     
-    func initialize() {
+    func initialize(appManager: TTAppManager?) {
         offset = 0;
-        self.appManager = nil;
+        self.appManager = appManager;
         modalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
     }
 
@@ -100,11 +100,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         var access = TTDataAccess();
         view.endEditing(true);
         
-        access.loginUser(username.text, password: password.text) {
+        access.loginUser(username.text, password: password.text, deviceToken: appManager?.deviceToken) {
             user, session in
             NSOperationQueue.mainQueue().addOperationWithBlock() {
                 if (user != nil && session != nil) {
+                    var token = self.appManager?.deviceToken;
                     self.appManager = TTAppManager(user: user!, session: session!);
+                    self.appManager!.deviceToken = token;
                     self.appManager!.saveSession();
                     var nav = MainNavigationTabBarController(self.appManager!);
                     self.presentViewController(nav, animated: true, completion: nil);

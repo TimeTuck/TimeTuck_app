@@ -1,7 +1,7 @@
 from flask import request
 from timetuck.model import session
 
-def get_session_data(data):
+def get_session_data():
     data = request.get_json()
 
     if data is None:
@@ -23,3 +23,11 @@ def get_session_form_data(form):
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in set(['png',])
+
+def respond(status, **kwargs):
+    output = {'status': status}
+
+    for key in kwargs:
+        output[key] = kwargs[key]
+
+    return output

@@ -12,6 +12,7 @@ import Foundation
 class TTAppManager {
     var user: TTUser?;
     var session: TTSession?;
+    var deviceToken: String?
     
     class func checkUser() -> TTAppManager? {
         var userInfo = NSUserDefaults();
@@ -22,9 +23,10 @@ class TTAppManager {
             var access = TTDataAccess();
             var foundSession = TTSession(storedSession! as [String: String]);
             access.checkUser(foundSession) {
-                user, session in
+                user, session, token in
                 if (user != nil && session != nil) {
                     appManager = TTAppManager(user: user!, session: session!);
+                    appManager?.deviceToken = token;                            // Store token.
                     appManager?.saveSession();
                 } else {
                     userInfo.removeObjectForKey("session");
@@ -45,6 +47,29 @@ class TTAppManager {
     init(user: TTUser, session: TTSession) {
         self.user = user;
         self.session = session;
+    }
+    
+    func updateDeviceToken(token: String?) {
+        var strippedToken1 = deviceToken?.stringByReplacingOccurrencesOfString(" ", withString: "")
+                                         .stringByReplacingOccurrencesOfString(">", withString: "")
+                                         .stringByReplacingOccurrencesOfString("<", withString: "");
+        var strippedToken2 = token?.stringByReplacingOccurrencesOfString(" ", withString: "")
+                                   .stringByReplacingOccurrencesOfString(">", withString: "")
+                                   .stringByReplacingOccurrencesOfString("<", withString: "");
+        
+        if (self.session != nil && self.user != nil) {
+            if ((deviceToken == nil && token != nil) ||
+                (deviceToken != nil && token != nil && strippedToken1 != strippedToken2) ||
+                (deviceToken != nil && token == nil)) {
+                // Token's do not match, must update token
+                self.deviceToken = token;
+                var access = TTDataAccess();
+                access.updateDeviceToken(session!, deviceToken: deviceToken, complete: nil);
+            }
+        } else {
+            // User does not have a session, do not update token, just store it
+            self.deviceToken = token;
+        }
     }
     
     func isUserLoggedIn() -> Bool {

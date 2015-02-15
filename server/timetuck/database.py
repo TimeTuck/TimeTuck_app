@@ -78,7 +78,7 @@ class access:
                 return {'username': bool(result['username']), 'phonenumber': bool(result['phonenumber']),
                         'email': bool(result['email'])}
 
-    def session_create(self, user, session):
+    def session_create(self, user, session, token):
         if not isinstance(session, dict):
             sess = session.__dict__
         else:
@@ -86,7 +86,8 @@ class access:
 
         with self.connection() as db:
             with closing(db.cursor()) as cur:
-                cur.callproc("session_create", (user.id, sess['key'], sess['secret'], convert_time(time.localtime())))
+                cur.callproc("session_create", (user.id, sess['key'], sess['secret'], convert_time(time.localtime()),
+                                                token))
                 db.commit()
 
     def session_update(self, session):
@@ -125,6 +126,48 @@ class access:
             with closing(db.cursor()) as cur:
                 cur.callproc("session_logout", (sess['key'], sess['secret']))
                 db.commit()
+
+    def get_device_token(self, session):
+        if not isinstance(session, dict):
+            sess = session.__dict__
+        else:
+            sess = session
+
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                cur.callproc("device_token_from_session", (sess['key'], sess['secret']))
+
+                result = cur.fetchone()
+                return result["result"]
+
+    def get_all_device_tokens(self, id):
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                try:
+                     cur.callproc("device_token_get_all", (id,))
+                except:
+                    return []
+
+                devices = cur.fetchall()
+                deviceList = []
+
+                for v in iter(devices):
+                    if v['device_token'] is not None:
+                        deviceList.append(v['device_token'])
+        return deviceList
+
+    def update_device_token(self, session, token):
+        if not isinstance(session, dict):
+            sess = session.__dict__
+        else:
+            sess = session
+
+        with self.connection() as db:
+            with closing(db.cursor()) as cur:
+                cur.callproc("device_token_update", (sess['key'], sess['secret'], token))
+                db.commit()
+
+
 
     def send_friend_request(self, user, requested_id):
         with self.connection() as db:

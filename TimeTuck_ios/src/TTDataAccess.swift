@@ -19,9 +19,14 @@ public class TTDataAccess {
         }
     }
     
-    public func loginUser(username: String, password : String, completed:(user: TTUser?,
+    public func loginUser(username: String, password : String, deviceToken: String?, completed:(user: TTUser?,
                 session: TTSession?) -> Void) {
-        let login = ["username": username, "password": password];
+        var login = ["username": username, "password": password];
+                    
+        if deviceToken != nil {
+            login["device_token"] = deviceToken!;
+        }
+                    
         makeHTTPRequest("/login", bodyData: login, requestMethod: "POST") {
             response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
@@ -37,11 +42,15 @@ public class TTDataAccess {
         }
     }
     
-    public func registerUser(username: String, password: String, phoneNumber: String, email: String,
+    public func registerUser(username: String, password: String, phoneNumber: String, email: String, deviceToken: String?,
                              success: (user: TTUser?, session: TTSession?) -> Void,
                              failureDuplicateInfo: (username: Bool, email: Bool, phoneNumber: Bool) -> Void,
                              failureIncorrectInfo: (username: String?, email: String?, phoneNumber: String?) -> Void) {
-        let register = ["username": username, "password": password, "phone_number": phoneNumber, "email": email];
+        var register = ["username": username, "password": password, "phone_number": phoneNumber, "email": email];
+        if deviceToken != nil {
+            register["device_token"] = deviceToken;
+        }
+        
         makeHTTPRequest("/register", bodyData: register, requestMethod: "POST") {
             response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
@@ -61,18 +70,32 @@ public class TTDataAccess {
         }
     }
 
-    public func checkUser(session: TTSession, completed: (user: TTUser?, session: TTSession?) -> Void) {
+    public func checkUser(session: TTSession, completed: (user: TTUser?, session: TTSession?, deviceToken: String?) -> Void) {
         makeHTTPRequest("/check_user", bodyData: ["session": session.toDictionary()] , requestMethod: "POST") {
             response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
                 let user = TTUser(values["user"] as [String: AnyObject]);
-                let session = TTSession(values["session"] as [String: String])
-                completed(user: user, session: session);
+                let session = TTSession(values["session"] as [String: String]);
+                let token = values["device_token"] as String?;
+                completed(user: user, session: session, deviceToken: token);
             } else {
-                completed(user: nil, session: nil);
+                completed(user: nil, session: nil, deviceToken: nil);
             }
         };
+    }
+    
+    public func updateDeviceToken(session: TTSession, deviceToken: String?, complete: (() -> Void)?) {
+        var data = session.toDictionary()
+        if deviceToken != nil {
+            data["device_token"] = deviceToken;
+        }
+        makeHTTPRequest("/check_user", bodyData: data, requestMethod: "POST") {
+            response, data, error in
+            if complete != nil {
+                complete!();
+            }
+        }
     }
 
     public func logoutUser(session: TTSession, completed: (successful: Bool) -> Void) {

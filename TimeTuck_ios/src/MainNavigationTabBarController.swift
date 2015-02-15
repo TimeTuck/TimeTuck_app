@@ -48,10 +48,10 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
         if viewController == cameraControl {
             var camera = CameraController.initialize(appManager!);
             
-           /* if (!UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
+            if (!UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
                 UIAlertView(title: "Error", message: "Your device does not have a camera", delegate: nil, cancelButtonTitle: "Ok").show();
                 return false;
-            }*/
+            }
             
             camera.sourceType = UIImagePickerControllerSourceType.Camera;
             presentViewController(camera, animated: true, completion: nil);

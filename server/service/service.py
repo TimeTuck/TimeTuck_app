@@ -3,8 +3,8 @@ from flask.ext.principal import Principal, Permission, RoleNeed, Identity, ident
 from timetuck.database import access
 from timetuck.model import user
 from timetuck.model import session
-from timetuck.helpers import respond
-from service_info import get_session_data, get_session_form_data, allowed_file
+from notifications import notify
+from service_info import get_session_data, get_session_form_data, allowed_file, respond
 from functools import wraps
 from werkzeug.utils import secure_filename
 import os
@@ -37,7 +37,7 @@ def identity_loader():
     sess = None
     if request.method == 'POST':
         if request.content_type == 'application/json':
-            sess = get_session_data(request.get_json())
+            sess = get_session_data()
         elif 'multipart/form-data' in request.content_type:
             sess = get_session_form_data(request.form)
     elif request.method == 'GET':
@@ -77,6 +77,13 @@ def register():
     except KeyError:
         abort(400)
 
+    token = None
+
+    try:
+        token = data['device_token'].replace(" ", "").replace("<", "").replace(">", "")
+    except:
+        pass
+
     errors = new_user.validate()
 
     if errors != {}:
@@ -85,7 +92,7 @@ def register():
 
     if g.db_main.user_create(new_user) is True:
         sess = session.create()
-        g.db_main.session_create(new_user, sess)
+        g.db_main.session_create(new_user, sess, token)
 
         return Response(response=json.dumps(respond(0, user=new_user.getdict(), session=sess.__dict__), indent=4),
                         status=200, mimetype='application/json')
@@ -106,6 +113,11 @@ def login():
     except KeyError:
         abort(400)
 
+    try:
+        login['device_token'] = data['device_token'].replace(" ", "").replace("<", "").replace(">", "")
+    except:
+        login['device_token'] = None
+
     u = g.db_main.user_login(login['username'])
 
     if u is None or not u.check_password(login['passwd'], u.password):
@@ -113,7 +125,7 @@ def login():
                         status=200, mimetype='application/json')
 
     sess = session.create()
-    g.db_main.session_create(u, sess)
+    g.db_main.session_create(u, sess, login['device_token'])
     
     return Response(response=json.dumps(respond(0, user=u.getdict(), session=sess.__dict__), indent=4),
                     status=200, mimetype='application/json')
@@ -121,7 +133,7 @@ def login():
 @app.route('/logout', methods=['post'])
 @login_required
 def logout():
-    sess = get_session_data(request.get_json())
+    sess = get_session_data()
     if sess is None:
         abort(400)
 
@@ -136,8 +148,28 @@ def check_user():
     sess.update()
 
     g.db_main.session_update(sess)
-    return Response(response=json.dumps(respond(0, user=user.getdict(), session=sess.__dict__), indent=4),
+    token = g.db_main.get_device_token(sess)
+
+    return Response(response=json.dumps(respond(0, user=user.getdict(), session=sess.__dict__, token=token), indent=4),
                     status=200, mimetype='application/json')
+
+@app.route('/update_device_token', methods=['post'])
+@login_required
+def update_device_token():
+    sess = session(**g.identity.id)
+    deviceToken = None
+    data = request.get_json()
+
+    try:
+        deviceToken = data['device_token']
+    except:
+        pass
+
+    g.db_main.update_device_token(sess, deviceToken)
+
+    return Response(response=json.dumps(respond(0), indent=4),
+                    status=200, mimetype='application/json')
+
 
 @app.route('/send_friend_request/<id>', methods=['post'])
 @login_required
@@ -151,9 +183,11 @@ def send_friend_request(id):
         return Response(response=json.dumps(respond(2), indent=4),
                     status=200, mimetype='application/json')
 
-    returnedVal = g.db_main.send_friend_request(user, id)
+    returned_val = g.db_main.send_friend_request(user, id)
+    devices = g.db_main.get_all_device_tokens(id)
+    notify(app.config, async=True).send_notification("New Friend Request: %s" % user.username, devices)
 
-    return Response(response=json.dumps(respond(returnedVal), indent=4),
+    return Response(response=json.dumps(respond(returned_val), indent=4),
                     status=200, mimetype='application/json')
 
 @app.route('/respond_friend_request/<id>', methods=['post'])
@@ -174,9 +208,14 @@ def respond_friend_request(id):
         return Response(response=json.dumps(respond(2), indent=4),
                     status=200, mimetype='application/json')
 
-    returnedVal = g.db_main.respond_friend_request(user, id, accept)
+    returned_val = g.db_main.respond_friend_request(user, id, accept)
 
-    return Response(response=json.dumps(respond(returnedVal), indent=4),
+    if accept and returned_val == 0:
+        devices = g.db_main.get_all_device_tokens(id)
+        notify(app.config, async=True).send_notification("%s accepted you friend request!" % user.username, devices)
+
+
+    return Response(response=json.dumps(respond(returned_val), indent=4),
                     status=200, mimetype='application/json')
 
 

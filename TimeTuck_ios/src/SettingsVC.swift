@@ -11,10 +11,8 @@ import UIKit
 class SettingsVC: UIViewController {
     
     var appManager: TTAppManager?
-    var userInfo = NSUserDefaults();
     @IBOutlet weak var errorMessage: UILabel!
 
-    
     var visibleHeight: CGFloat?
     var offset: CGFloat?
     
@@ -43,25 +41,23 @@ class SettingsVC: UIViewController {
     
     @IBAction func logout(sender: UIButton) {
         
-        var storedSession : AnyObject? = userInfo.objectForKey("session")
-        if storedSession != nil {
+        if self.appManager!.session != nil {
             var access = TTDataAccess();
-            var foundSession = TTSession(storedSession! as [String: String]);
-            access.logoutUser(foundSession) {
+            access.logoutUser(self.appManager!.session!) {
                 successful in
-                if (successful == true){
-                    var nav = LoginSignUpViewController(self.appManager!);
-                    self.presentViewController(nav, animated: true, completion: nil);
-                   // self.dismissViewControllerAnimated(true, completion: nil);
+                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                    // Maybe logout even if unsuccessful.
+                    if (successful == true){
+                        self.appManager!.clearSession();
+                        var nav = LoginSignUpViewController(self.appManager!);
+                        self.presentViewController(nav, animated: true, completion: nil);
+                    } else {
+                        println ("This did not work");
+                    }
                 }
-                else {
-                        println ("This did not work"); }
-                }
-            
             }
         }
- 
-    
+    }
 }
 
                  

@@ -17,7 +17,7 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="TimeTuck_app" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="TimeTuck" customModuleProvider="target">
             <connections>
                 <outlet property="email" destination="6gQ-jo-BTY" id="9Vs-gd-UxG"/>
                 <outlet property="emailHeight" destination="GOx-99-X2b" id="qYy-CH-0kU"/>
@@ -38,7 +38,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4MP-kz-FfD" customClass="LoginTextFields" customModule="TimeTuck_app" customModuleProvider="target">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4MP-kz-FfD" customClass="LoginTextFields" customModule="TimeTuck" customModuleProvider="target">
                     <rect key="frame" x="10" y="225" width="580" height="30"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -51,7 +51,7 @@
                         <action selector="notEditingItem:" destination="-1" eventType="editingDidEnd" id="N1s-je-qGd"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="verify password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3hm-j5-UN6" customClass="LoginTextFields" customModule="TimeTuck_app" customModuleProvider="target">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="verify password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3hm-j5-UN6" customClass="LoginTextFields" customModule="TimeTuck" customModuleProvider="target">
                     <rect key="frame" x="10" y="265" width="580" height="30"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -70,7 +70,7 @@
                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gQ-jo-BTY" customClass="LoginTextFields" customModule="TimeTuck_app" customModuleProvider="target">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gQ-jo-BTY" customClass="LoginTextFields" customModule="TimeTuck" customModuleProvider="target">
                     <rect key="frame" x="10" y="185" width="580" height="30"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -89,7 +89,7 @@
                         <action selector="notEditingItem:" destination="-1" eventType="editingDidEnd" id="8bc-ih-WBw"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vmy-fN-DUO" customClass="LoginTextFields" customModule="TimeTuck_app" customModuleProvider="target">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vmy-fN-DUO" customClass="LoginTextFields" customModule="TimeTuck" customModuleProvider="target">
                     <rect key="frame" x="10" y="145" width="580" height="30"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -165,7 +165,7 @@
                     <color key="textColor" red="0.84973787010000001" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-IY-f74" customClass="LoginTextFields" customModule="TimeTuck_app" customModuleProvider="target">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-IY-f74" customClass="LoginTextFields" customModule="TimeTuck" customModuleProvider="target">
                     <rect key="frame" x="10" y="105" width="580" height="30"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
