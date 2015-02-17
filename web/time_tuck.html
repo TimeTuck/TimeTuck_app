@@ -11,32 +11,34 @@
 	
 	<div id="popup-box1" class="popup-position">
 		<div id="popup-wrapper">
-			<p style="text-align:right"><a href="javascript:void(0)" style="color:#FFFFFF" onclick="toggle_visibility('popup-box1');">X</a></p>
+			<p style="text-align:left"><a href="javascript:void(0)" style="color:#FFFFFF" onclick="toggle_visibility('popup-box1');">X</a></p>
 			<div id="popup-container">
 				<iframe width="420" height="325" src="https://www.youtube.com/embed/VOJyrQa_WR4"></iframe>
 			</div> <!-- popup-container end -->
 		</div>	<!-- popup-wrapper end -->
-	</div> <!-- Popup box end -->
-	
+	</div> <!-- Popup box end -->	
 
 	<div class="main">
-		<div class="imgBox" style="margin-top:200px"></div>
+		<div class="imgBox" style="margin-top:150px"></div>
 		<div class="wrapper">
 			<div class="mainButton"	style="color:#FFFFFF;background-color:#555555"><a href="javascript:void(0)" class="fill-div" style="color:#FFFFFF" onclick="toggle_visibility('popup-box1');"><b>explore</b></a></div>
 			<!--<div class="mainButton" style="color:#555555;background-color:#FFFFFF"><b>download</b></div>-->
-		</div>
+		</div> <!-- wrapper end -->
 		<div class="wrapper">
-			<div class="mainButton" style="color:#555555;background-color:#FFFFFF;margin-top:10px;"><b>download</b></div>
-		
-		</div>
+			<div id="mainBox" class="mainButton" style="color:#555555;background-color:#FFFFFF;margin-top:10px;"><button><b>download</b></button></div>
+		</div> <!-- wrapper end -->
+		<div class="wrapper">
+			<div id="div1" class="mainButton" style="display:none;height:auto;margin-top:10px;"> <img src="icon/download.jpg" alt=""> </img></div>
+		</div> <!-- wrapper end -->
 		<div class="wrapper"> 
 			<div class="footerButton"><b>about</b></div>
 			<div class="footerButton"><b>faq</b></div>
 			<div class="footerButton"><b>privacy</b></div>
 			<div class="footerButton"><b>terms</b></div>
 			<div class="footerButton"><b>safety</b></div>
-		</div> <!-- footer end -->
+		</div> <!-- wrapper end -->
 	</div> <!-- main end -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="script.js" type="text/javascript"> </script>
 </body>
 
