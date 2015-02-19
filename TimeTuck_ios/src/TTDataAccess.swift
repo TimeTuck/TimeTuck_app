@@ -164,33 +164,43 @@ public class TTDataAccess {
         };
     }
     
-    func upload_image(session: TTSession, imageData: NSData?, complete: () -> Void) {
-        let url = NSURL(string: getPath("/image_upload"));
-        let request = NSMutableURLRequest(URL: url!);
+    func upload_image(session: TTSession, imageData: NSData?, untuckDate: NSDate, users: [Int], complete: () -> Void) {
+        var dictData = session.toDictionary();
+        dictData["users"] = users.description;
+        dictData["uncapsule_date"] = untuckDate.description;
+        makeImageRequest("/image_upload", bodyData: session.toDictionary(), imageData: imageData,
+            imageName: "image" + NSDate().timeIntervalSince1970.description + ".png") {
+                response, data, error in
+                if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+                    complete();
+                }
+        }
+    }
+    
+    func makeImageRequest(url: String, bodyData data: [String: AnyObject]?, imageData: NSData?, imageName: String,
+                          completionHandler complete: (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void) {
+        let goToUrl = NSURL(string: getPath(url));
+        let request = NSMutableURLRequest(URL: goToUrl!);
         let queue = NSOperationQueue();
         let boundary = "------------abiu2132iu1dfuho1h89234hfflkadsf";
         let contentType = "multipart/form-data; boundary=" + boundary;
         let body = NSMutableData();
-        
+                            
         request.HTTPMethod = "POST";
         request.setValue(contentType, forHTTPHeaderField: "Content-Type");
         request.setValue("application/json", forHTTPHeaderField: "Accept");
+                            
+        for (key, value) in data! {
+            body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
+            body.appendData(NSString(format: "Content-Disposition: form-data; name=\"\(key)\"\n\n\(value)").dataUsingEncoding(NSUTF8StringEncoding)!);
+        }
         
         body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
-        body.appendData(NSString(format: "Content-Disposition: form-data; name=\"key\"\n\n%@", session.key).dataUsingEncoding(NSUTF8StringEncoding)!);
-        body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
-        body.appendData(NSString(format: "Content-Disposition: form-data; name=\"secret\"\n\n%@", session.secret).dataUsingEncoding(NSUTF8StringEncoding)!);
-        body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
-        body.appendData(NSString(format: "Content-Disposition: form-data; name=\"image\"; filename=\"%@\"\n\n", "image" + NSDate().timeIntervalSince1970.description + ".png").dataUsingEncoding(NSUTF8StringEncoding)!);
+        body.appendData(NSString(format: "Content-Disposition: form-data; name=\"image\"; filename=\"%@\"\n\n", imageName).dataUsingEncoding(NSUTF8StringEncoding)!);
         body.appendData(imageData!);
         body.appendData(NSString(format: "\r\n--%@--\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);
-        request.HTTPBody = body;
-        NSURLConnection.sendAsynchronousRequest(request, queue: queue) {
-            response, data, error in
-            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
-                complete();
-            }
-        }
+            request.HTTPBody = body;
+        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler: complete);
     }
     
     func makeHTTPRequest(url: String, bodyData data: [String: AnyObject]?, requestMethod method : String,

@@ -31,7 +31,7 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil);
         var data = TTDataAccess();
-        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(image, scale: 0.20))) {
+        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(image, scale: 0.20)), untuckDate: NSDate(), users: [1,2,3]) {
             NSLog("Uploaded");
         };
     }

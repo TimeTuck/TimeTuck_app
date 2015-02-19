@@ -32,6 +32,10 @@ class FriendsTableViewController: UITableViewController {
         tableView.registerNib(nibResponse, forCellReuseIdentifier: "responseCell");
         var addFriendButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addFriends");
         navigationItem.rightBarButtonItem = addFriendButton;
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated);
         retrieveFriends();
     }
     
