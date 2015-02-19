@@ -19,6 +19,7 @@ a:active {
 	src: url("font/Rene.Bieder_Campton.Light.otf") format("opentype");
 }
 
+
 body{
 	/*background-image:url('img/TimeTuck_logo.jpg');
 	background-repeat:no-repeat;
@@ -57,7 +58,7 @@ body{
 }
 
 .a{
-	display:block;
+	display:block;	
 }
 
 .main{
@@ -89,6 +90,24 @@ body{
 	line-height:50px;
 	font-family: Campton;
 	margin-left:25%; /* depends on the width of mainButton and main */
+	font-size:24px;
+}
+
+button{
+	width:500px;
+	height:50px;
+	text-align:center;
+	float:left;
+	line-height:50px;
+	font-family: Campton;
+	outline:0;
+	background:none;
+	border:0;
+	font-size:24px;
+}
+
+button:hover{
+	cursor:pointer;
 }
 
 a.fill-div {
