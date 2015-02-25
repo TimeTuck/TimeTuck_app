@@ -167,8 +167,6 @@ class access:
                 cur.callproc("device_token_update", (sess['key'], sess['secret'], token))
                 db.commit()
 
-
-
     def send_friend_request(self, user, requested_id):
         with self.connection() as db:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
@@ -230,3 +228,15 @@ class access:
                     return []
                 results = cur.fetchall()
                 return results
+
+    def tuck_sa(self, user, filename, uncapsule, friends):
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                try:
+                    cur.callproc("timecapsule_create_sa", (user.id, convert_time(time.localtime()), uncapsule, filename))
+                except:
+                    return None
+                result = cur.fetchall()
+
+            db.commit()
+            return None

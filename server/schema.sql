@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 15, 2015 at 07:49 PM
+-- Generation Time: Feb 25, 2015 at 04:09 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -100,6 +100,17 @@ BEGIN
 UPDATE user_sessions SET secret=sec, updated=dt WHERE skey = k;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_create_sa`(IN `u_id` INT(10), IN `cap_date` DATETIME, IN `uncap_date` DATETIME, IN `filename` VARCHAR(200))
+    NO SQL
+BEGIN
+
+DECLARE n_id int;
+INSERT INTO timecapsule (capsule_date, uncapsule_date, owner, type, active) VALUES(cap_date, uncap_date, u_id, 'SA', 1);
+SET n_id = LAST_INSERT_ID();
+INSERT INTO timecapsule_sa_media (timecap_id, file_name, active) VALUES(n_id, filename, 1);
+SELECT u_id AS INSERT_ID;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `user_check_info_exists`(IN `uname` VARCHAR(100), IN `phone` VARCHAR(15), IN `em` VARCHAR(200))
 BEGIN
 DECLARE ucount int;
@@ -144,6 +155,44 @@ CREATE TABLE `friends` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `timecapsule`
+--
+
+CREATE TABLE `timecapsule` (
+`id` int(10) NOT NULL,
+  `capsule_date` datetime NOT NULL,
+  `uncapsule_date` datetime NOT NULL,
+  `owner` int(10) unsigned NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `timecapsule_friends`
+--
+
+CREATE TABLE `timecapsule_friends` (
+  `timecap_id` int(10) NOT NULL,
+  `user_id` int(10) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `timecapsule_sa_media`
+--
+
+CREATE TABLE `timecapsule_sa_media` (
+  `timecap_id` int(10) NOT NULL,
+  `file_name` varchar(200) NOT NULL,
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -171,7 +220,7 @@ CREATE TABLE `user_sessions` (
   `secret` char(36) NOT NULL,
   `device_token` char(64) DEFAULT NULL,
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -182,6 +231,24 @@ CREATE TABLE `user_sessions` (
 --
 ALTER TABLE `friends`
  ADD UNIQUE KEY `Friend_Relation` (`user_primary`,`user_secondary`), ADD KEY `user_primary` (`user_primary`), ADD KEY `user_secondary` (`user_secondary`);
+
+--
+-- Indexes for table `timecapsule`
+--
+ALTER TABLE `timecapsule`
+ ADD PRIMARY KEY (`id`), ADD KEY `owner` (`owner`);
+
+--
+-- Indexes for table `timecapsule_friends`
+--
+ALTER TABLE `timecapsule_friends`
+ ADD UNIQUE KEY `unique_row` (`timecap_id`), ADD KEY `timecap_id` (`timecap_id`,`user_id`), ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `timecapsule_sa_media`
+--
+ALTER TABLE `timecapsule_sa_media`
+ ADD UNIQUE KEY `timecap_id` (`timecap_id`);
 
 --
 -- Indexes for table `users`
@@ -200,6 +267,11 @@ ALTER TABLE `user_sessions`
 --
 
 --
+-- AUTO_INCREMENT for table `timecapsule`
+--
+ALTER TABLE `timecapsule`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -208,7 +280,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=138;
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 --
 -- Constraints for dumped tables
 --
@@ -219,6 +291,19 @@ MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
 ALTER TABLE `friends`
 ADD CONSTRAINT `friends_ibfk_1` FOREIGN KEY (`user_primary`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `friends_ibfk_2` FOREIGN KEY (`user_secondary`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `timecapsule`
+--
+ALTER TABLE `timecapsule`
+ADD CONSTRAINT `timecapsule_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `timecapsule_friends`
+--
+ALTER TABLE `timecapsule_friends`
+ADD CONSTRAINT `timecapsule_friends_ibfk_1` FOREIGN KEY (`timecap_id`) REFERENCES `timecapsule` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `timecapsule_friends_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_sessions`

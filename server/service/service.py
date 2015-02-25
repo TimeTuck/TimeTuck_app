@@ -3,10 +3,11 @@ from flask.ext.principal import Principal, Permission, RoleNeed, Identity, ident
 from timetuck.database import access
 from timetuck.model import user
 from timetuck.model import session
+from timetuck.media import create_path_to_image
 from notifications import notify
 from service_info import get_session_data, get_session_form_data, allowed_file, respond
 from functools import wraps
-from werkzeug.utils import secure_filename
+from uuid import uuid4
 import os
 import json
 
@@ -249,15 +250,28 @@ def search_users():
 @app.route('/image_upload', methods=['post'])
 @login_required
 def upload_image():
+    user = g.identity.user
+    date = None
+
+    try:
+        date = request.form["uncapsule_date"]
+        friends = request.form["friends"].replace("]", "").replace("[","").split(",")
+        friends = map(int, friends)
+    except Exception as e:
+        abort(400)
+
     if request.method == 'POST':
         try:
             file = request.files['image']
             if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                filename = "%s.png" % str(uuid4())
+                file.save(os.path.join(create_path_to_image(app.config['UPLOAD_FOLDER'], str(user.id)), filename))
+            else:
+                abort(400)
         except:
             abort(400)
 
+    g.db_main.tuck_sa(user, filename, date, friends)
     return Response(response=json.dumps(respond(0, response=1), indent=4), status=200, mimetype='application/json')
 
 if __name__ == '__main__':

@@ -166,9 +166,11 @@ public class TTDataAccess {
     
     func upload_image(session: TTSession, imageData: NSData?, untuckDate: NSDate, users: [Int], complete: () -> Void) {
         var dictData = session.toDictionary();
-        dictData["users"] = users.description;
-        dictData["uncapsule_date"] = untuckDate.description;
-        makeImageRequest("/image_upload", bodyData: session.toDictionary(), imageData: imageData,
+        var dateFormatter = NSDateFormatter();
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
+        dictData["uncapsule_date"] = dateFormatter.stringFromDate(untuckDate);
+        dictData["friends"] = users.description;
+        makeImageRequest("/image_upload", bodyData: dictData, imageData: imageData,
             imageName: "image" + NSDate().timeIntervalSince1970.description + ".png") {
                 response, data, error in
                 if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
