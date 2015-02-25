@@ -257,7 +257,7 @@ def upload_image():
         date = request.form["uncapsule_date"]
         friends = request.form["friends"].replace("]", "").replace("[","").split(",")
         friends = map(int, friends)
-    except Exception as e:
+    except:
         abort(400)
 
     if request.method == 'POST':

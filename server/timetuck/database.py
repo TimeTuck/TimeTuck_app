@@ -236,7 +236,16 @@ class access:
                     cur.callproc("timecapsule_create_sa", (user.id, convert_time(time.localtime()), uncapsule, filename))
                 except:
                     return None
-                result = cur.fetchall()
+                result = cur.fetchone()
+                id = result["INSERT_ID"]
+
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+               for friend in iter(friends):
+                    try:
+                        cur.callproc("timecapsule_add_friend", (id, friend))
+                    except:
+                        pass
+
 
             db.commit()
             return None
