@@ -2,6 +2,7 @@ import MySQLdb
 from contextlib import closing
 from helpers import convert_time
 from model import user
+from model import untuck_info
 import time
 
 class access:
@@ -140,11 +141,11 @@ class access:
                 result = cur.fetchone()
                 return result["result"]
 
-    def get_all_device_tokens(self, id):
+    def get_all_device_tokens(self, user_id):
         with self.connection() as db:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
                 try:
-                     cur.callproc("device_token_get_all", (id,))
+                     cur.callproc("device_token_get_all", (user_id,))
                 except:
                     return []
 
@@ -246,6 +247,40 @@ class access:
                     except:
                         pass
 
-
             db.commit()
             return None
+
+
+    def timecapsule_get_need_untuck_sa(self, date):
+         values = []
+         with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                try:
+                    cur.callproc("timecapsule_get_need_untuck_sa", (convert_time(date),))
+                except Exception as e:
+                    return values
+                result = cur.fetchall()
+
+                for i in iter(result):
+                    try:
+                        values.append(untuck_info(i['id'], i['owner'], i['file_name']))
+                    except:
+                        pass
+
+                return values
+
+    def timecapsule_update_status(self, id):
+        with self.connection() as db:
+            with closing(db.cursor()) as cur:
+                cur.callproc("timecapsule_update_status", (id,))
+                db.commit()
+
+    def timecapsule_get_device_of_friends(self, id):
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                cur.callproc("timecapsule_get_device_of_friends", (id,))
+                result = cur.fetchall()
+                values = []
+                for i in iter(result):
+                    values.append(i['device_token'])
+                return values
