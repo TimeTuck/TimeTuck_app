@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2015 at 11:40 PM
+-- Generation Time: Mar 07, 2015 at 04:57 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -117,6 +117,18 @@ INSERT INTO timecapsule_sa_media (timecap_id, file_name, active) VALUES(n_id, fi
 SELECT n_id AS INSERT_ID;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_device_of_friends`(IN `id` INT)
+    NO SQL
+SELECT us.device_token FROM timecapsule_friends tf INNER JOIN user_sessions us ON tf.user_id = us.user_id WHERE us.device_token IS NOT NULL AND tf.timecap_id = id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_need_untuck_sa`(IN `untuck_date` DATETIME)
+    NO SQL
+SELECT t.id AS id, t.owner AS owner, tsm.file_name AS file_name FROM timecapsule t INNER JOIN timecapsule_sa_media tsm ON t.id = tsm.timecap_id WHERE t.uncapsule_date <= untuck_date AND tsm.live = 0 AND t.active = 1 AND tsm.active = 1$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_update_status`(IN `id` INT(10))
+    NO SQL
+UPDATE timecapsule_sa_media SET live=1 WHERE timecap_id = id$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `user_check_info_exists`(IN `uname` VARCHAR(100), IN `phone` VARCHAR(15), IN `em` VARCHAR(200))
 BEGIN
 DECLARE ucount int;
@@ -193,6 +205,7 @@ CREATE TABLE `timecapsule_friends` (
 CREATE TABLE `timecapsule_sa_media` (
   `timecap_id` int(10) NOT NULL,
   `file_name` varchar(200) NOT NULL,
+  `live` tinyint(1) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
