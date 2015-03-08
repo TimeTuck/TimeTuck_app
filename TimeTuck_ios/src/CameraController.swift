@@ -33,7 +33,7 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
         presentViewController(DateViewController(appManager!), animated: true, completion: nil)
         //presentingViewController?.dismissViewControllerAnimated(true, completion: nil);
         var data = TTDataAccess();
-        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(image, scale: 0.20)), untuckDate: NSDate(), users: [1,2,3]) {
+        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(image, scale: 0.20)), untuckDate: NSDate(), users: [97, 98, 99]) {
             NSLog("Uploaded");
         
         };

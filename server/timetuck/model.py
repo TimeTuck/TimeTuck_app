@@ -50,3 +50,10 @@ class session:
 
     def update(self):
         self.secret = str(uuid4())
+
+
+class untuck_info:
+    def __init__(self, id, owner_id, file_name):
+        self.id = id
+        self.owner_id = owner_id
+        self.file_name = file_name

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2015 at 04:09 AM
+-- Generation Time: Mar 07, 2015 at 04:57 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -100,6 +100,12 @@ BEGIN
 UPDATE user_sessions SET secret=sec, updated=dt WHERE skey = k;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_add_friend`(IN `t_id` INT(10), IN `f_id` INT(10))
+    NO SQL
+BEGIN
+INSERT INTO timecapsule_friends (timecap_id, user_id) VALUES (t_id, f_id);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_create_sa`(IN `u_id` INT(10), IN `cap_date` DATETIME, IN `uncap_date` DATETIME, IN `filename` VARCHAR(200))
     NO SQL
 BEGIN
@@ -108,8 +114,20 @@ DECLARE n_id int;
 INSERT INTO timecapsule (capsule_date, uncapsule_date, owner, type, active) VALUES(cap_date, uncap_date, u_id, 'SA', 1);
 SET n_id = LAST_INSERT_ID();
 INSERT INTO timecapsule_sa_media (timecap_id, file_name, active) VALUES(n_id, filename, 1);
-SELECT u_id AS INSERT_ID;
+SELECT n_id AS INSERT_ID;
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_device_of_friends`(IN `id` INT)
+    NO SQL
+SELECT us.device_token FROM timecapsule_friends tf INNER JOIN user_sessions us ON tf.user_id = us.user_id WHERE us.device_token IS NOT NULL AND tf.timecap_id = id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_need_untuck_sa`(IN `untuck_date` DATETIME)
+    NO SQL
+SELECT t.id AS id, t.owner AS owner, tsm.file_name AS file_name FROM timecapsule t INNER JOIN timecapsule_sa_media tsm ON t.id = tsm.timecap_id WHERE t.uncapsule_date <= untuck_date AND tsm.live = 0 AND t.active = 1 AND tsm.active = 1$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_update_status`(IN `id` INT(10))
+    NO SQL
+UPDATE timecapsule_sa_media SET live=1 WHERE timecap_id = id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `user_check_info_exists`(IN `uname` VARCHAR(100), IN `phone` VARCHAR(15), IN `em` VARCHAR(200))
 BEGIN
@@ -165,7 +183,7 @@ CREATE TABLE `timecapsule` (
   `owner` int(10) unsigned NOT NULL,
   `type` varchar(20) NOT NULL,
   `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -187,6 +205,7 @@ CREATE TABLE `timecapsule_friends` (
 CREATE TABLE `timecapsule_sa_media` (
   `timecap_id` int(10) NOT NULL,
   `file_name` varchar(200) NOT NULL,
+  `live` tinyint(1) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -220,7 +239,7 @@ CREATE TABLE `user_sessions` (
   `secret` char(36) NOT NULL,
   `device_token` char(64) DEFAULT NULL,
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -242,7 +261,7 @@ ALTER TABLE `timecapsule`
 -- Indexes for table `timecapsule_friends`
 --
 ALTER TABLE `timecapsule_friends`
- ADD UNIQUE KEY `unique_row` (`timecap_id`), ADD KEY `timecap_id` (`timecap_id`,`user_id`), ADD KEY `user_id` (`user_id`);
+ ADD UNIQUE KEY `row_unique` (`timecap_id`,`user_id`), ADD KEY `user_id` (`user_id`), ADD KEY `cap_id` (`timecap_id`);
 
 --
 -- Indexes for table `timecapsule_sa_media`
@@ -270,7 +289,7 @@ ALTER TABLE `user_sessions`
 -- AUTO_INCREMENT for table `timecapsule`
 --
 ALTER TABLE `timecapsule`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -280,7 +299,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=138;
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
 --
 -- Constraints for dumped tables
 --
