@@ -11,13 +11,18 @@ import UIKit
 class AddFriendViewController: UIViewController {
     
     var appManager: TTAppManager?;
+    var pic : UIImage?
+    var date : NSDate!
     
     @IBOutlet weak var datePicker:UIDatePicker!
     
     
     
-    init(_ appManager: TTAppManager) {
+    init(_ appManager: TTAppManager, image: UIImage, datee: NSDate) {
         super.init(nibName: "AddFriendViewController", bundle: NSBundle.mainBundle());
+        self.pic = image
+        self.date = datee
+        self.appManager = appManager
         
     }
     
@@ -37,10 +42,9 @@ class AddFriendViewController: UIViewController {
     }
     
     
+    @IBOutlet weak var Display: UIImageView!
  
-    
-    
-    
+   
     
     
     

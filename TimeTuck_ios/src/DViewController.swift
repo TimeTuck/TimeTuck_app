@@ -1,23 +1,23 @@
 //
-//  CapsuleViewController.swift
+//  DViewController.swift
 //  TimeTuck
 //
-//  Created by Cole Scott on 2/25/15.
+//  Created by Cole Scott on 3/12/15.
 //  Copyright (c) 2015 TimeTuck. All rights reserved.
 //
 
 import UIKit
 
-class DateViewController: UIViewController {
+class DViewController: UIViewController {
     
     var appManager: TTAppManager?;
-
-    @IBOutlet weak var datePicker:UIDatePicker!
+    var picture : UIImage?
+  
     
-    
-    
-    init(_ appManager: TTAppManager) {
-        super.init(nibName: "DateViewController", bundle: NSBundle.mainBundle());
+    init(_ appManager: TTAppManager, image: UIImage) {
+        super.init(nibName: "DViewController", bundle: NSBundle.mainBundle());
+        self.picture = image
+        self.appManager = appManager
         
     }
     
@@ -25,32 +25,33 @@ class DateViewController: UIViewController {
         super.init(coder: aDecoder);
     }
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
-    @IBAction func encapsule(sender: UIButton) {
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+   
+    @IBAction func setD(sender: AnyObject) {
+    }
+
+    @IBAction func setDate(sender: UIButton) {
         
-        presentViewController(AddFriendViewController(appManager!), animated: true, completion: nil)
-       
+        let VC = AddFriendViewController(appManager!, image: picture!, datee: datePicker.date)
         
+        presentViewController(AddFriendViewController(appManager!, image: picture!, datee: datePicker.date), animated: true, completion: nil)
         
     }
-    
-    
-    
-    
-    
-    
-    
+ 
     /*
     // MARK: - Navigation
 
