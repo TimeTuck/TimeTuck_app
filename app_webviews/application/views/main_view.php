@@ -9,25 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script type="application/javascript">
 			var timeFeed = angular.module('timeFeed', []);
 			timeFeed.controller("timeFeedCtrl", function ($scope) {
-				$scope.feedItems = [{
-					id: '1',
-					username: 'admgrn',
-					date: '10.20.15',
-					image: 'http://i.imgur.com/jUyiF8h.jpg',
-					size: {
-						width: 480,
-						height: 640
-					}
-				},{
-					id: '2',
-					username: 'bob',
-					date: '5.20.15',
-					image: 'http://localhost:8888/static/images/live/103/1e82898b-c402-48f0-b13e-08c0360abaed.png',
-					size: {
-						width: 490,
-						height: 653
-					}
-				}];
+				$scope.feedItems = <?= json_encode($results) ?>;
 				$scope.feedItemsResize = function () {
 					for (var i = 0; i < $scope.feedItems.length; ++i) {
 						$scope.feedItems[i] = $scope.resizeImage($scope.feedItems[i]);
@@ -51,9 +33,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			function resizeItem(item) {
 				var imageWidth = $(window).width() - 80;
-				var imageHeight = item.size.height * imageWidth / item.size.width;
-				item.size.height = imageHeight;
-				item.size.width = imageWidth;
+				var imageHeight = Math.round(item.height * imageWidth / item.width);
+				item.height = imageHeight;
+				item.width = imageWidth;
 			}
 		</script>
 		<style type="text/css">
@@ -93,7 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 			.lowerFeed {
 				margin: 0px;
-				padding: 20px;
+				padding: 20px 20px 10px 20px;
 				display: block;
 			}
 			.dateWrapper {
@@ -112,24 +94,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			.username {
 				font-family: CampBold;
 				color: #555555;
+				display: block;
+			}
+			.timeInfo {
+				font-size: 10px;
 			}
 		</style>
 	</head>
 	<body ng-controller="timeFeedCtrl">
 		<div id="wrapper">
 			<div id="feed">
+				<div id="find">
+
+				</div>
 				<div class='feedItem' ng-repeat="item in feedItemsResize()">
 					<div class="dateWrapper">
 						<div class="dateFeed">
-							{{item.date}}
+							{{item.capsuledate}}
 						</div>
 					</div>
 					<div class="upperFeed">
-							<img ng-src="{{item.image}}" title="{{item.date}}" width="{{item.size.width}}"
-								 height="{{item.size.height}}" load-resize />
+							<img ng-src="<?= $this->config->base_url() ?>static/images/live/{{item.owner}}/{{item.image}}"
+								 title="{{item.capsuledate}}" width="{{item.width}}" height="{{item.height}}" load-resize />
 					</div>
 					<div class="lowerFeed">
 						<span class="username">{{item.username}}</span>
+						<span class="timeInfo">
+							tucked <strong>{{item.capsuledate}}</strong> untucked <strong>{{item.uncapsuledate}}</strong>
+						</span>
 					</div>
 				</div>
 			</div>
