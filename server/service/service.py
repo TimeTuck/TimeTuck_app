@@ -8,6 +8,7 @@ from notifications import notify
 from service_info import get_session_data, get_session_form_data, allowed_file, respond
 from functools import wraps
 from uuid import uuid4
+import struct
 import os
 import json
 
@@ -261,17 +262,36 @@ def upload_image():
         abort(400)
 
     if request.method == 'POST':
+        width = 0
+        height = 0
+
         try:
             file = request.files['image']
             if file and allowed_file(file.filename):
                 filename = "%s.png" % str(uuid4())
-                file.save(os.path.join(create_path_to_image(app.config['UPLOAD_FOLDER'], str(user.id)), filename))
-            else:
-                abort(400)
+                full_path = os.path.join(create_path_to_image(app.config['UPLOAD_FOLDER'], str(user.id)), filename);
+                file.save(full_path)
+
+                with open(full_path, 'rb') as f:
+                    data = f.read()
+
+                    # Check if png
+                    if data[:8] == '\211PNG\r\n\032\n'and (data[12:16] == 'IHDR'):
+                        w, h = struct.unpack('>LL', data[16:24])
+                        width = int(w)
+                        height = int(h)
+
+                    else:
+                        abort(400)
         except:
             abort(400)
 
-    g.db_main.tuck_sa(user, filename, date, friends)
+
+
+        g.db_main.tuck_sa(user, filename, date, friends, width, height)
+    else:
+        abort(400)
+
     return Response(response=json.dumps(respond(0, response=1), indent=4), status=200, mimetype='application/json')
 
 if __name__ == '__main__':

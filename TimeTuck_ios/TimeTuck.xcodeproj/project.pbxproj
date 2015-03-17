@@ -33,6 +33,8 @@
 		9E276E881A7AC8360058B91C /* LoginTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E276E871A7AC8360058B91C /* LoginTextFields.swift */; };
 		9E276E8B1A7ADF1D0058B91C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E276E891A7ADF1D0058B91C /* SignUpViewController.swift */; };
 		9E276E8C1A7ADF1D0058B91C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E276E8A1A7ADF1D0058B91C /* SignUpViewController.xib */; };
+		9E316AFE1AB4BEA200EB09EE /* FeedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E316AFD1AB4BEA200EB09EE /* FeedNavigationController.swift */; };
+		9E316B001AB4C7D800EB09EE /* FeedWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E316AFF1AB4C7D800EB09EE /* FeedWebViewController.swift */; };
 		9E39F51C1A84422300D8ABFB /* FriendsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E39F51A1A84422300D8ABFB /* FriendsNavigationController.swift */; };
 		9E68BA491A895EEE0033F85B /* StandardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68BA481A895EEE0033F85B /* StandardNavigationController.swift */; };
 		9E7AEA001A79815300C8BEA9 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E7AE9FF1A79815300C8BEA9 /* splash.png */; };
@@ -96,6 +98,8 @@
 		9E276E871A7AC8360058B91C /* LoginTextFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextFields.swift; sourceTree = "<group>"; };
 		9E276E891A7ADF1D0058B91C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9E276E8A1A7ADF1D0058B91C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		9E316AFD1AB4BEA200EB09EE /* FeedNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedNavigationController.swift; sourceTree = "<group>"; };
+		9E316AFF1AB4C7D800EB09EE /* FeedWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedWebViewController.swift; sourceTree = "<group>"; };
 		9E39F51A1A84422300D8ABFB /* FriendsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsNavigationController.swift; sourceTree = "<group>"; };
 		9E68BA481A895EEE0033F85B /* StandardNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigationController.swift; sourceTree = "<group>"; };
 		9E7AE9FF1A79815300C8BEA9 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
@@ -195,10 +199,11 @@
 		9E14881D1A841A4A00552B9C /* MainNavigation */ = {
 			isa = PBXGroup;
 			children = (
+				9E1488161A84146000552B9C /* MainNavigationTabBarController.swift */,
+				9E316AFA1AB4BE3A00EB09EE /* Feed */,
 				58892EC51AB1EE8000EF7DE2 /* Date & Friend */,
 				9E224C361A8ABA1C008FF6E9 /* Settings */,
 				9EEC3C151A8AA47E007A460B /* Camera */,
-				9E1488161A84146000552B9C /* MainNavigationTabBarController.swift */,
 				9E39F51E1A8442B800D8ABFB /* Friends */,
 			);
 			name = MainNavigation;
@@ -211,6 +216,15 @@
 				9E224C331A8ABA0E008FF6E9 /* SettingsVC.swift */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		9E316AFA1AB4BE3A00EB09EE /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				9E316AFD1AB4BEA200EB09EE /* FeedNavigationController.swift */,
+				9E316AFF1AB4C7D800EB09EE /* FeedWebViewController.swift */,
+			);
+			name = Feed;
 			sourceTree = "<group>";
 		};
 		9E39F51E1A8442B800D8ABFB /* Friends */ = {
@@ -489,11 +503,13 @@
 				9E276E881A7AC8360058B91C /* LoginTextFields.swift in Sources */,
 				9EDD9B371A89777B00FBEFDF /* FriendResponseTableCell.swift in Sources */,
 				9E0B3AEE1A79D5DB007651A8 /* LoginSignupViewController.swift in Sources */,
+				9E316AFE1AB4BEA200EB09EE /* FeedNavigationController.swift in Sources */,
 				9EC0D01B1A758B2E0013ED31 /* AppDelegate.swift in Sources */,
 				9E0ACBC71A75A5C600BE6C6B /* TTUser.swift in Sources */,
 				58892ED41AB1F1E700EF7DE2 /* DViewController.swift in Sources */,
 				9E68BA491A895EEE0033F85B /* StandardNavigationController.swift in Sources */,
 				9EC0D01E1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld in Sources */,
+				9E316B001AB4C7D800EB09EE /* FeedWebViewController.swift in Sources */,
 				9EC405361A8962FE00DC603A /* RequestFriendCell.swift in Sources */,
 				9E224C351A8ABA0E008FF6E9 /* SettingsVC.swift in Sources */,
 			);
