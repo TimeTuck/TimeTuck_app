@@ -19,7 +19,7 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViewControllers([DateViewController(appManager!)], animated: true)
+        //setViewControllers([DViewController(appManager!, pic)], animated: true)
         // Do any additional setup after loading the view.
         delegate = self;
     }
@@ -30,13 +30,16 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        presentViewController(DateViewController(appManager!), animated: true, completion: nil)
-        //presentingViewController?.dismissViewControllerAnimated(true, completion: nil);
-        var data = TTDataAccess();
+        
+        let viewController = DViewController(appManager!, image: image);
+        presentViewController(DViewController(appManager!, image: image), animated: true, completion: nil)
+      
+        /*var data = TTDataAccess();
         data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(image, scale: 0.20)), untuckDate: NSDate(), users: [97, 98, 99]) {
             NSLog("Uploaded");
-        
-        };
+        }; */
+    
+    
     }
     
     func compressImage(image: UIImage, scale: CGFloat) -> UIImage {
@@ -49,6 +52,10 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
         UIGraphicsEndImageContext();
         return newImage;
     }
+    
+    
+
+    }
 
     /*
     // MARK: - Navigation
@@ -60,4 +67,4 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
     }
     */
 
-}
+

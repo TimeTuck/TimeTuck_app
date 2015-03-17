@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58892ECE1AB1EF4200EF7DE2 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58892ECA1AB1EF4200EF7DE2 /* AddFriendViewController.swift */; };
+		58892ECF1AB1EF4200EF7DE2 /* AddFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58892ECB1AB1EF4200EF7DE2 /* AddFriendViewController.xib */; };
+		58892ED41AB1F1E700EF7DE2 /* DViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58892ED21AB1F1E700EF7DE2 /* DViewController.swift */; };
+		58892ED51AB1F1E700EF7DE2 /* DViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58892ED31AB1F1E700EF7DE2 /* DViewController.xib */; };
 		58DE49341A8B07C400361BF7 /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE49311A8B07C400361BF7 /* camera@2x.png */; };
 		58DE49351A8B07C400361BF7 /* happy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE49321A8B07C400361BF7 /* happy@2x.png */; };
 		58DE493C1A8B0E7F00361BF7 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE49381A8B0E7F00361BF7 /* camera.png */; };
@@ -29,10 +33,6 @@
 		9E276E881A7AC8360058B91C /* LoginTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E276E871A7AC8360058B91C /* LoginTextFields.swift */; };
 		9E276E8B1A7ADF1D0058B91C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E276E891A7ADF1D0058B91C /* SignUpViewController.swift */; };
 		9E276E8C1A7ADF1D0058B91C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E276E8A1A7ADF1D0058B91C /* SignUpViewController.xib */; };
-		9E316AF61AB4BD0A00EB09EE /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E316AF21AB4BD0A00EB09EE /* AddFriendViewController.swift */; };
-		9E316AF71AB4BD0A00EB09EE /* AddFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E316AF31AB4BD0A00EB09EE /* AddFriendViewController.xib */; };
-		9E316AF81AB4BD0A00EB09EE /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E316AF41AB4BD0A00EB09EE /* DateViewController.swift */; };
-		9E316AF91AB4BD0A00EB09EE /* DateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E316AF51AB4BD0A00EB09EE /* DateViewController.xib */; };
 		9E316AFE1AB4BEA200EB09EE /* FeedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E316AFD1AB4BEA200EB09EE /* FeedNavigationController.swift */; };
 		9E316B001AB4C7D800EB09EE /* FeedWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E316AFF1AB4C7D800EB09EE /* FeedWebViewController.swift */; };
 		9E39F51C1A84422300D8ABFB /* FriendsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E39F51A1A84422300D8ABFB /* FriendsNavigationController.swift */; };
@@ -73,6 +73,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58892ECA1AB1EF4200EF7DE2 /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		58892ECB1AB1EF4200EF7DE2 /* AddFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendViewController.xib; sourceTree = "<group>"; };
+		58892ED21AB1F1E700EF7DE2 /* DViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DViewController.swift; sourceTree = "<group>"; };
+		58892ED31AB1F1E700EF7DE2 /* DViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DViewController.xib; sourceTree = "<group>"; };
 		58DE49311A8B07C400361BF7 /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
 		58DE49321A8B07C400361BF7 /* happy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy@2x.png"; sourceTree = "<group>"; };
 		58DE49381A8B0E7F00361BF7 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
@@ -95,10 +99,6 @@
 		9E276E871A7AC8360058B91C /* LoginTextFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextFields.swift; sourceTree = "<group>"; };
 		9E276E891A7ADF1D0058B91C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9E276E8A1A7ADF1D0058B91C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
-		9E316AF21AB4BD0A00EB09EE /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
-		9E316AF31AB4BD0A00EB09EE /* AddFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendViewController.xib; sourceTree = "<group>"; };
-		9E316AF41AB4BD0A00EB09EE /* DateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
-		9E316AF51AB4BD0A00EB09EE /* DateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateViewController.xib; sourceTree = "<group>"; };
 		9E316AFD1AB4BEA200EB09EE /* FeedNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedNavigationController.swift; sourceTree = "<group>"; };
 		9E316AFF1AB4C7D800EB09EE /* FeedWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedWebViewController.swift; sourceTree = "<group>"; };
 		9E39F51A1A84422300D8ABFB /* FriendsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsNavigationController.swift; sourceTree = "<group>"; };
@@ -150,6 +150,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58892EC51AB1EE8000EF7DE2 /* Date & Friend */ = {
+			isa = PBXGroup;
+			children = (
+				58892ECA1AB1EF4200EF7DE2 /* AddFriendViewController.swift */,
+				58892ECB1AB1EF4200EF7DE2 /* AddFriendViewController.xib */,
+				58892ED21AB1F1E700EF7DE2 /* DViewController.swift */,
+				58892ED31AB1F1E700EF7DE2 /* DViewController.xib */,
+			);
+			name = "Date & Friend";
+			sourceTree = "<group>";
+		};
 		9E0ACBC51A75A5B400BE6C6B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +203,7 @@
 			children = (
 				9E1488161A84146000552B9C /* MainNavigationTabBarController.swift */,
 				9E316AFA1AB4BE3A00EB09EE /* Feed */,
+				58892EC51AB1EE8000EF7DE2 /* Date & Friend */,
 				9E224C361A8ABA1C008FF6E9 /* Settings */,
 				9EEC3C151A8AA47E007A460B /* Camera */,
 				9E39F51E1A8442B800D8ABFB /* Friends */,
@@ -348,10 +360,6 @@
 		9EEC3C151A8AA47E007A460B /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				9E316AF21AB4BD0A00EB09EE /* AddFriendViewController.swift */,
-				9E316AF31AB4BD0A00EB09EE /* AddFriendViewController.xib */,
-				9E316AF41AB4BD0A00EB09EE /* DateViewController.swift */,
-				9E316AF51AB4BD0A00EB09EE /* DateViewController.xib */,
 				9E224C381A8ABC58008FF6E9 /* CameraController.swift */,
 				9E224C371A8ABC58008FF6E9 /* CameraController.xib */,
 			);
@@ -448,10 +456,10 @@
 				58DE493E1A8B0E7F00361BF7 /* happy.png in Resources */,
 				9E0B3AD31A79B8B8007651A8 /* icon60@3x.png in Resources */,
 				9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */,
+				58892ED51AB1F1E700EF7DE2 /* DViewController.xib in Resources */,
 				9E929F631A86B90800347C60 /* SearchUserTableViewController.xib in Resources */,
 				9E276E8C1A7ADF1D0058B91C /* SignUpViewController.xib in Resources */,
 				58DE49351A8B07C400361BF7 /* happy@2x.png in Resources */,
-				9E316AF91AB4BD0A00EB09EE /* DateViewController.xib in Resources */,
 				58DE49411A8BBAAE00361BF7 /* gears@2x.png in Resources */,
 				9EC0D0451A758C810013ED31 /* settings.plist in Resources */,
 				9EEB2A431A8587DE000CB644 /* FriendsTableViewController.xib in Resources */,
@@ -464,7 +472,7 @@
 				9E224C341A8ABA0E008FF6E9 /* SettingsVC.xib in Resources */,
 				9EC405371A8962FE00DC603A /* RequestFriendCell.xib in Resources */,
 				9E9A13A51A864FA200592527 /* FriendCell.xib in Resources */,
-				9E316AF71AB4BD0A00EB09EE /* AddFriendViewController.xib in Resources */,
+				58892ECF1AB1EF4200EF7DE2 /* AddFriendViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,10 +496,9 @@
 				9EEB2A421A8587DE000CB644 /* FriendsTableViewController.swift in Sources */,
 				9E0B3AE51A79CDF1007651A8 /* TTAppManager.swift in Sources */,
 				9E1488181A84146000552B9C /* MainNavigationTabBarController.swift in Sources */,
-				9E316AF81AB4BD0A00EB09EE /* DateViewController.swift in Sources */,
 				9EB75DA41A7725E800CB6233 /* TTSession.swift in Sources */,
 				9E929F621A86B90800347C60 /* SearchUserTableViewController.swift in Sources */,
-				9E316AF61AB4BD0A00EB09EE /* AddFriendViewController.swift in Sources */,
+				58892ECE1AB1EF4200EF7DE2 /* AddFriendViewController.swift in Sources */,
 				9E39F51C1A84422300D8ABFB /* FriendsNavigationController.swift in Sources */,
 				9E69455B1AB5DFC60041B99B /* TTWebViews.swift in Sources */,
 				9E224C3A1A8ABC58008FF6E9 /* CameraController.swift in Sources */,
@@ -503,6 +510,7 @@
 				9E316AFE1AB4BEA200EB09EE /* FeedNavigationController.swift in Sources */,
 				9EC0D01B1A758B2E0013ED31 /* AppDelegate.swift in Sources */,
 				9E0ACBC71A75A5C600BE6C6B /* TTUser.swift in Sources */,
+				58892ED41AB1F1E700EF7DE2 /* DViewController.swift in Sources */,
 				9E68BA491A895EEE0033F85B /* StandardNavigationController.swift in Sources */,
 				9EC0D01E1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld in Sources */,
 				9E316B001AB4C7D800EB09EE /* FeedWebViewController.swift in Sources */,
