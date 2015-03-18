@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedNavigationController: UINavigationController {
+class FeedNavigationController: StandardNavigationController {
     var appManager: TTAppManager?
     
     init(_ appManager: TTAppManager) {

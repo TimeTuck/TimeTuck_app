@@ -37,6 +37,7 @@
 		9E316B001AB4C7D800EB09EE /* FeedWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E316AFF1AB4C7D800EB09EE /* FeedWebViewController.swift */; };
 		9E39F51C1A84422300D8ABFB /* FriendsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E39F51A1A84422300D8ABFB /* FriendsNavigationController.swift */; };
 		9E68BA491A895EEE0033F85B /* StandardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68BA481A895EEE0033F85B /* StandardNavigationController.swift */; };
+		9E69455B1AB5DFC60041B99B /* TTWebViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E69455A1AB5DFC60041B99B /* TTWebViews.swift */; };
 		9E7AEA001A79815300C8BEA9 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E7AE9FF1A79815300C8BEA9 /* splash.png */; };
 		9E7EB8281A78701100442DDF /* Campton-BoldDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EB8261A78701100442DDF /* Campton-BoldDEMO.otf */; };
 		9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EB8271A78701100442DDF /* Campton-LightDEMO.otf */; };
@@ -102,6 +103,7 @@
 		9E316AFF1AB4C7D800EB09EE /* FeedWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedWebViewController.swift; sourceTree = "<group>"; };
 		9E39F51A1A84422300D8ABFB /* FriendsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsNavigationController.swift; sourceTree = "<group>"; };
 		9E68BA481A895EEE0033F85B /* StandardNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigationController.swift; sourceTree = "<group>"; };
+		9E69455A1AB5DFC60041B99B /* TTWebViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTWebViews.swift; sourceTree = "<group>"; };
 		9E7AE9FF1A79815300C8BEA9 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		9E7EB8261A78701100442DDF /* Campton-BoldDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Campton-BoldDEMO.otf"; sourceTree = "<group>"; };
 		9E7EB8271A78701100442DDF /* Campton-LightDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Campton-LightDEMO.otf"; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				9EC0D0401A758BE10013ED31 /* TTDataAccess.swift */,
+				9E69455A1AB5DFC60041B99B /* TTWebViews.swift */,
 			);
 			name = DataAccess;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				9E929F621A86B90800347C60 /* SearchUserTableViewController.swift in Sources */,
 				58892ECE1AB1EF4200EF7DE2 /* AddFriendViewController.swift in Sources */,
 				9E39F51C1A84422300D8ABFB /* FriendsNavigationController.swift in Sources */,
+				9E69455B1AB5DFC60041B99B /* TTWebViews.swift in Sources */,
 				9E224C3A1A8ABC58008FF6E9 /* CameraController.swift in Sources */,
 				9E9A13A41A864FA200592527 /* FriendCell.swift in Sources */,
 				9EC0D0411A758BE10013ED31 /* TTDataAccess.swift in Sources */,

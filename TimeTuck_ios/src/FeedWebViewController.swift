@@ -8,22 +8,33 @@
 
 import UIkit
 
-class FeedWebViewController: UIViewController {
+class FeedWebViewController: UIViewController, UIWebViewDelegate {
     var appManager: TTAppManager?
+    var web: UIWebView?
     
     init(_ appManager: TTAppManager) {
         self.appManager = appManager;
         super.init(nibName: nil, bundle: nil);
         title = "Feed";
         
-        var web = UIWebView();
+        web = UIWebView();
+        web!.backgroundColor = UIColor.whiteColor();
+        web!.scrollView.bounces = false;
+        web!.delegate = self;
         view = web;
         
-        web.loadRequest(NSURLRequest(URL: NSURL(string: "http://localhost:8888/")!));
+        var request = TTWebViews().GetMainFeedRequest(self.appManager!.session!);
+        
+        web!.loadRequest(request);
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
         self.appManager = nil;
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        web!.stringByEvaluatingJavaScriptFromString("document.getElementById(\"find\").innerHTML = \"test\"");
     }
 }
