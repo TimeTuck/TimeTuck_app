@@ -34,10 +34,10 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
         let viewController = DViewController(appManager!, image: image);
         presentViewController(DViewController(appManager!, image: image), animated: true, completion: nil)
       
-        /*var data = TTDataAccess();
+        var data = TTDataAccess();
         data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(image, scale: 0.20)), untuckDate: NSDate(), users: [97, 98, 99]) {
             NSLog("Uploaded");
-        }; */
+        };
     
     
     }
