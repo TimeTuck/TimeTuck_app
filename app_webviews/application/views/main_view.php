@@ -8,35 +8,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 		<script type="application/javascript">
 			var timeFeed = angular.module('timeFeed', []);
-			timeFeed.controller("timeFeedCtrl", function ($scope) {
+			timeFeed.controller("timeFeedCtrl", ['$scope', '$window', '$document', '$http', function ($scope, $window, $document, $http) {
 				$scope.feedItems = <?= json_encode($results) ?>;
+				$scope.count = <?= $count ?>;
+				$scope.user = {key: '<?= $_GET['key'] ?>', secret: '<?= $_GET['secret'] ?>'};
 				$scope.feedItemsResize = function () {
 					for (var i = 0; i < $scope.feedItems.length; ++i) {
 						$scope.feedItems[i] = $scope.resizeImage($scope.feedItems[i]);
 					}
 					return $scope.feedItems;
 				}
+				$scope.resizeItem = function (item) {
+					var imageWidth = $(window).width() - 80;
+					var imageHeight = Math.round(item.height * imageWidth / item.width);
+					item.height = imageHeight;
+					item.width = imageWidth;
+				}
 				$scope.resizeImage = function (item) {
-					resizeItem(item);
+					$scope.resizeItem(item);
 					return item
 				}
-			});
+				$scope.loadMore = function () {
+					var key = $scope.user.key;
+					var sec = $scope.user.secret;
+					var count = $scope.count + 3;
+					return $http.get("<?= $this->config->item('service_url') ?>/get_feed?key=" + key + "&secret=" + sec + "&count=" + count);
+				}
+				$($window).scroll(function () {
+					if ($($window).scrollTop() + $($window).height() >= $($document).height()) {
+						var promise = $scope.loadMore();
+						$scope.$apply(function () {
+							promise.success(function (data) {
+								if (typeof data.images != 'undefined') {
+									$scope.count = data.images.length;
+									$scope.feedItems = data.images;
+								}
+							});
+						});
+					}
+				});
+			}]);
 
 			timeFeed.directive('loadResize', function($window) {
 				return function(scope, element) {
 					var win = angular.element($window);
 					win.bind('resize', function() {
-						scope.$apply(resizeItem(scope.item))
+						scope.$apply(scope.resizeItem(scope.item))
 					});
 				}
 			});
-
-			function resizeItem(item) {
-				var imageWidth = $(window).width() - 80;
-				var imageHeight = Math.round(item.height * imageWidth / item.width);
-				item.height = imageHeight;
-				item.width = imageWidth;
-			}
 		</script>
 		<style type="text/css">
 			@font-face {
@@ -61,7 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 			#feed {
 				margin: 0px 10px;
-				padding: 0px;
+				padding: 0px 0px 30px 0px;
 			}
 			.feedItem {
 				margin-bottom: 10px;
@@ -99,14 +119,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			.timeInfo {
 				font-size: 10px;
 			}
+			.hidden {
+				display: none;
+			}
 		</style>
 	</head>
 	<body ng-controller="timeFeedCtrl">
 		<div id="wrapper">
 			<div id="feed">
-				<div id="find">
-
-				</div>
 				<div class='feedItem' ng-repeat="item in feedItemsResize()">
 					<div class="dateWrapper">
 						<div class="dateFeed">

@@ -23,10 +23,14 @@ class Main extends CI_Controller {
 		if (!array_key_exists('key', $_GET) || !array_key_exists('secret', $_GET))
 			show_404();
 
+		$count = 5;
+
 		$this->load->database();
-		$query = $this->db->query("call timecapsule_get_live_from_session(?, ?)", array($_GET['key'], $_GET['secret']));
+		$query = $this->db->query("call timecapsule_get_live_from_session(?, ?, ?)",
+								  array($_GET['key'], $_GET['secret'], $count));
+
 		$resultArray = $query->result_array();
-		$data = array('results' => $resultArray);
+		$data = array('results' => $resultArray, 'count' => $count);
 		$this->load->view('main_view', $data);
 	}
 }

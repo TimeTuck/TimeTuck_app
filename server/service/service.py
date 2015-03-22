@@ -1,4 +1,4 @@
-from flask import Flask, request, Response, g, abort
+from flask import Flask, request, Response, g, abort, make_response, current_app
 from flask.ext.principal import Principal, Permission, RoleNeed, Identity, identity_loaded
 from timetuck.database import access
 from timetuck.model import user
@@ -8,6 +8,8 @@ from notifications import notify
 from service_info import get_session_data, get_session_form_data, allowed_file, respond
 from functools import wraps
 from uuid import uuid4
+from datetime import timedelta
+from functools import update_wrapper
 import struct
 import os
 import json
@@ -29,6 +31,47 @@ def login_required(f):
             abort(401)
         return f(*args, **kwargs)
     return decorated_function
+
+def crossdomain(origin=None, methods=None, headers=None,
+                max_age=21600, attach_to_all=True,
+                automatic_options=True):
+    if methods is not None:
+        methods = ', '.join(sorted(x.upper() for x in methods))
+    if headers is not None and not isinstance(headers, basestring):
+        headers = ', '.join(x.upper() for x in headers)
+    if not isinstance(origin, basestring):
+        origin = ', '.join(origin)
+    if isinstance(max_age, timedelta):
+        max_age = max_age.total_seconds()
+
+    def get_methods():
+        if methods is not None:
+            return methods
+
+        options_resp = current_app.make_default_options_response()
+        return options_resp.headers['allow']
+
+    def decorator(f):
+        def wrapped_function(*args, **kwargs):
+            if automatic_options and request.method == 'OPTIONS':
+                resp = current_app.make_default_options_response()
+            else:
+                resp = make_response(f(*args, **kwargs))
+            if not attach_to_all and request.method != 'OPTIONS':
+                return resp
+
+            h = resp.headers
+
+            h['Access-Control-Allow-Origin'] = origin
+            h['Access-Control-Allow-Methods'] = get_methods()
+            h['Access-Control-Max-Age'] = str(max_age)
+            if headers is not None:
+                h['Access-Control-Allow-Headers'] = headers
+            return resp
+
+        f.provide_automatic_options = False
+        return update_wrapper(wrapped_function, f)
+    return decorator
 
 @app.before_request
 def before_request():
@@ -248,6 +291,20 @@ def search_users():
     return Response(response=json.dumps(respond(0,users=results), indent=4),
                     status=200, mimetype='application/json')
 
+@app.route('/get_feed', methods=['get'])
+@crossdomain(origin="*")
+@login_required
+def get_feed():
+    sess = session(**g.identity.id)
+    try:
+        count = int(request.args['count'])
+    except:
+        abort(400)
+
+    results = g.db_main.timecap_get_live(sess, count)
+    return Response(response=json.dumps(respond(0, images=results), indent=4),
+                    status=200, mimetype='application/json')
+
 @app.route('/image_upload', methods=['post'])
 @login_required
 def upload_image():
@@ -285,8 +342,6 @@ def upload_image():
                         abort(400)
         except:
             abort(400)
-
-
 
         g.db_main.tuck_sa(user, filename, date, friends, width, height)
     else:

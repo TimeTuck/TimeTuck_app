@@ -285,3 +285,14 @@ class access:
                 for i in iter(result):
                     values.append(i['device_token'])
                 return values
+
+    def timecap_get_live(self, session, count):
+         with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                try:
+                    cur.callproc("timecapsule_get_live_from_session", (session.key, session.secret, count))
+                except Exception as e:
+                    return []
+                result = cur.fetchall()
+
+                return result
