@@ -11,10 +11,10 @@ import UIKit
 class AddFriendViewController: UIViewController {
     
     var appManager: TTAppManager?;
-    var pic : UIImage?
+    var pic : UIImage!
     var date : NSDate!
     
-    @IBOutlet weak var datePicker:UIDatePicker!
+    //@IBOutlet weak var datePicker:UIDatePicker!
     
     
     
@@ -44,7 +44,29 @@ class AddFriendViewController: UIViewController {
     }
     
  
+    
+    func compressImage(image: UIImage, scale: CGFloat) -> UIImage {
+        var originalSize = image.size;
+        var newRect = CGRectMake(0, 0, originalSize.width * scale, originalSize.height * scale);
+        
+        UIGraphicsBeginImageContext(newRect.size);
+        image.drawInRect(newRect);
+        var newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return newImage;
+    }
+    
+    
    
+    @IBAction func Button(sender: UIButton) {
+        var data = TTDataAccess();
+        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(pic, scale: 0.20)), untuckDate: NSDate(), users: [97, 98, 99]) {
+            NSLog("Uploaded");
+            
+            
+
+        
+    }
     
     
     
@@ -63,5 +85,6 @@ class AddFriendViewController: UIViewController {
     // Pass the selected object to the new view controller.
     }
     */
-    
+}
+
 }

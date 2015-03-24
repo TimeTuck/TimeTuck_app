@@ -41,14 +41,12 @@ class DViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
    
-    @IBAction func setD(sender: AnyObject) {
-    }
 
     @IBAction func setDate(sender: UIButton) {
         
         let VC = AddFriendViewController(appManager!, image: picture!, datee: datePicker.date)
         
-        presentViewController(AddFriendViewController(appManager!, image: picture!, datee: datePicker.date), animated: true, completion: nil)
+        presentViewController(VC, animated: true, completion: nil)
         
     }
  
