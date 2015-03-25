@@ -16,10 +16,8 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate {
         self.appManager = appManager;
         super.init(nibName: nil, bundle: nil);
         title = "Feed";
-        
         web = UIWebView();
-        web!.backgroundColor = UIColor.whiteColor();
-        web!.scrollView.bounces = false;
+        web!.backgroundColor = UIColor(red: 0.592, green: 0.831, blue: 0.38, alpha: 1);
         web!.delegate = self;
         view = web;
         

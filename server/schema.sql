@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Mar 17, 2015 at 09:47 PM
+-- Generation Time: Mar 25, 2015 at 11:09 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -121,16 +121,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_device_of_friends`(
     NO SQL
 SELECT us.device_token FROM timecapsule_friends tf INNER JOIN user_sessions us ON tf.user_id = us.user_id WHERE us.device_token IS NOT NULL AND tf.timecap_id = id$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_live_from_session`(IN `k` CHAR(36), IN `s` CHAR(36))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_live_from_session`(IN `k` CHAR(36), IN `s` CHAR(36), IN `amount` INT)
     NO SQL
 SELECT t.id as id, 
-	   file_name as image, 
-       width, 
-       height, 
+	   file_name as image,  
        username,
-       owner, 
+       owner,
        DATE_FORMAT(capsule_date,'%c.%d.%Y') as capsuledate, 
-       DATE_FORMAT(uncapsule_date,'%c.%d.%Y') as uncapsuledate  
+       DATE_FORMAT(uncapsule_date,'%c.%d.%Y') as uncapsuledate,
+       CAST(capsule_date AS char) as orderdate
     FROM user_sessions us 
     		INNER JOIN 
     	 timecapsule t ON us.user_id = t.owner 
@@ -144,12 +143,11 @@ SELECT t.id as id,
   
   	SELECT t1.id as id, 
 	   file_name as image, 
-       width, 
-       height, 
        username,
-       owner, 
+       owner,
        DATE_FORMAT(capsule_date,'%c.%d.%Y') as capsuledate, 
-       DATE_FORMAT(uncapsule_date,'%c.%d.%Y') as uncapsuledate  
+       DATE_FORMAT(uncapsule_date,'%c.%d.%Y') as uncapsuledate,
+       CAST(capsule_date AS char) as orderdate
     FROM user_sessions us1 
     		INNER JOIN 
     	 timecapsule_friends tf1 ON us1.user_id = tf1.user_id 
@@ -159,7 +157,9 @@ SELECT t.id as id,
     	 timecapsule t1 on sm1.timecap_id = t1.id
              INNER JOIN
          users u1 ON t1.owner = u1.id
-         WHERE sm1.live = 1 AND us1.skey = k AND us1.secret = s$$
+         WHERE sm1.live = 1 AND us1.skey = k AND us1.secret = s
+         
+ORDER BY orderdate LIMIT amount$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_need_untuck_sa`(IN `untuck_date` DATETIME)
     NO SQL
@@ -223,7 +223,7 @@ CREATE TABLE `timecapsule` (
   `owner` int(10) unsigned NOT NULL,
   `type` varchar(20) NOT NULL,
   `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -281,7 +281,7 @@ CREATE TABLE `user_sessions` (
   `secret` char(36) NOT NULL,
   `device_token` char(64) DEFAULT NULL,
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -331,7 +331,7 @@ ALTER TABLE `user_sessions`
 -- AUTO_INCREMENT for table `timecapsule`
 --
 ALTER TABLE `timecapsule`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -341,7 +341,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=138;
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
 --
 -- Constraints for dumped tables
 --
