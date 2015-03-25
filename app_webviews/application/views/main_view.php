@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html ng-app="timeFeed">
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 		<script type="application/javascript">
@@ -12,22 +13,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				$scope.feedItems = <?= json_encode($results) ?>;
 				$scope.count = <?= $count ?>;
 				$scope.user = {key: '<?= $_GET['key'] ?>', secret: '<?= $_GET['secret'] ?>'};
-				$scope.feedItemsResize = function () {
-					for (var i = 0; i < $scope.feedItems.length; ++i) {
-						$scope.feedItems[i] = $scope.resizeImage($scope.feedItems[i]);
-					}
-					return $scope.feedItems;
-				}
-				$scope.resizeItem = function (item) {
-					var imageWidth = $(window).width() - 80;
-					var imageHeight = Math.round(item.height * imageWidth / item.width);
-					item.height = imageHeight;
-					item.width = imageWidth;
-				}
-				$scope.resizeImage = function (item) {
-					$scope.resizeItem(item);
-					return item
-				}
 				$scope.loadMore = function () {
 					var key = $scope.user.key;
 					var sec = $scope.user.secret;
@@ -48,15 +33,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 				});
 			}]);
-
-			timeFeed.directive('loadResize', function($window) {
-				return function(scope, element) {
-					var win = angular.element($window);
-					win.bind('resize', function() {
-						scope.$apply(scope.resizeItem(scope.item))
-					});
-				}
-			});
 		</script>
 		<style type="text/css">
 			@font-face {
@@ -119,23 +95,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			.timeInfo {
 				font-size: 10px;
 			}
-			.hidden {
-				display: none;
+			.imageWrapper {
+				margin: 0;
+				padding: 0;
+			}
+			.feedImage {
+				width: 100%;
+				height: auto;
+				width: auto\9;
 			}
 		</style>
 	</head>
 	<body ng-controller="timeFeedCtrl">
 		<div id="wrapper">
 			<div id="feed">
-				<div class='feedItem' ng-repeat="item in feedItemsResize()">
+				<div class='feedItem' ng-repeat="item in feedItems">
 					<div class="dateWrapper">
 						<div class="dateFeed">
 							{{item.capsuledate}}
 						</div>
 					</div>
 					<div class="upperFeed">
+						<div class="imageWrapper">
 							<img ng-src="<?= $this->config->base_url() ?>static/images/live/{{item.owner}}/{{item.image}}"
-								 title="{{item.capsuledate}}" width="{{item.width}}" height="{{item.height}}" load-resize />
+								 title="{{item.capsuledate}}" class="feedImage" />
+						</div>
 					</div>
 					<div class="lowerFeed">
 						<span class="username">{{item.username}}</span>

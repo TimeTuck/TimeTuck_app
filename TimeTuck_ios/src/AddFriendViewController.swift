@@ -17,7 +17,6 @@ class AddFriendViewController: UIViewController {
     @IBOutlet weak var datePicker:UIDatePicker!
     
     
-    
     init(_ appManager: TTAppManager, image: UIImage, datee: NSDate) {
         super.init(nibName: "AddFriendViewController", bundle: NSBundle.mainBundle());
         self.pic = image

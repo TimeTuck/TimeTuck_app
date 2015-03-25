@@ -48,7 +48,7 @@ class DViewController: UIViewController {
         
         let VC = AddFriendViewController(appManager!, image: picture!, datee: datePicker.date)
         
-        presentViewController(AddFriendViewController(appManager!, image: picture!, datee: datePicker.date), animated: true, completion: nil)
+        presentViewController(VC, animated: true, completion: nil)
         
     }
  
