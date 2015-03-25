@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddFriendViewController" customModule="TimeTuck" customModuleProvider="target">
             <connections>
-                <outlet property="Display" destination="UCK-yv-bgm" id="eLp-6F-rIS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,17 +19,39 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Friend to Capsule" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7N-LC-55c">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friend to Capsule" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7N-LC-55c">
                     <rect key="frame" x="194" y="51" width="213" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="E7c-oi-SjM"/>
+                        <constraint firstAttribute="width" constant="213" id="fQn-T4-z18"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="19"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UCK-yv-bgm">
-                    <rect key="frame" x="167" y="139" width="240" height="128"/>
-                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCN-Ua-QWk">
+                    <rect key="frame" x="200" y="241" width="200" height="45"/>
+                    <color key="backgroundColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="56T-fw-ceW"/>
+                        <constraint firstAttribute="width" constant="200" id="FCc-Wo-EJ8"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="Button:" destination="-1" eventType="touchUpInside" id="gQl-jx-sOQ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.59215686270000001" green="0.83137254900000002" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="V7N-LC-55c" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="51" id="WLz-HI-gGY"/>
+                <constraint firstAttribute="centerX" secondItem="V7N-LC-55c" secondAttribute="centerX" id="XyV-KU-gZh"/>
+                <constraint firstItem="NCN-Ua-QWk" firstAttribute="top" secondItem="V7N-LC-55c" secondAttribute="bottom" constant="169" id="gNo-s5-1VQ"/>
+                <constraint firstAttribute="centerX" secondItem="NCN-Ua-QWk" secondAttribute="centerX" id="z2M-7t-HG2"/>
+            </constraints>
         </view>
     </objects>
 </document>

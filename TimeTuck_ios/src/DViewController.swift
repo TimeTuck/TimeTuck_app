@@ -41,8 +41,6 @@ class DViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
    
-    @IBAction func setD(sender: AnyObject) {
-    }
 
     @IBAction func setDate(sender: UIButton) {
         
