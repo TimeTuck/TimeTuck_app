@@ -109,7 +109,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<body ng-controller="timeFeedCtrl">
 		<div id="wrapper">
 			<div id="feed">
-				<div class='feedItem' ng-repeat="item in feedItems | orderBy:'orderdate'">
+				<div class='feedItem' ng-repeat="item in feedItems | orderBy: '-orderdate'">
 					<div class="dateWrapper">
 						<div class="dateFeed">
 							{{item.capsuledate}}
