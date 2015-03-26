@@ -291,7 +291,7 @@ class access:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
                 try:
                     cur.callproc("timecapsule_get_live_from_session", (session.key, session.secret, count))
-                except Exception as e:
+                except Exception:
                     return []
                 result = cur.fetchall()
 

@@ -18,8 +18,8 @@ while True:
                       os.path.join(create_path_to_image(app.config['LIVE_FOLDER'], str(i.owner_id)), i.file_name))
             db.timecapsule_update_status(i.id)
 
-            tokens = db.timecapsule_get_device_of_friends(i.id)
-            tokens = tokens + db.get_all_device_tokens(i.owner_id)
+            tokens = set(db.timecapsule_get_device_of_friends(i.id))
+            tokens |= set(db.get_all_device_tokens(i.owner_id))
 
             notify(app.config, async=True).send_notification("You have a new TimeTuck!", tokens)
         except:

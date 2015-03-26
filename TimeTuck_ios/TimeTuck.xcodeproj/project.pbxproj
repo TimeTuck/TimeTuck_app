@@ -41,6 +41,7 @@
 		9E7AEA001A79815300C8BEA9 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E7AE9FF1A79815300C8BEA9 /* splash.png */; };
 		9E7EB8281A78701100442DDF /* Campton-BoldDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EB8261A78701100442DDF /* Campton-BoldDEMO.otf */; };
 		9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EB8271A78701100442DDF /* Campton-LightDEMO.otf */; };
+		9E8B30DA1AC4B8860033A0C8 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E8B30D91AC4B8860033A0C8 /* LoadingView.xib */; };
 		9E929F5F1A86B78400347C60 /* SearchUsersNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E929F5E1A86B78400347C60 /* SearchUsersNavigationController.swift */; };
 		9E929F621A86B90800347C60 /* SearchUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E929F601A86B90800347C60 /* SearchUserTableViewController.swift */; };
 		9E929F631A86B90800347C60 /* SearchUserTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E929F611A86B90800347C60 /* SearchUserTableViewController.xib */; };
@@ -107,6 +108,7 @@
 		9E7AE9FF1A79815300C8BEA9 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		9E7EB8261A78701100442DDF /* Campton-BoldDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Campton-BoldDEMO.otf"; sourceTree = "<group>"; };
 		9E7EB8271A78701100442DDF /* Campton-LightDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Campton-LightDEMO.otf"; sourceTree = "<group>"; };
+		9E8B30D91AC4B8860033A0C8 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		9E929F5E1A86B78400347C60 /* SearchUsersNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUsersNavigationController.swift; sourceTree = "<group>"; };
 		9E929F601A86B90800347C60 /* SearchUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserTableViewController.swift; sourceTree = "<group>"; };
 		9E929F611A86B90800347C60 /* SearchUserTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchUserTableViewController.xib; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				9E316AFD1AB4BEA200EB09EE /* FeedNavigationController.swift */,
 				9E316AFF1AB4C7D800EB09EE /* FeedWebViewController.swift */,
+				9E8B30D91AC4B8860033A0C8 /* LoadingView.xib */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -266,6 +269,13 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		9E8B30D81AC4B83B0033A0C8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		9E941E931A7876F8001B072A /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +311,7 @@
 		9EC0D0171A758B2E0013ED31 /* TimeTuck */ = {
 			isa = PBXGroup;
 			children = (
+				9E8B30D81AC4B83B0033A0C8 /* Assets */,
 				9E7EB8241A786FF900442DDF /* Resources */,
 				9E0ACBC51A75A5B400BE6C6B /* Model */,
 				9E68BA481A895EEE0033F85B /* StandardNavigationController.swift */,
@@ -469,6 +480,7 @@
 				9EDD9B361A89777B00FBEFDF /* FriendResponseTableCell.xib in Resources */,
 				9E0B3AD51A79B98A007651A8 /* logo60@2x.png in Resources */,
 				9E0B3AEF1A79D5DB007651A8 /* LoginSignupViewController.xib in Resources */,
+				9E8B30DA1AC4B8860033A0C8 /* LoadingView.xib in Resources */,
 				9E224C341A8ABA0E008FF6E9 /* SettingsVC.xib in Resources */,
 				9EC405371A8962FE00DC603A /* RequestFriendCell.xib in Resources */,
 				9E9A13A51A864FA200592527 /* FriendCell.xib in Resources */,

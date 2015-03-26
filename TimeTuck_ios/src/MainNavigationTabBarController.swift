@@ -37,10 +37,8 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
         settings.tabBarItem = UITabBarItem(title: "settings", image: settingImg, tag: 3);
         let cameraImg = UIImage(named: "camera");
         cameraControl.tabBarItem = UITabBarItem(title: "camera", image: cameraImg, tag: 2);
-
-        
         setViewControllers([friends, feed, cameraControl, settings], animated: false);
-        // Do any additional setup after loading the view.
+        selectedIndex = 1;
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,5 +60,9 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
         } else {
             return true;
         }
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return false;
     }
 }
