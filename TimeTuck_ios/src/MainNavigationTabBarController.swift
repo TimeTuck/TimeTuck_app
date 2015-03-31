@@ -29,6 +29,8 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
         super.viewDidLoad();
         self.tabBar.tintColor = UIColor(red: 109.0/255, green: 155.0/255, blue: 68.0/255, alpha:1.0);
         var feed = FeedNavigationController(self.appManager!);
+        let feedImg = UIImage(named: "picture");
+        feed.tabBarItem = UITabBarItem(title: "feed", image: feedImg, tag: 1);
         var friends = FriendsNavigationController(self.appManager!);
         let friendsImg = UIImage(named: "happy");
         friends.tabBarItem = UITabBarItem(title: "friends", image: friendsImg, tag: 1);
