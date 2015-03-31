@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		58892ECE1AB1EF4200EF7DE2 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58892ECA1AB1EF4200EF7DE2 /* AddFriendViewController.swift */; };
-		58892ECF1AB1EF4200EF7DE2 /* AddFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58892ECB1AB1EF4200EF7DE2 /* AddFriendViewController.xib */; };
+		580F9B481AC8DA4400BCB6A2 /* AddFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580F9B471AC8DA4400BCB6A2 /* AddFriendVC.swift */; };
+		580F9B571AC8F09000BCB6A2 /* AddFriendTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580F9B551AC8F09000BCB6A2 /* AddFriendTVC.swift */; };
+		580F9B581AC8F09000BCB6A2 /* AddFriendTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 580F9B561AC8F09000BCB6A2 /* AddFriendTVC.xib */; };
 		58892ED41AB1F1E700EF7DE2 /* DViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58892ED21AB1F1E700EF7DE2 /* DViewController.swift */; };
 		58892ED51AB1F1E700EF7DE2 /* DViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58892ED31AB1F1E700EF7DE2 /* DViewController.xib */; };
+		58B036B61AC202DE0010062B /* picture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58B036B51AC202DE0010062B /* picture@2x.png */; };
+		58B036B81AC203030010062B /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = 58B036B71AC203030010062B /* picture.png */; };
 		58DE49341A8B07C400361BF7 /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE49311A8B07C400361BF7 /* camera@2x.png */; };
 		58DE49351A8B07C400361BF7 /* happy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE49321A8B07C400361BF7 /* happy@2x.png */; };
 		58DE493C1A8B0E7F00361BF7 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DE49381A8B0E7F00361BF7 /* camera.png */; };
@@ -74,10 +77,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		58892ECA1AB1EF4200EF7DE2 /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
-		58892ECB1AB1EF4200EF7DE2 /* AddFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendViewController.xib; sourceTree = "<group>"; };
+		580F9B471AC8DA4400BCB6A2 /* AddFriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendVC.swift; sourceTree = "<group>"; };
+		580F9B551AC8F09000BCB6A2 /* AddFriendTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendTVC.swift; sourceTree = "<group>"; };
+		580F9B561AC8F09000BCB6A2 /* AddFriendTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendTVC.xib; sourceTree = "<group>"; };
 		58892ED21AB1F1E700EF7DE2 /* DViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DViewController.swift; sourceTree = "<group>"; };
 		58892ED31AB1F1E700EF7DE2 /* DViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DViewController.xib; sourceTree = "<group>"; };
+		58B036B51AC202DE0010062B /* picture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picture@2x.png"; sourceTree = "<group>"; };
+		58B036B71AC203030010062B /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
 		58DE49311A8B07C400361BF7 /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
 		58DE49321A8B07C400361BF7 /* happy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy@2x.png"; sourceTree = "<group>"; };
 		58DE49381A8B0E7F00361BF7 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
@@ -152,11 +158,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		585226DB1AC3546200FD37D5 /* AddFriend */ = {
+			isa = PBXGroup;
+			children = (
+				580F9B471AC8DA4400BCB6A2 /* AddFriendVC.swift */,
+				580F9B551AC8F09000BCB6A2 /* AddFriendTVC.swift */,
+				580F9B561AC8F09000BCB6A2 /* AddFriendTVC.xib */,
+			);
+			name = AddFriend;
+			sourceTree = "<group>";
+		};
 		58892EC51AB1EE8000EF7DE2 /* Date & Friend */ = {
 			isa = PBXGroup;
 			children = (
-				58892ECA1AB1EF4200EF7DE2 /* AddFriendViewController.swift */,
-				58892ECB1AB1EF4200EF7DE2 /* AddFriendViewController.xib */,
+				585226DB1AC3546200FD37D5 /* AddFriend */,
 				58892ED21AB1F1E700EF7DE2 /* DViewController.swift */,
 				58892ED31AB1F1E700EF7DE2 /* DViewController.xib */,
 			);
@@ -279,6 +294,8 @@
 		9E941E931A7876F8001B072A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				58B036B71AC203030010062B /* picture.png */,
+				58B036B51AC202DE0010062B /* picture@2x.png */,
 				58DE49381A8B0E7F00361BF7 /* camera.png */,
 				58DE49401A8BBAAE00361BF7 /* gears@2x.png */,
 				58DE49391A8B0E7F00361BF7 /* gears.png */,
@@ -463,8 +480,10 @@
 				9E0B3AF31A79E989007651A8 /* LoginViewController.xib in Resources */,
 				9E7EB8281A78701100442DDF /* Campton-BoldDEMO.otf in Resources */,
 				9E224C391A8ABC58008FF6E9 /* CameraController.xib in Resources */,
+				580F9B581AC8F09000BCB6A2 /* AddFriendTVC.xib in Resources */,
 				9E7AEA001A79815300C8BEA9 /* splash.png in Resources */,
 				58DE493E1A8B0E7F00361BF7 /* happy.png in Resources */,
+				58B036B61AC202DE0010062B /* picture@2x.png in Resources */,
 				9E0B3AD31A79B8B8007651A8 /* icon60@3x.png in Resources */,
 				9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */,
 				58892ED51AB1F1E700EF7DE2 /* DViewController.xib in Resources */,
@@ -484,7 +503,7 @@
 				9E224C341A8ABA0E008FF6E9 /* SettingsVC.xib in Resources */,
 				9EC405371A8962FE00DC603A /* RequestFriendCell.xib in Resources */,
 				9E9A13A51A864FA200592527 /* FriendCell.xib in Resources */,
-				58892ECF1AB1EF4200EF7DE2 /* AddFriendViewController.xib in Resources */,
+				58B036B81AC203030010062B /* picture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,8 +528,8 @@
 				9E0B3AE51A79CDF1007651A8 /* TTAppManager.swift in Sources */,
 				9E1488181A84146000552B9C /* MainNavigationTabBarController.swift in Sources */,
 				9EB75DA41A7725E800CB6233 /* TTSession.swift in Sources */,
+				580F9B571AC8F09000BCB6A2 /* AddFriendTVC.swift in Sources */,
 				9E929F621A86B90800347C60 /* SearchUserTableViewController.swift in Sources */,
-				58892ECE1AB1EF4200EF7DE2 /* AddFriendViewController.swift in Sources */,
 				9E39F51C1A84422300D8ABFB /* FriendsNavigationController.swift in Sources */,
 				9E69455B1AB5DFC60041B99B /* TTWebViews.swift in Sources */,
 				9E224C3A1A8ABC58008FF6E9 /* CameraController.swift in Sources */,
@@ -520,6 +539,7 @@
 				9EDD9B371A89777B00FBEFDF /* FriendResponseTableCell.swift in Sources */,
 				9E0B3AEE1A79D5DB007651A8 /* LoginSignupViewController.swift in Sources */,
 				9E316AFE1AB4BEA200EB09EE /* FeedNavigationController.swift in Sources */,
+				580F9B481AC8DA4400BCB6A2 /* AddFriendVC.swift in Sources */,
 				9EC0D01B1A758B2E0013ED31 /* AppDelegate.swift in Sources */,
 				9E0ACBC71A75A5C600BE6C6B /* TTUser.swift in Sources */,
 				58892ED41AB1F1E700EF7DE2 /* DViewController.swift in Sources */,

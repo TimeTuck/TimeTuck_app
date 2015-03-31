@@ -89,4 +89,10 @@ class TTAppManager {
         session = nil;
         user = nil;
     }
+    
+    func getUserID() -> Int {
+        
+        return user!.id
+        
+    }
 }

@@ -54,11 +54,141 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/CameraController.swift"
+            timestampString = "448222406.203477"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "CameraController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.CameraController.appManager.getter : Swift.Optional&lt;TimeTuck.TTAppManager&gt;"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
+                  timestampString = "449372852.888126"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.CameraController.appManager.setter : Swift.Optional&lt;TimeTuck.TTAppManager&gt;"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
+                  timestampString = "449372852.888346"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.CameraController.appManager.materializeForSet : Swift.Optional&lt;TimeTuck.TTAppManager&gt;"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
+                  timestampString = "449372852.888517"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.CameraController.init (TimeTuck.CameraController.Type)(navigationBarClass : Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject.Type&gt;, toolbarClass : Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject.Type&gt;) -&gt; TimeTuck.CameraController"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
+                  timestampString = "449372852.888698"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.CameraController.init (TimeTuck.CameraController.Type)(rootViewController : ObjectiveC.UIViewController) -&gt; TimeTuck.CameraController"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
+                  timestampString = "449372852.888965"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.CameraController.init (TimeTuck.CameraController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; TimeTuck.CameraController"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
+                  timestampString = "449372852.889164"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.CameraController.init (TimeTuck.CameraController.Type)() -&gt; TimeTuck.CameraController"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
+                  timestampString = "449372852.889331"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.CameraController.init (TimeTuck.CameraController.Type)(coder : ObjectiveC.NSCoder) -&gt; TimeTuck.CameraController"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
+                  timestampString = "449372852.889496"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/DViewController.swift"
-            timestampString = "448919691.013472"
+            timestampString = "449500008.473251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
@@ -73,128 +203,152 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "src/CameraController.swift"
-            timestampString = "448222406.203477"
+            filePath = "TTCapsule.swift"
+            timestampString = "449008023.993899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "CameraController"
-            landmarkType = "3">
+            startingLineNumber = "11"
+            endingLineNumber = "11">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/AddFriendVC.swift"
+            timestampString = "449372819.212941"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "init(_:image:datee:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/FriendsNavigationController.swift"
+            timestampString = "449374440.826159"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/FriendsNavigationController.swift"
+            timestampString = "449374449.143907"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "init(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/FriendsTableViewController.swift"
+            timestampString = "449378417.802435"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/FriendsTableViewController.swift"
+            timestampString = "449505228.719496"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "numberOfSectionsInTableView(_:)"
+            landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.CameraController.appManager.getter : Swift.Optional&lt;TimeTuck.TTAppManager&gt;"
+                  symbolName = "TimeTuck.FriendsTableViewController.numberOfSectionsInTableView (TimeTuck.FriendsTableViewController)(ObjectiveC.UITableView) -&gt; Swift.Int"
                   moduleName = "TimeTuck"
-                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
-                  timestampString = "448233142.084052"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/FriendsTableViewController.swift"
+                  timestampString = "449504544.589137"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "24">
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "40">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.CameraController.appManager.setter : Swift.Optional&lt;TimeTuck.TTAppManager&gt;"
+                  symbolName = "TimeTuck.FriendsTableViewController.numberOfSectionsInTableView (TimeTuck.FriendsTableViewController)(ObjectiveC.UITableView) -&gt; Swift.Int"
                   moduleName = "TimeTuck"
-                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
-                  timestampString = "448233142.084437"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/FriendsTableViewController.swift"
+                  timestampString = "449504544.589318"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.CameraController.appManager.materializeForSet : Swift.Optional&lt;TimeTuck.TTAppManager&gt;"
-                  moduleName = "TimeTuck"
-                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
-                  timestampString = "448233142.084644"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.CameraController.init (TimeTuck.CameraController.Type)(navigationBarClass : Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject.Type&gt;, toolbarClass : Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject.Type&gt;) -&gt; TimeTuck.CameraController"
-                  moduleName = "TimeTuck"
-                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
-                  timestampString = "448233142.084993"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "48">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.CameraController.init (TimeTuck.CameraController.Type)(rootViewController : ObjectiveC.UIViewController) -&gt; TimeTuck.CameraController"
-                  moduleName = "TimeTuck"
-                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
-                  timestampString = "448233142.085431"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.CameraController.init (TimeTuck.CameraController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; TimeTuck.CameraController"
-                  moduleName = "TimeTuck"
-                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
-                  timestampString = "448233142.085808"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "60">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.CameraController.init (TimeTuck.CameraController.Type)() -&gt; TimeTuck.CameraController"
-                  moduleName = "TimeTuck"
-                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
-                  timestampString = "448233142.086919"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.CameraController.init (TimeTuck.CameraController.Type)(coder : ObjectiveC.NSCoder) -&gt; TimeTuck.CameraController"
-                  moduleName = "TimeTuck"
-                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/CameraController.swift"
-                  timestampString = "448233142.087122"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "36">
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "556">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/CameraController.swift"
+            timestampString = "449501927.307963"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "CameraController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/MainNavigationTabBarController.swift"
+            timestampString = "449430069.19372"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -203,13 +357,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "src/CameraController.swift"
-            timestampString = "448222406.203477"
+            filePath = "src/AddFriendTVC.swift"
+            timestampString = "449432354.770467"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "imagePickerController(_:didFinishPickingImage:editingInfo:)"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "init(_:image:datee:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -220,12 +374,148 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/DViewController.swift"
-            timestampString = "448919691.013472"
+            timestampString = "449500008.473251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "setDate(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/DViewController.swift"
+            timestampString = "449499506.643644"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.DViewController.picture.getter : Swift.Optional&lt;ObjectiveC.UIImage&gt;"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/DViewController.swift"
+                  timestampString = "449504544.591886"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.DViewController.picture.setter : Swift.Optional&lt;ObjectiveC.UIImage&gt;"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/DViewController.swift"
+                  timestampString = "449504544.592095"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.DViewController.init (TimeTuck.DViewController.Type)(TimeTuck.TTAppManager, image : ObjectiveC.UIImage) -&gt; TimeTuck.DViewController"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/DViewController.swift"
+                  timestampString = "449504544.59227"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.DViewController.init (TimeTuck.DViewController.Type)(coder : ObjectiveC.NSCoder) -&gt; TimeTuck.DViewController"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/DViewController.swift"
+                  timestampString = "449504544.592439"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeTuck.DViewController.picture.materializeForSet : Swift.Optional&lt;ObjectiveC.UIImage&gt;"
+                  moduleName = "TimeTuck"
+                  urlString = "file:///Users/cscott/Documents/TimeTuck/TimeTuck_ios/src/DViewController.swift"
+                  timestampString = "449504544.592585"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/DViewController.swift"
+            timestampString = "449499506.643644"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "DViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/DViewController.swift"
+            timestampString = "449499269.656641"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "init(_:image:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/TTAppManager.swift"
+            timestampString = "449504544.501873"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "getUserID()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,16 +8,19 @@
 
 import UIKit
 
+
 class DViewController: UIViewController {
     
     var appManager: TTAppManager?;
     var picture : UIImage?
+
   
     
     init(_ appManager: TTAppManager, image: UIImage) {
         super.init(nibName: "DViewController", bundle: NSBundle.mainBundle());
         self.picture = image
         self.appManager = appManager
+        
         
     }
     
@@ -28,7 +31,6 @@ class DViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -44,11 +46,13 @@ class DViewController: UIViewController {
 
     @IBAction func setDate(sender: UIButton) {
         
-        let VC = AddFriendViewController(appManager!, image: picture!, datee: datePicker.date)
-        
+        let VC = AddFriendVC(appManager!, image: picture!, datee: datePicker.date)
         presentViewController(VC, animated: true, completion: nil)
         
     }
+    
+  
+
  
     /*
     // MARK: - Navigation

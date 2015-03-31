@@ -36,6 +36,12 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
         
     }
     
+    
+    
+    
+  
+    
+    
    /*     var data = TTDataAccess();
         data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(image, scale: 0.20)), untuckDate: NSDate(), users: [97, 98, 99]) {
             NSLog("Uploaded");

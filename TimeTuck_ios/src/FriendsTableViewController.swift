@@ -31,6 +31,7 @@ class FriendsTableViewController: UITableViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: "mainCell");
         tableView.registerNib(nibResponse, forCellReuseIdentifier: "responseCell");
         var addFriendButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addFriends");
+        addFriendButton.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = addFriendButton;
     }
     
