@@ -65,6 +65,10 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
     }
     
     override func shouldAutorotate() -> Bool {
-        return false;
+        if appManager == nil {
+            return true;
+        } else {
+            return appManager!.shouldAutoRotate;
+        }
     }
 }

@@ -14,6 +14,7 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     var scrollOffset: CGFloat?;
     var closedOffsetNav: CGFloat?;
     var openOffsetNav: CGFloat?;
+    var startOffset: CGFloat?;
     var cover: UIView!
     
     init(_ appManager: TTAppManager) {
@@ -25,10 +26,11 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         web!.delegate = self;
         view = web;
         web?.scrollView.delegate = self;
-        
         var t = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50));
         t.textAlignment = NSTextAlignment.Center;
-        t.text = "FFeedd";
+        t.text = title;
+        t.font = UIFont(name: "Campton-LightDEMO", size: 20)!
+        
         navigationItem.titleView = t;
         
         cover = NSBundle.mainBundle().loadNibNamed("LoadingView", owner: self, options: nil).first as UIView;
@@ -48,6 +50,13 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     override func viewWillAppear(animated: Bool)
     {
         web!.stringByEvaluatingJavaScriptFromString("document.getElementById(\"find\").innerHTML = \"test\"");
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        UIView.animateWithDuration(0.2) {
+            self.navigationItem.titleView?.alpha = 1;
+            return
+        }
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -79,31 +88,28 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let speed = 0.08;
         var navView = parentViewController as FeedNavigationController;
         
         if (scrollOffset == nil) {
             scrollOffset = scrollView.contentOffset.y;
             closedOffsetNav = navView.navigationBar.frame.size.height - navView.navigationBar.frame.origin.y;
             openOffsetNav = navView.navigationBar.frame.origin.y;
+            startOffset = scrollView.contentOffset.y;
         }
         
         var change = scrollOffset! - scrollView.contentOffset.y;
         
-        if (navView.navigationBar.frame.origin.y + change >= -closedOffsetNav! &&
-            navView.navigationBar.frame.origin.y + change <= openOffsetNav!) {
-            UIView.animateWithDuration(speed) {
+        if (scrollView.contentOffset.y + change > startOffset) {
+            if (navView.navigationBar.frame.origin.y + change >= -closedOffsetNav! &&
+                navView.navigationBar.frame.origin.y + change <= openOffsetNav!) {
                 navView.navigationBar.frame = CGRectOffset(navView.navigationBar.frame, 0, change);
                 self.navigationItem.titleView?.alpha = (self.closedOffsetNav! + (navView.navigationBar.frame.origin.y + change)) / self.closedOffsetNav!;
-            }
-        } else if (navView.navigationBar.frame.origin.y + change < -closedOffsetNav!) {
-            UIView.animateWithDuration(speed) {
-                navView.navigationBar.frame.origin.y = -self.closedOffsetNav!;
-                self.navigationItem.titleView?.alpha = 0
-            }
-        } else {
-            UIView.animateWithDuration(speed) {
-                navView.navigationBar.frame.origin.y = self.openOffsetNav!;                self.navigationItem.titleView?.alpha = 1;
+            } else if (navView.navigationBar.frame.origin.y + change < -closedOffsetNav!) {
+                    navView.navigationBar.frame.origin.y = -self.closedOffsetNav!;
+                    self.navigationItem.titleView?.alpha = 0
+            } else {
+                    navView.navigationBar.frame.origin.y = self.openOffsetNav!;
+                    self.navigationItem.titleView?.alpha = 1;
             }
         }
         

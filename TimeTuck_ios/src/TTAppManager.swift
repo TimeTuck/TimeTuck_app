@@ -12,6 +12,7 @@ import Foundation
 class TTAppManager {
     var user: TTUser?;
     var session: TTSession?;
+    var shouldAutoRotate = false;
     var deviceToken: String?
     
     class func checkUser() -> TTAppManager? {
