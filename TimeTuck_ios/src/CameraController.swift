@@ -11,6 +11,9 @@ import UIKit
 class CameraController: UIImagePickerController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var appManager: TTAppManager?;
     
+    
+   
+    
     class func initialize(appManager: TTAppManager) -> CameraController {
         var camera = CameraController();
         camera.appManager = appManager;
@@ -31,39 +34,15 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         
-        let viewController = DViewController(appManager!, image: image);
-        presentViewController(DViewController(appManager!, image: image), animated: true, completion: nil)
+        let capsule = TTTuck()
+        capsule.setPic(image)
+        let VC = DViewController(appManager!, tuck: capsule)
+        presentViewController(VC, animated: true, completion: nil)
         
     }
-    
-    
-    
-    
-  
-    
-    
-   /*     var data = TTDataAccess();
-        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(image, scale: 0.20)), untuckDate: NSDate(), users: [97, 98, 99]) {
-            NSLog("Uploaded");
-        };
-    
-    
-    }
-    
-    func compressImage(image: UIImage, scale: CGFloat) -> UIImage {
-        var originalSize = image.size;
-        var newRect = CGRectMake(0, 0, originalSize.width * scale, originalSize.height * scale);
-        
-        UIGraphicsBeginImageContext(newRect.size);
-        image.drawInRect(newRect);
-        var newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        return newImage;
-    }
-    
-    */
 
-    }
+
+}
 
     /*
     // MARK: - Navigation

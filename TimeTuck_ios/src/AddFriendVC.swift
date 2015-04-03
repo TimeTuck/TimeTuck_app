@@ -11,16 +11,13 @@ import UIKit
 class AddFriendVC: StandardNavigationController {
     
     var appManager: TTAppManager?;
-    var pic : UIImage!
-    var date : NSDate!
+    var capsule : TTTuck!
     
     
-    init(_ appManager: TTAppManager, image: UIImage, datee: NSDate) {
-        self.pic = image
-        self.date = datee
+    init(_ appManager: TTAppManager, tuck: TTTuck) {
         self.appManager = appManager
+        self.capsule = tuck
         super.init(nibName: nil, bundle: nil);
-        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -33,17 +30,13 @@ class AddFriendVC: StandardNavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let friends = AddFriendTVC(appManager!, image: pic, datee: date);
+        let friends = AddFriendTVC(appManager!, tuck: capsule);
         setViewControllers([friends], animated: false);
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func viewWillDisappear() {
-        popToRootViewControllerAnimated(true)
     }
     
         

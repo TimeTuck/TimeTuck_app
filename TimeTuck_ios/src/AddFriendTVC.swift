@@ -10,17 +10,19 @@ import UIKit
 
 class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataSource {
     var appManager: TTAppManager?
-    var picture: UIImage?
-    var date: NSDate!
+   // var picture: UIImage?
+   // var date: NSDate!
+    var capsule : TTTuck!
     
     var friends: [[String: AnyObject]]?
-    var friendsid: [[String: AnyObject]]?
     
     
-    init(_ appManager: TTAppManager, image: UIImage, datee: NSDate) {
-        self.picture = image
-        self.date = datee
+    init(_ appManager: TTAppManager, tuck: TTTuck) {
+       // self.picture = image
+       // self.date = datee
         self.appManager = appManager;
+        self.capsule = tuck
+        
         super.init(nibName: "AddFriendTVC", bundle: NSBundle.mainBundle());
         title = "share with friends";
     }
@@ -36,6 +38,8 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
         var tuckButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "tuck");
         tuckButton.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = tuckButton;
+        self.tableView.allowsMultipleSelection = true;
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -62,13 +66,14 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
         
             cell = tableView.dequeueReusableCellWithIdentifier("mainCell", forIndexPath: indexPath) as? UITableViewCell;
             (cell as FriendCell).mainLabel!.text = ((friends![indexPath.row] as [String: AnyObject])["username"] as String)
+        (cell as FriendCell).mainLabel!.tag = ((friends![indexPath.row] as [String: AnyObject])["id"] as Int);
     
         return cell!;
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-      
+        
         
     }
     
@@ -79,11 +84,22 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
     func tuck() {
         
         let userID = appManager!.getUserID()
+        capsule.addUsers(userID)
         
-         var data = TTDataAccess();
-        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(picture!, scale: 0.20)), untuckDate: date!, users: [ userID ]) {
-        NSLog("Uploaded");
+        if let index = tableView.indexPathsForSelectedRows() {
+            for var i = 0; i < index.count; ++i {
+                
+                var thisPath = index[i] as NSIndexPath
+                var cell = tableView.cellForRowAtIndexPath(thisPath)
+                capsule.addUsers(((cell as FriendCell).mainLabel!.tag))
+            }
+        }
+        
+        var data = TTDataAccess();
+        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(capsule.picture!, scale: 0.20)), untuckDate: capsule.date!, users: capsule.shareusers) {
+            NSLog("Uploaded");
         };
+        
         
         presentViewController(MainNavigationTabBarController(appManager!), animated: true, completion: nil)
 
@@ -112,5 +128,12 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
     }
 
 
+   /*
+    func indexPathsForSelectedRows() -> [[String: AnyObject]]?{
+        
+        return [[String: AnyObject]]()
+    }
+     */
+    
 
 }

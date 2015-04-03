@@ -12,14 +12,14 @@ import UIKit
 class DViewController: UIViewController {
     
     var appManager: TTAppManager?;
-    var picture : UIImage?
+    var capsule : TTTuck!;
 
   
     
-    init(_ appManager: TTAppManager, image: UIImage) {
+    init(_ appManager: TTAppManager, tuck: TTTuck) {
         super.init(nibName: "DViewController", bundle: NSBundle.mainBundle());
-        self.picture = image
         self.appManager = appManager
+        self.capsule = tuck
         
         
     }
@@ -46,14 +46,12 @@ class DViewController: UIViewController {
 
     @IBAction func setDate(sender: UIButton) {
         
-        let VC = AddFriendVC(appManager!, image: picture!, datee: datePicker.date)
+        capsule.setDate(datePicker.date)
+        let VC = AddFriendVC(appManager!, tuck: capsule)
         presentViewController(VC, animated: true, completion: nil)
         
     }
     
-  
-
- 
     /*
     // MARK: - Navigation
 
