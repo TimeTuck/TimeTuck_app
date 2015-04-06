@@ -16,17 +16,22 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     var openOffsetNav: CGFloat?;
     var startOffset: CGFloat?;
     var cover: UIView!
+    var disableHeaderMotion = false;
+    var greenColor = UIColor(red: 0.592, green: 0.831, blue: 0.38, alpha: 1);
+    var savedInset : UIEdgeInsets?;
     
     init(_ appManager: TTAppManager) {
         self.appManager = appManager;
         super.init(nibName: nil, bundle: nil);
         title = "Feed";
         web = UIWebView();
-        web!.backgroundColor = UIColor(red: 0.592, green: 0.831, blue: 0.38, alpha: 1);
+        web!.backgroundColor = greenColor;
         web!.delegate = self;
         view = web;
         web?.scrollView.delegate = self;
+        web?.scrollView.showsVerticalScrollIndicator = false;
         var t = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50));
+        
         t.textAlignment = NSTextAlignment.Center;
         t.text = title;
         t.font = UIFont(name: "Campton-LightDEMO", size: 20)!
@@ -35,8 +40,7 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         
         cover = NSBundle.mainBundle().loadNibNamed("LoadingView", owner: self, options: nil).first as UIView;
         cover.frame = UIScreen.mainScreen().applicationFrame;
-        view.addSubview(cover)
-        
+        view.addSubview(cover);
         
         var request = TTWebViews().GetMainFeedRequest(self.appManager!.session!);
         web!.loadRequest(request);
@@ -47,9 +51,7 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         self.appManager = nil;
     }
     
-    override func viewWillAppear(animated: Bool)
-    {
-        web!.stringByEvaluatingJavaScriptFromString("document.getElementById(\"find\").innerHTML = \"test\"");
+    override func viewWillAppear(animated: Bool) {
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -59,12 +61,48 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         }
     }
     
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {        
+        if (request.URL.scheme == "mobile-event") {
+            if (request.URL.host == "fullscreenimage") {
+                hideBars();
+            } else {
+                showBars();
+            }
+            return false;
+        }
+        return true;
+    }
+    
+    func hideBars() {
+        savedInset = web?.scrollView.contentInset;
+        web?.scrollView.bounces = false;
+        web?.backgroundColor = UIColor.blackColor();
+        disableHeaderMotion = true;
+        (parentViewController as UINavigationController).setNavigationBarHidden(true, animated: true);
+        appManager!.shouldAutoRotate = true;
+        appManager!.mainTabNav?.tabBar.hidden = true;
+        web?.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
+    }
+    
+    func showBars() {
+        web?.scrollView.bounces = true;
+        web?.backgroundColor = greenColor;
+        disableHeaderMotion = false;
+        (parentViewController as UINavigationController).setNavigationBarHidden(false, animated: true);
+        appManager!.shouldAutoRotate = false;
+        appManager!.mainTabNav?.tabBar.hidden = false;
+        if (savedInset != nil) {
+            NSLog(savedInset!.top.description);
+            web?.scrollView.contentInset = UIEdgeInsets(top: savedInset!.top, left: savedInset!.left, bottom: savedInset!.bottom, right: savedInset!.right);
+        }
+    }
+    
     func webViewDidFinishLoad(webView: UIWebView) {
         UIView.animateWithDuration(0.4, animations: {self.cover!.alpha = 0}, completion: {finished in self.cover!.removeFromSuperview()});
     }
     
     func finishScroll(willDecelerate decelerate: Bool) {
-        if (!decelerate) {
+        if (!decelerate && !disableHeaderMotion) {
             var navView = parentViewController as FeedNavigationController;
             
             UIView.animateWithDuration(0.2) {
@@ -88,6 +126,10 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        if disableHeaderMotion {
+            return
+        }
+        
         var navView = parentViewController as FeedNavigationController;
         
         if (scrollOffset == nil) {

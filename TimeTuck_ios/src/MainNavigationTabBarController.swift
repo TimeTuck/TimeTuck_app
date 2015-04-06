@@ -17,6 +17,7 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
         super.init(nibName: nil, bundle: nil);
         delegate = self;
         modalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
+        self.appManager?.mainTabNav = self;
     }
 
     required init(coder aDecoder: NSCoder) {

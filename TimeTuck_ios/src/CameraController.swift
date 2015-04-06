@@ -10,8 +10,6 @@ import UIKit
 
 class CameraController: UIImagePickerController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var appManager: TTAppManager?;
-    
-    
    
     
     class func initialize(appManager: TTAppManager) -> CameraController {
@@ -37,8 +35,7 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
         let capsule = TTTuck()
         capsule.setPic(image)
         let VC = DViewController(appManager!, tuck: capsule)
-        presentViewController(VC, animated: true, completion: nil)
-        
+        presentViewController(VC, animated: true, completion: nil)        
     }
 
 

@@ -496,4 +496,4 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
-$config['service_url'] = 'http://localhost:5000';
+$config['service_url'] = 'http://127.0.0.1:5000';

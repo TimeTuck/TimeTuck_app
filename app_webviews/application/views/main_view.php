@@ -8,6 +8,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 		<script type="application/javascript">
+			function fullSceenStart() {
+				$("#hiddenField").append("<iframe src=\"mobile-event://fullscreenimage\"></iframe>");
+				$("#hiddenField").html('');
+			}
+
+			function fullScreenEnd() {
+				$("#hiddenField").append("<iframe src=\"mobile-event://fullscreenend\"></iframe>");
+				$("#hiddenField").html('');
+			}
+
 			var timeFeed = angular.module('timeFeed', []);
 			timeFeed.controller("timeFeedCtrl", ['$scope', '$window', '$document', '$http', function ($scope, $window, $document, $http) {
 				$scope.feedItems = <?= json_encode($results) ?>;
@@ -19,11 +29,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					var count = $scope.count + 3;
 					return $http.get("<?= $this->config->item('service_url') ?>/get_feed?key=" + key + "&secret=" + sec + "&count=" + count);
 				}
-				$scope.isDisplaying = null;
-				$scope.previousScale = null;
+				$scope.displayInfo = null;
+				$scope.closeImg = function (id) {
+					fullScreenEnd();
+					var speed = 500;
+					var $overlay = $("#overlay");
+					var $exit = $("#" + id + "_exit");
+					var $wrap = $("#" + id);
+					var $holder = $("#" + id + "_holder");
+					var $feedItem = $wrap.closest(".feedItem");
+					var $image = $wrap.children("img");
+					var $date = $("#" + id + "_date");
+
+					$exit.css('display', '');
+					$overlay.animate({opacity: 0}, speed, function () {
+						$(this).css({"height": "", "display": ""});
+						$exit.css('display', '');
+					});
+
+					$image.animate({width: $holder.width() , height: $holder.height(),
+									'margin-left': 0, 'margin-top': 0}, function () {
+						$(this).css({'margin-left': '', 'margin-top': '', position: '', height: '', width: ''})
+					});
+					$wrap.css({position: 'absolute', top: $($window).scrollTop(), left: $($window).scrollLeft(),
+							   overflow: ''});
+					$wrap.animate({width: $holder.width(), height: $holder.height(), top: $holder.offset().top,
+								  left: $holder.offset().left}, function () {
+						$(this).css({left: '', top: '', position: '', width: '', height: '', 'z-index': '', margin: '',
+									 padding: ''});
+						$holder.css({width: '', height: ''});
+						$('body').css('overflow', '');
+						$feedItem.css({width: '', height: ''});
+					});
+					$date.fadeIn(speed, function () {
+						$(this).css({'z-index': '', display: ''});
+					});
+
+					$scope.displayInfo = null;
+				}
 				$scope.focusImg = function (id) {
+					fullSceenStart()
 					var speed = 500;
 					var $wrap = $("#" + id);
+					var $holder = $("#" + id + "_holder");
 					var $image = $wrap.children("img");
 					var $date = $("#" + id + "_date");
 					var $feedItem = $wrap.closest(".feedItem");
@@ -33,36 +81,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					var imgHeight = $wrap.height();
 					var imgAspect = imgWidth / imgHeight;
 					var winAspect = $($window).width() / $($window).height();
-					$scope.isDisplaying = id;
+					$scope.displayInfo = {id: id}
 					$overlay.css({height: $(document).height()})
 					$feedItem.css({width: $feedItem.width(), height: $feedItem.height()});
 					$date.css('z-index', 150);
-					$wrap.css({position: "fixed", width: imgWidth, height: imgHeight,
-						       left: $wrap.offset().left - $($window).scrollLeft(),
-					           top: $wrap.offset().top - $($window).scrollTop(),
+					$holder.css({width: imgWidth, height: imgHeight});
+					$wrap.css({position: "absolute", width: imgWidth, height: imgHeight,
+						       left: $wrap.offset().left,
+					           top: $wrap.offset().top,
 							   padding: 0, margin: 0, zIndex: 100});
 
 					var finalize = function () {
 						$('body').css({overflow: 'hidden'});
+						$wrap.css({overflow: 'scroll'})
 						$image.width($image.width());
 						$image.height($image.height());
-						$image.css({'padding-left': ($($window).width() - $image.width()) / 2,
-								    'padding-top': ($($window).height() - $image.height()) / 2})
-						$wrap.css({width: "100%", height: "100%", left: 0, top: 0})
+						$image.css({'margin-left': ($($window).width() - $image.width()) / 2,
+								    'margin-top': ($($window).height() - $image.height()) / 2, 'position': 'absolute'})
+						$wrap.css({width: "100%", height: "100%", left: 0, top: 0, position: "fixed"})
 						$exit.css('display', 'block');
-						$scope.previousScale = {width: $image.width(), height: $image.height()}
+						$scope.displayInfo.width =  $image.width();
+						$scope.displayInfo.height = $image.height();
+						$scope.displayInfo.newWidth = $image.width();
+						$scope.displayInfo.newHeight = $image.height();
 					}
 
 					if (imgAspect < winAspect) {
 						var newWidth = $($window).height() * imgWidth / imgHeight;
 						$wrap.animate({height: $($window).height(),
 									   width: newWidth,
-							           left: ($($window).width() - newWidth) / 2,
-									   top: 0}, speed, finalize)
+							           left: ($($window).width() - newWidth) / 2 + $($window).scrollLeft(),
+									   top: $($window).scrollTop()}, speed, finalize);
 					} else {
 						var newHeight = $($window).width() * imgHeight / imgWidth;
 						$wrap.animate({height: newHeight, width: $($window).width(),
-							left: 0, top: ($($window).height() - newHeight) / 2 }, speed, finalize)
+									   left: $($window).scrollLeft(),
+							           top: ($($window).height() - newHeight) / 2 + $($window).scrollTop()}, speed,
+							           finalize);
 					}
 
 					$date.fadeOut(speed);
@@ -84,26 +139,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 				});
 
-				$('body').on('mousewheel', function (e) {
-					if ($scope.isDisplaying) {
-						e.preventDefault();
-						e.stopPropagation();
-					}
-				});
+				var returningSize = false;
 
 				$('body')[0].addEventListener('gesturechange', function (e) {
-					if ($scope.isDisplaying) {
-						var $image = $("#" + $scope.isDisplaying).children("img");
-						$image.width($scope.previousScale.width * e.scale);
-						$image.height($scope.previousScale.height * e.scale);
+					if ($scope.displayInfo) {
+						if (returningSize)
+							return;
+
+						var $wrap = $("#" + $scope.displayInfo.id);
+						var $image = $wrap.children("img");
+						var newWidth = $scope.displayInfo.newWidth * e.scale;
+						var newHeight = $scope.displayInfo.newHeight * e.scale;
+						var windowWidth = $($window).width();
+						var windowHeight = $($window).height();
+						var orgImgWidth = $image.width();
+						var orgImgHeight = $image.height();
+
+						$image.width(newWidth);
+						$image.height(newHeight);
+
+						if (newWidth <= windowWidth) {
+							$image.css({'margin-left': (windowWidth - newWidth) / 2});
+						} else {
+							$image.css({'margin-left': 0});
+							var anchorX = (windowWidth / 2) + $wrap.scrollLeft();
+							var xPercent = anchorX / orgImgWidth;
+							var anchNewX = newWidth * xPercent;
+							var newScrollLeft = $wrap.scrollLeft() + (anchNewX - anchorX);
+							$wrap.scrollLeft(newScrollLeft);
+						}
+
+						if (newHeight <= windowHeight) {
+							$image.css({'margin-top': (windowHeight - newHeight) / 2});
+						} else {
+							$image.css({'margin-top': 0});
+							var anchorY = (windowHeight / 2) + $wrap.scrollTop();
+							var yPercent = anchorY / orgImgHeight;
+							var anchNewY = newHeight * yPercent;
+							var newScrollTop = $wrap.scrollTop() + (anchNewY - anchorY);
+							$wrap.scrollTop(newScrollTop);
+						}
 					}
 				});
 
 				$('body')[0].addEventListener('gestureend', function (e) {
-					if ($scope.isDisplaying) {
-						var $image = $("#" + $scope.isDisplaying).children("img");
-						if ($image.width() < $scope.previousScale.width)
-							$image.animate({width: $scope.previousScale.width, height: $scope.previousScale.height}, 500);
+					if ($scope.displayInfo) {
+						var $image = $("#" + $scope.displayInfo.id).children("img");
+						var windowWidth = $($window).width();
+						var windowHeight = $($window).height();
+						if ($image.width() < $scope.displayInfo.width) {
+							returningSize = true;
+							$image.animate({width: $scope.displayInfo.width, height: $scope.displayInfo.height,
+										    'margin-left': (windowWidth - $scope.displayInfo.width ) / 2,
+										    'margin-top': (windowHeight - $scope.displayInfo.height) / 2}, 500,
+											function () {
+												$scope.displayInfo.newWidth = $scope.displayInfo.width;
+												$scope.displayInfo.newHeight = $scope.displayInfo.height;
+												returningSize = false;
+											});
+						} else {
+							$scope.displayInfo.newWidth = $image.width();
+							$scope.displayInfo.newHeight = $image.height();
+						}
 					}
 				});
 			}]);
@@ -193,6 +290,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			.timeInfo {
 				font-size: 10px;
 			}
+			.imageHolder {
+				margin: 0;
+				padding: 0;
+			}
 			.imageWrapper {
 				margin: 0;
 				padding: 0;
@@ -202,9 +303,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				height: auto;
 				width: auto\9;
 			}
+			#hiddenField {
+				display: none;
+			}
 		</style>
 	</head>
-	<body ng-controller="timeFeedCtrl">
+	<body ng-controller="timeFeedCtrl" ng-init="">
 		<div id="overlay">
 		</div>
 		<div id="wrapper">
@@ -216,12 +320,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 					<div class="upperFeed">
-						<div class="imageWrapper" id="{{item.id}}">
-							<div id="{{item.id}}_exit" class="exit">
-								<span ng-click="closeImg(item.id)" class="closeButton">close</span>
+						<div class="imageHolder" id="{{item.id}}_holder">
+							<div class="imageWrapper" id="{{item.id}}">
+								<div id="{{item.id}}_exit" class="exit">
+									<span ng-click="closeImg(item.id)" class="closeButton">close</span>
+								</div>
+								<img ng-src="<?= $this->config->base_url() ?>static/images/live/{{item.owner}}/{{item.image}}"
+									 title="{{item.capsuledate}}" class="feedImage" ng-click="focusImg(item.id)" />
 							</div>
-							<img ng-src="<?= $this->config->base_url() ?>static/images/live/{{item.owner}}/{{item.image}}"
-								 title="{{item.capsuledate}}" class="feedImage" ng-click="focusImg(item.id)" />
 						</div>
 					</div>
 					<div class="lowerFeed">
@@ -232,6 +338,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 			</div>
+		</div>
+		<div id="hiddenField">
 		</div>
 	</body>
 </html>

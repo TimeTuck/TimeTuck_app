@@ -14,6 +14,7 @@ class TTAppManager {
     var session: TTSession?;
     var shouldAutoRotate = false;
     var deviceToken: String?
+    var mainTabNav: MainNavigationTabBarController?
     
     class func checkUser() -> TTAppManager? {
         var userInfo = NSUserDefaults();
@@ -92,8 +93,6 @@ class TTAppManager {
     }
     
     func getUserID() -> Int {
-        
         return user!.id
-        
     }
 }
