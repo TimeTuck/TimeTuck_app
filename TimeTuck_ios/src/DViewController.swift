@@ -9,19 +9,19 @@
 import UIKit
 
 
-class DViewController: UIViewController {
+class DViewController: UIViewController, UITextFieldDelegate {
     
     var appManager: TTAppManager?;
     var capsule : TTTuck!;
-
-  
+ 
+    @IBOutlet weak var comment: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
+   
     
     init(_ appManager: TTAppManager, tuck: TTTuck) {
         super.init(nibName: "DViewController", bundle: NSBundle.mainBundle());
         self.appManager = appManager
         self.capsule = tuck
-        
-        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -31,6 +31,15 @@ class DViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var tap = UITapGestureRecognizer(target: self, action: "dismissKeyboard");
+        view.addGestureRecognizer(tap);
+        comment.delegate = self;
+        datePicker.backgroundColor = UIColor.whiteColor()
+        let currentDate = NSDate()
+        datePicker.minimumDate = currentDate
+        datePicker.date = currentDate
+        
         // Do any additional setup after loading the view.
     }
 
@@ -40,16 +49,31 @@ class DViewController: UIViewController {
     }
     
 
-    @IBOutlet weak var datePicker: UIDatePicker!
-    
-   
-
     @IBAction func setDate(sender: UIButton) {
         
         capsule.setDate(datePicker.date)
+        capsule.setComment(comment.text)
         let VC = AddFriendVC(appManager!, tuck: capsule)
         presentViewController(VC, animated: true, completion: nil)
         
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        view.endEditing(true)
+        return false
+    }
+
+    
+    func dismissKeyboard() {
+        view.endEditing(true);
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return false;
+    }
+    
+    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+        return UIInterfaceOrientation.Portrait;
     }
     
     /*

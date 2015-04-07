@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Campton-LightDEMO.otf">
+            <string>Campton-LightDEMO</string>
+            <string>Campton-LightDEMO</string>
             <string>Campton-LightDEMO</string>
         </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DViewController" customModule="TimeTuck" customModuleProvider="target">
             <connections>
+                <outlet property="comment" destination="5p6-dH-rFf" id="cm6-8Q-zho"/>
                 <outlet property="datePicker" destination="9wd-jH-w48" id="KY7-TC-LhQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,23 +23,47 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <datePicker opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-jH-w48">
-                    <rect key="frame" x="140" y="45" width="320" height="162"/>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-jH-w48">
+                    <rect key="frame" x="140" y="215" width="320" height="162"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <date key="date" timeIntervalSinceReferenceDate="447869445.24573702">
                         <!--2015-03-12 16:10:45 +0000-->
                     </date>
                 </datePicker>
-                <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcT-mh-DYp">
-                    <rect key="frame" x="233" y="241" width="135" height="40"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5p6-dH-rFf">
+                    <rect key="frame" x="10" y="89" width="581" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="R2Q-p5-Gf4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQQ-DJ-37C">
+                    <rect key="frame" x="250" y="60" width="118" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="9ry-fi-MKv"/>
+                        <constraint firstAttribute="width" constant="118" id="BaJ-C0-mKc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="20"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="reveal date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p89-Vs-XWm">
+                    <rect key="frame" x="247" y="189" width="107" height="24"/>
+                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="20"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcT-mh-DYp">
+                    <rect key="frame" x="233" y="510" width="135" height="40"/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="Gmb-iq-a69"/>
-                        <constraint firstAttribute="width" constant="250" id="uDE-AG-LHW"/>
+                        <constraint firstAttribute="height" constant="40" id="9xZ-9X-i68"/>
+                        <constraint firstAttribute="width" constant="135" id="d4p-q3-S59"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="19"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="Set Date">
+                    <state key="normal" title="Set Info">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -51,17 +78,30 @@
             </subviews>
             <color key="backgroundColor" red="0.59215686270000001" green="0.83137254900000002" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="9wd-jH-w48" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="29j-C4-kJT"/>
-                <constraint firstItem="KcT-mh-DYp" firstAttribute="top" secondItem="9wd-jH-w48" secondAttribute="bottom" constant="34" id="4sD-Ys-Ugd"/>
-                <constraint firstItem="9wd-jH-w48" firstAttribute="centerX" secondItem="KcT-mh-DYp" secondAttribute="centerX" id="In3-6Y-PR7">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </constraint>
-                <constraint firstItem="KcT-mh-DYp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="m6B-xq-Z5h"/>
+                <constraint firstItem="5p6-dH-rFf" firstAttribute="top" secondItem="aQQ-DJ-37C" secondAttribute="bottom" constant="8" symbolic="YES" id="BHd-7X-vxg"/>
+                <constraint firstItem="KcT-mh-DYp" firstAttribute="centerX" secondItem="9wd-jH-w48" secondAttribute="centerX" id="FjA-re-2Kx"/>
+                <constraint firstItem="9wd-jH-w48" firstAttribute="top" secondItem="p89-Vs-XWm" secondAttribute="bottom" constant="2" id="GTU-8w-lB4"/>
+                <constraint firstAttribute="bottom" secondItem="KcT-mh-DYp" secondAttribute="bottom" constant="50" id="McM-wE-04G"/>
+                <constraint firstItem="aQQ-DJ-37C" firstAttribute="centerX" secondItem="5p6-dH-rFf" secondAttribute="centerX" id="Pgn-6H-kD3"/>
+                <constraint firstItem="aQQ-DJ-37C" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="RZU-O2-QNQ"/>
+                <constraint firstItem="aQQ-DJ-37C" firstAttribute="centerX" secondItem="p89-Vs-XWm" secondAttribute="centerX" id="T6u-8a-1dA"/>
+                <constraint firstItem="5p6-dH-rFf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="THW-Av-L7q"/>
+                <constraint firstItem="5p6-dH-rFf" firstAttribute="top" secondItem="aQQ-DJ-37C" secondAttribute="bottom" constant="8" symbolic="YES" id="TnQ-qE-vOa"/>
+                <constraint firstItem="9wd-jH-w48" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hzB-hC-mqk"/>
+                <constraint firstItem="9wd-jH-w48" firstAttribute="centerX" secondItem="p89-Vs-XWm" secondAttribute="centerX" id="n3r-4H-DjG"/>
+                <constraint firstItem="9wd-jH-w48" firstAttribute="centerX" secondItem="p89-Vs-XWm" secondAttribute="centerX" id="w1e-zb-MaA"/>
+                <constraint firstItem="p89-Vs-XWm" firstAttribute="top" secondItem="5p6-dH-rFf" secondAttribute="bottom" constant="45" id="wnE-8d-tyt"/>
+                <constraint firstItem="5p6-dH-rFf" firstAttribute="centerX" secondItem="p89-Vs-XWm" secondAttribute="centerX" id="y7R-vW-I4s"/>
+                <constraint firstAttribute="centerX" secondItem="aQQ-DJ-37C" secondAttribute="centerX" constant="-9" id="yby-l5-fxn"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="BHd-7X-vxg"/>
+                    <exclude reference="Pgn-6H-kD3"/>
+                    <exclude reference="T6u-8a-1dA"/>
+                    <exclude reference="w1e-zb-MaA"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="599" y="350"/>
         </view>
     </objects>
