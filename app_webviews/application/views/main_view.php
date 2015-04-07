@@ -41,6 +41,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					var $image = $wrap.children("img");
 					var $date = $("#" + id + "_date");
 
+					$image.removeClass("downloadImage");
+
 					$exit.css('display', '');
 					$overlay.animate({opacity: 0}, speed, function () {
 						$(this).css({"height": "", "display": ""});
@@ -104,6 +106,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						$scope.displayInfo.height = $image.height();
 						$scope.displayInfo.newWidth = $image.width();
 						$scope.displayInfo.newHeight = $image.height();
+						$image.addClass("downloadImage");
 					}
 
 					if (imgAspect < winAspect) {
@@ -204,6 +207,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 				});
 			}]);
+
+			function downLoadImage(x, y) {
+				var element = document.elementFromPoint(x, y);
+				if (element == null)
+					return null;
+				if ((' ' + element.className + ' ').indexOf(' downloadImage ') > -1)
+					return element.src;
+				else
+					return null;
+			}
 		</script>
 		<style type="text/css">
 			@font-face {
@@ -220,6 +233,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				background-color: #97d461;
 				width 100%;
 				font-family: CampLight;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			h1 {
+				font-size: 1.4em;
 			}
 			#wrapper {
 				margin: 10px 0px 0px 0px;
@@ -306,12 +328,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			#hiddenField {
 				display: none;
 			}
+			.nothingFeed {
+				text-align: center;
+				padding: 20px;
+			}
 		</style>
 	</head>
 	<body ng-controller="timeFeedCtrl" ng-init="">
 		<div id="overlay">
 		</div>
 		<div id="wrapper">
+			<div ng-show="feedItems.length == 0" class="nothingFeed">
+				<h1>There's nothing in your feed yet!</h1>
+			</div>
 			<div id="feed">
 				<div class='feedItem' ng-repeat="item in feedItems | orderBy: '-orderdate'">
 					<div class="dateWrapper" id="{{item.id}}_date">

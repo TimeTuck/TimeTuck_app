@@ -38,6 +38,9 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         
         navigationItem.titleView = t;
         
+        var pressRecognizer = UILongPressGestureRecognizer(target: self, action: "holdDownImage:");
+        view.addGestureRecognizer(pressRecognizer);
+        
         cover = NSBundle.mainBundle().loadNibNamed("LoadingView", owner: self, options: nil).first as UIView;
         cover.frame = UIScreen.mainScreen().applicationFrame;
         view.addSubview(cover);
@@ -58,6 +61,23 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         UIView.animateWithDuration(0.2) {
             self.navigationItem.titleView?.alpha = 1;
             return
+        }
+    }
+    
+    func holdDownImage(gesture: UILongPressGestureRecognizer) {
+        var url = web?.stringByEvaluatingJavaScriptFromString("downLoadImage(\(gesture.locationInView(web?).x), \(gesture.locationInView(web?).y))");
+        if url! != "" && gesture.state == UIGestureRecognizerState.Began {
+            var alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet);
+            alert.addAction(UIAlertAction(title: "Save Image", style: UIAlertActionStyle.Default) {
+                action in
+                var data = NSData(contentsOfURL: NSURL(string: url!)!);
+                UIImageWriteToSavedPhotosAlbum(UIImage(data: data!)!, nil, nil, nil);
+            });
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) {
+                action in
+                return;
+            });
+            self.presentViewController(alert, animated: true, completion: nil);
         }
     }
     
