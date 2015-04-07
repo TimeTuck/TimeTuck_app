@@ -10,16 +10,12 @@ import UIKit
 
 class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataSource {
     var appManager: TTAppManager?
-   // var picture: UIImage?
-   // var date: NSDate!
     var capsule : TTTuck!
     
     var friends: [[String: AnyObject]]?
     
     
     init(_ appManager: TTAppManager, tuck: TTTuck) {
-       // self.picture = image
-       // self.date = datee
         self.appManager = appManager;
         self.capsule = tuck
         
@@ -126,14 +122,6 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
         UIGraphicsEndImageContext();
         return newImage;
     }
-
-
-   /*
-    func indexPathsForSelectedRows() -> [[String: AnyObject]]?{
-        
-        return [[String: AnyObject]]()
-    }
-     */
     
 
 }

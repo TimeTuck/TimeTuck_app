@@ -11,7 +11,6 @@ import Foundation
 
 public class TTTuck {
     
-    var appManager: TTAppManager?
     var picture: UIImage?
     var date: NSDate?
     var shareusers: [Int]
