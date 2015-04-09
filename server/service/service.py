@@ -328,6 +328,7 @@ def upload_image():
                 filename = "%s.png" % str(uuid4())
                 full_path = os.path.join(create_path_to_image(app.config['UPLOAD_FOLDER'], str(user.id)), filename);
                 file.save(full_path)
+                os.chmod(full_path, 0o644)
 
                 with open(full_path, 'rb') as f:
                     data = f.read()

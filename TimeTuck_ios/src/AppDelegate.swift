@@ -45,7 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("%@", deviceToken);
         appManager?.updateDeviceToken(deviceToken.description);
         
-        
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        NSLog("notification");
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
