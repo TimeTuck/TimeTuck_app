@@ -168,6 +168,40 @@ class access:
                 cur.callproc("device_token_update", (sess['key'], sess['secret'], token))
                 db.commit()
 
+    def update_badge(self, amount, device):
+        value = None
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                cur.callproc("update_badge", (amount, device))
+                result = cur.fetchone()
+                value = result['Result']
+
+            db.commit()
+
+            if value is None:
+                return 0
+
+            return value
+
+    def update_badge_from_session(self, amount, session):
+        if not isinstance(session, dict):
+            sess = session.__dict__
+        else:
+            sess = session
+
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                cur.callproc("update_badge_from_session", (sess['key'], sess['secret'], amount))
+                result = cur.fetchone()
+                value = result['Result']
+
+            db.commit()
+
+            if value is None:
+                return 0
+
+            return value
+
     def send_friend_request(self, user, requested_id):
         with self.connection() as db:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:

@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             firstNav = LoginSignUpViewController(appManager!);
         }
         
-        var notification = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert
+        var notification = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert | UIUserNotificationType.Badge
             , categories: nil);
         UIApplication.sharedApplication().registerUserNotificationSettings(notification)
         application.registerForRemoteNotifications();
@@ -44,11 +44,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         NSLog("%@", deviceToken);
         appManager?.updateDeviceToken(deviceToken.description);
-        
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        NSLog("notification");
+        var access = TTDataAccess();
+        if appManager?.session != nil {
+            access.updateBadge(appManager!.session!, change: -UIApplication.sharedApplication().applicationIconBadgeNumber) {
+                value in
+                if value != nil {
+                    UIApplication.sharedApplication().applicationIconBadgeNumber = value!;
+                }
+            }
+        }
+        NSLog(userInfo["type"] as String);
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

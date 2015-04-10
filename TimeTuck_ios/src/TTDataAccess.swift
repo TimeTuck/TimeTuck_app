@@ -124,6 +124,20 @@ public class TTDataAccess {
         };
     }
     
+    public func updateBadge(session: TTSession, change: Int, completed: (status: Int?) -> Void) {
+        var body = session.toDictionary();
+        body["new_value"] = change.description;
+        makeHTTPRequest("/update_badge", bodyData: body, requestMethod: "POST") {
+            response, data, error in
+            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+                let values = self.JSONParseDictionary(data);
+                completed(status: values["value"] as? Int);
+            } else {
+                completed(status: nil);
+            }
+        };
+    }
+    
     public func searchUsers(session: TTSession, search: String, completed: (users: [[String: AnyObject]]) -> Void) {
         var params = session.toDictionary();
         params["search"] = search;

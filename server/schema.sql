@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Mar 27, 2015 at 12:00 AM
+-- Generation Time: Apr 11, 2015 at 01:39 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -78,6 +78,11 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `session_create`(IN `uid` INT(10), IN `k` CHAR(36), IN `sec` CHAR(36), IN `date` DATETIME, IN `token` CHAR(64))
 BEGIN
+IF token is not NULL
+THEN
+	DELETE FROM user_sessions WHERE device_token = token;
+end if;
+    
 INSERT INTO user_sessions(user_id, skey, secret, device_token, updated) VALUES(uid, k, sec, token, date );
 END$$
 
@@ -169,6 +174,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_update_status`(IN `id` 
     NO SQL
 UPDATE timecapsule_sa_media SET live=1 WHERE timecap_id = id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_badge`(IN `amount` INT(100), IN `dev` CHAR(64))
+    NO SQL
+BEGIN
+UPDATE user_sessions SET badge_count=badge_count+amount WHERE device_token=dev;
+SELECT badge_count as Result FROM user_sessions WHERE device_token=dev;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_badge_from_session`(IN `k` CHAR(36), IN `s` CHAR(36), IN `amount` INT)
+    NO SQL
+BEGIN
+UPDATE user_sessions SET badge_count=GREATEST(badge_count+amount, 0) WHERE skey = k and secret = s;
+SELECT badge_count AS Result FROM user_sessions WHERE skey = k AND secret = s;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `user_check_info_exists`(IN `uname` VARCHAR(100), IN `phone` VARCHAR(15), IN `em` VARCHAR(200))
 BEGIN
 DECLARE ucount int;
@@ -223,7 +242,7 @@ CREATE TABLE `timecapsule` (
   `owner` int(10) unsigned NOT NULL,
   `type` varchar(20) NOT NULL,
   `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -280,8 +299,9 @@ CREATE TABLE `user_sessions` (
   `skey` char(36) NOT NULL,
   `secret` char(36) NOT NULL,
   `device_token` char(64) DEFAULT NULL,
+  `badge_count` int(11) NOT NULL DEFAULT '0',
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -331,7 +351,7 @@ ALTER TABLE `user_sessions`
 -- AUTO_INCREMENT for table `timecapsule`
 --
 ALTER TABLE `timecapsule`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -341,7 +361,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=138;
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=77;
 --
 -- Constraints for dumped tables
 --

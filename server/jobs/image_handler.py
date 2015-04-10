@@ -21,7 +21,8 @@ while True:
             tokens = set(db.timecapsule_get_device_of_friends(i.id))
             tokens |= set(db.get_all_device_tokens(i.owner_id))
 
-            notify(app.config, async=True).send_notification("You have a new TimeTuck!", tokens)
+            notify(app.config, async=True).send_notification("You have a new TimeTuck!", tokens, "new_timetuck")
+
         except:
             pass
 

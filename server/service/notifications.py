@@ -1,10 +1,10 @@
-__author__ = 'adamgreenstein'
 from apnsclient import *
 import thread
-
+from timetuck.database import access
 
 class notify:
     def __init__(self, config, async=False):
+        self.db = access(config['DB_CONNECTION'])
         self.async = async
         self.config = config
 
@@ -17,27 +17,38 @@ class notify:
         return inner
 
     @_callMethod
-    def send_notification(self, message, devices):
+    def send_notification(self, message, devices, type):
         if len(devices) <= 0:
             return
 
-        con = Session().get_connection(self.config['PUSH_METHOD'], cert_file=self.config['PUSH_KEY_LOCATION'])
-        message = Message(devices, alert=message, badge='increment')
+        badge_dev = {}
 
-        # Send the message.
-        srv = APNs(con)
-        try:
-            res = srv.send(message)
-        except:
-            pass
-        else:
-            # Check failures. Check codes in APNs reference docs.
-            for token, reason in res.failed.items():
-                code, errmsg = reason
-                # according to APNs protocol the token reported here
-                # is garbage (invalid or empty), stop using and remove it.
-                print "Device failed: {0}, reason: {1}".format(token, errmsg)
+        for token in iter(devices):
+            value = self.db.update_badge(1, token)
+            if value in badge_dev:
+                badge_dev[value] += [token]
+            else:
+                badge_dev[value] = [token]
 
-            # Check failures not related to devices.
-            for code, errmsg in res.errors:
-                print "Error: {}".format(errmsg)
+        for badge_count in iter(badge_dev):
+            con = Session().get_connection(self.config['PUSH_METHOD'], cert_file=self.config['PUSH_KEY_LOCATION'])
+            message = Message(badge_dev[badge_count], alert=message, badge=badge_count, type=type)
+
+            # Send the message.
+            srv = APNs(con)
+            try:
+                res = srv.send(message)
+            except:
+                pass
+            else:
+
+                # Check failures. Check codes in APNs reference docs.
+                for token, reason in res.failed.items():
+                    code, errmsg = reason
+                    # according to APNs protocol the token reported here
+                    # is garbage (invalid or empty), stop using and remove it.
+                    print "Device failed: {0}, reason: {1}".format(token, errmsg)
+
+                # Check failures not related to devices.
+                for code, errmsg in res.errors:
+                    print "Error: {}".format(errmsg)

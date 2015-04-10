@@ -230,7 +230,7 @@ def send_friend_request(id):
 
     returned_val = g.db_main.send_friend_request(user, id)
     devices = g.db_main.get_all_device_tokens(id)
-    notify(app.config, async=True).send_notification("New Friend Request: %s" % user.username, devices)
+    notify(app.config, async=True).send_notification("New Friend Request: %s" % user.username, devices, "friend_request")
 
     return Response(response=json.dumps(respond(returned_val), indent=4),
                     status=200, mimetype='application/json')
@@ -257,7 +257,8 @@ def respond_friend_request(id):
 
     if accept and returned_val == 0:
         devices = g.db_main.get_all_device_tokens(id)
-        notify(app.config, async=True).send_notification("%s accepted you friend request!" % user.username, devices)
+        notify(app.config, async=True).send_notification("%s accepted you friend request!" % user.username, devices,
+                                                        "friend_accept")
 
 
     return Response(response=json.dumps(respond(returned_val), indent=4),
@@ -349,6 +350,21 @@ def upload_image():
         abort(400)
 
     return Response(response=json.dumps(respond(0, response=1), indent=4), status=200, mimetype='application/json')
+
+@app.route('/update_badge', methods=['post'])
+@login_required
+def update_badge():
+    sess = session(**g.identity.id)
+
+    try:
+        data = request.get_json()
+        set = int(data["new_value"])
+    except:
+        abort(400)
+
+    value = g.db_main.update_badge_from_session(set, sess)
+
+    return Response(response=json.dumps(respond(0, value=value), indent=4), status=200, mimetype='application/json')
 
 if __name__ == '__main__':
     app.run()
