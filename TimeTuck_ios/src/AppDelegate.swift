@@ -48,15 +48,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         var access = TTDataAccess();
+        var amount: Int = 0;
         if appManager?.session != nil {
-            access.updateBadge(appManager!.session!, change: -UIApplication.sharedApplication().applicationIconBadgeNumber) {
+            access.notificationUpdate(appManager!.session!, type: "All") {
                 value in
-                if value != nil {
-                    UIApplication.sharedApplication().applicationIconBadgeNumber = value!;
+                if value.count != 0 {
+                    for v in value {
+                        amount += (v["amount"] as Int);
+                    }
                 }
+                UIApplication.sharedApplication().applicationIconBadgeNumber = amount;
             }
         }
-        NSLog(userInfo["type"] as String);
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

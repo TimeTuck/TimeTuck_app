@@ -154,7 +154,7 @@ class access:
 
                 for v in iter(devices):
                     if v['device_token'] is not None:
-                        deviceList.append(v['device_token'])
+                        deviceList.append((v['device_token'], user_id))
         return deviceList
 
     def update_device_token(self, session, token):
@@ -168,22 +168,29 @@ class access:
                 cur.callproc("device_token_update", (sess['key'], sess['secret'], token))
                 db.commit()
 
-    def update_badge(self, amount, device):
-        value = None
+
+    def notification_add(self, type, message):
         with self.connection() as db:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
-                cur.callproc("update_badge", (amount, device))
+                cur.callproc("notification_add", (type, message))
                 result = cur.fetchone()
-                value = result['Result']
+                result = result['id']
 
             db.commit()
 
-            if value is None:
-                return 0
+        return result
 
-            return value
+    def notification_associate(self, user_id, notification_id):
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                cur.callproc("notification_associate", (user_id, notification_id, convert_time(time.localtime())))
+                result = cur.fetchone()
+                count = result['count']
+            db.commit()
 
-    def update_badge_from_session(self, amount, session):
+            return count
+
+    def notification_update(self, session, type=None):
         if not isinstance(session, dict):
             sess = session.__dict__
         else:
@@ -191,16 +198,12 @@ class access:
 
         with self.connection() as db:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
-                cur.callproc("update_badge_from_session", (sess['key'], sess['secret'], amount))
-                result = cur.fetchone()
-                value = result['Result']
+                cur.callproc("notification_update", (sess['key'], sess['secret'], type))
+                result = cur.fetchall()
 
             db.commit()
 
-            if value is None:
-                return 0
-
-            return value
+        return result
 
     def send_friend_request(self, user, requested_id):
         with self.connection() as db:
@@ -317,7 +320,7 @@ class access:
                 result = cur.fetchall()
                 values = []
                 for i in iter(result):
-                    values.append(i['device_token'])
+                    values.append((i['device_token'], i['user_id']))
                 return values
 
     def timecap_get_live(self, session, count):

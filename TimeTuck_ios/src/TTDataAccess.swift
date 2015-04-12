@@ -86,11 +86,11 @@ public class TTDataAccess {
     }
     
     public func updateDeviceToken(session: TTSession, deviceToken: String?, complete: (() -> Void)?) {
-        var data = session.toDictionary()
+        var data: [String: AnyObject] = ["session": session.toDictionary()];
         if deviceToken != nil {
             data["device_token"] = deviceToken;
         }
-        makeHTTPRequest("/check_user", bodyData: data, requestMethod: "POST") {
+        makeHTTPRequest("/update_device_token", bodyData: data, requestMethod: "POST") {
             response, data, error in
             if complete != nil {
                 complete!();
@@ -124,16 +124,16 @@ public class TTDataAccess {
         };
     }
     
-    public func updateBadge(session: TTSession, change: Int, completed: (status: Int?) -> Void) {
-        var body = session.toDictionary();
-        body["new_value"] = change.description;
-        makeHTTPRequest("/update_badge", bodyData: body, requestMethod: "POST") {
+    public func notificationUpdate(session: TTSession, type: String, completed: (values: [[String: AnyObject]]) -> Void) {
+        var body: [String: AnyObject] = ["session": session.toDictionary()];
+        body["type"] = type;
+        makeHTTPRequest("/notification_update", bodyData: body, requestMethod: "POST") {
             response, data, error in
             if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
-                completed(status: values["value"] as? Int);
+                completed(values: values["values"] as [[String: AnyObject]]);
             } else {
-                completed(status: nil);
+                completed(values: []);
             }
         };
     }

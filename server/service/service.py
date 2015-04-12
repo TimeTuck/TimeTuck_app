@@ -1,8 +1,7 @@
 from flask import Flask, request, Response, g, abort, make_response, current_app
 from flask.ext.principal import Principal, Permission, RoleNeed, Identity, identity_loaded
 from timetuck.database import access
-from timetuck.model import user
-from timetuck.model import session
+from timetuck.model import user, session, device_users
 from timetuck.media import create_path_to_image
 from notifications import notify
 from service_info import get_session_data, get_session_form_data, allowed_file, respond
@@ -230,7 +229,10 @@ def send_friend_request(id):
 
     returned_val = g.db_main.send_friend_request(user, id)
     devices = g.db_main.get_all_device_tokens(id)
-    notify(app.config, async=True).send_notification("New Friend Request: %s" % user.username, devices, "friend_request")
+    users = device_users()
+    users.add(devices)
+
+    notify(app.config, async=True).send_notification("New Friend Request: %s" % user.username, users, "friend_request")
 
     return Response(response=json.dumps(respond(returned_val), indent=4),
                     status=200, mimetype='application/json')
@@ -257,7 +259,9 @@ def respond_friend_request(id):
 
     if accept and returned_val == 0:
         devices = g.db_main.get_all_device_tokens(id)
-        notify(app.config, async=True).send_notification("%s accepted you friend request!" % user.username, devices,
+        users = device_users()
+        users.add(devices)
+        notify(app.config, async=True).send_notification("%s accepted you friend request!" % user.username, users,
                                                         "friend_accept")
 
 
@@ -351,20 +355,21 @@ def upload_image():
 
     return Response(response=json.dumps(respond(0, response=1), indent=4), status=200, mimetype='application/json')
 
-@app.route('/update_badge', methods=['post'])
+@app.route('/notification_update', methods=['post'])
 @login_required
-def update_badge():
+def notification_update():
     sess = session(**g.identity.id)
 
     try:
         data = request.get_json()
-        set = int(data["new_value"])
+        set = data["type"]
+        if set == 'All':
+            set = None
     except:
         abort(400)
 
-    value = g.db_main.update_badge_from_session(set, sess)
-
-    return Response(response=json.dumps(respond(0, value=value), indent=4), status=200, mimetype='application/json')
+    value = g.db_main.notification_update(sess, set)
+    return Response(response=json.dumps(respond(0, values=value), indent=4), status=200, mimetype='application/json')
 
 if __name__ == '__main__':
     app.run()

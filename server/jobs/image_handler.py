@@ -1,6 +1,7 @@
 from flask import Flask
 from timetuck.database import access
 from timetuck.media import create_path_to_image
+from timetuck.model import device_users
 from service.notifications import notify
 import time
 import os
@@ -21,7 +22,10 @@ while True:
             tokens = set(db.timecapsule_get_device_of_friends(i.id))
             tokens |= set(db.get_all_device_tokens(i.owner_id))
 
-            notify(app.config, async=True).send_notification("You have a new TimeTuck!", tokens, "new_timetuck")
+            users = device_users()
+            users.add(tokens)
+
+            notify(app.config, async=True).send_notification("You have a new TimeTuck!", users, "new_timetuck")
 
         except:
             pass

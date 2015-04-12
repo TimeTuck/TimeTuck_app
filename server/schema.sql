@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 11, 2015 at 01:39 AM
+-- Generation Time: Apr 12, 2015 at 06:50 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -38,6 +38,45 @@ FROM friends f1 INNER JOIN friends f2 ON f1.user_secondary = f2.user_primary AND
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_friend_requests`(IN `u_id` INT(10))
     NO SQL
 SELECT u.id, u.username, u.phone_number, u.email, u.activated, u.active FROM friends f1 LEFT JOIN friends f2 ON f1.user_primary = f2.user_secondary AND f1.user_secondary = f2.user_primary INNER JOIN users u ON f1.user_primary = u.id WHERE f1.user_secondary = u_id AND f2.user_primary IS NULL$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `notification_add`(IN `t` VARCHAR(200), IN `m` VARCHAR(300))
+    NO SQL
+BEGIN
+INSERT INTO notifications(type, message) VALUES(t, m);
+SELECT LAST_INSERT_ID() AS id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `notification_associate`(IN `uid` INT(10), IN `id` INT(100), IN `d` DATETIME)
+    NO SQL
+BEGIN
+REPLACE INTO notification_users (user_id, notification_id, date) VALUES (uid, id, d);
+SELECT COUNT(*) AS count FROM notification_users WHERE user_id = uid AND was_read = 0;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `notification_update`(IN `k` CHAR(36), IN `s` CHAR(36), IN `type` VARCHAR(200))
+    NO SQL
+BEGIN
+IF type IS NULL
+THEN
+	UPDATE user_sessions us INNER JOIN 
+    	   notification_users nu ON us.user_id = nu.user_id INNER JOIN
+           notifications n ON nu.notification_id = n.notification_id
+    SET nu.was_read = 1;
+ELSE
+	UPDATE user_sessions us INNER JOIN 
+    	   notification_users nu ON us.user_id = nu.user_id INNER JOIN
+           notifications n ON nu.notification_id = n.notification_id
+    SET nu.was_read = 1 AND n.type = type AND us.skey = k 
+    	AND us.secret = s;
+END IF;
+
+SELECT n.type AS type, count(n.type) AS amount FROM 
+	user_sessions us INNER JOIN 
+   	notification_users nu ON us.user_id = nu.user_id INNER JOIN
+    notifications n ON nu.notification_id = n.notification_id
+    WHERE nu.was_read = 0 AND us.skey = k 
+    	AND us.secret = s GROUP BY n.type;
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `respond_friend_request`(IN `u_id` INT(10), IN `req_id` INT(10), IN `created_date` DATETIME, IN `accept` BOOLEAN)
     NO SQL
@@ -124,7 +163,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_device_of_friends`(IN `id` INT)
     NO SQL
-SELECT us.device_token FROM timecapsule_friends tf INNER JOIN user_sessions us ON tf.user_id = us.user_id WHERE us.device_token IS NOT NULL AND tf.timecap_id = id$$
+SELECT us.device_token AS device_token, us.user_id AS user_id FROM timecapsule_friends tf INNER JOIN user_sessions us ON tf.user_id = us.user_id WHERE  tf.timecap_id = id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_live_from_session`(IN `k` CHAR(36), IN `s` CHAR(36), IN `amount` INT)
     NO SQL
@@ -174,20 +213,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_update_status`(IN `id` 
     NO SQL
 UPDATE timecapsule_sa_media SET live=1 WHERE timecap_id = id$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_badge`(IN `amount` INT(100), IN `dev` CHAR(64))
-    NO SQL
-BEGIN
-UPDATE user_sessions SET badge_count=badge_count+amount WHERE device_token=dev;
-SELECT badge_count as Result FROM user_sessions WHERE device_token=dev;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_badge_from_session`(IN `k` CHAR(36), IN `s` CHAR(36), IN `amount` INT)
-    NO SQL
-BEGIN
-UPDATE user_sessions SET badge_count=GREATEST(badge_count+amount, 0) WHERE skey = k and secret = s;
-SELECT badge_count AS Result FROM user_sessions WHERE skey = k AND secret = s;
-END$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `user_check_info_exists`(IN `uname` VARCHAR(100), IN `phone` VARCHAR(15), IN `em` VARCHAR(200))
 BEGIN
 DECLARE ucount int;
@@ -232,6 +257,32 @@ CREATE TABLE `friends` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+`notification_id` int(100) unsigned NOT NULL,
+  `type` varchar(200) NOT NULL,
+  `message` varchar(300) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification_users`
+--
+
+CREATE TABLE `notification_users` (
+`id` int(100) NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `notification_id` int(100) unsigned NOT NULL,
+  `was_read` tinyint(1) NOT NULL DEFAULT '0',
+  `date` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `timecapsule`
 --
 
@@ -242,7 +293,7 @@ CREATE TABLE `timecapsule` (
   `owner` int(10) unsigned NOT NULL,
   `type` varchar(20) NOT NULL,
   `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -299,9 +350,8 @@ CREATE TABLE `user_sessions` (
   `skey` char(36) NOT NULL,
   `secret` char(36) NOT NULL,
   `device_token` char(64) DEFAULT NULL,
-  `badge_count` int(11) NOT NULL DEFAULT '0',
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -312,6 +362,18 @@ CREATE TABLE `user_sessions` (
 --
 ALTER TABLE `friends`
  ADD UNIQUE KEY `Friend_Relation` (`user_primary`,`user_secondary`), ADD KEY `user_primary` (`user_primary`), ADD KEY `user_secondary` (`user_secondary`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+ ADD PRIMARY KEY (`notification_id`);
+
+--
+-- Indexes for table `notification_users`
+--
+ALTER TABLE `notification_users`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `user_id` (`user_id`,`notification_id`), ADD KEY `notification_id` (`notification_id`);
 
 --
 -- Indexes for table `timecapsule`
@@ -348,10 +410,20 @@ ALTER TABLE `user_sessions`
 --
 
 --
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+MODIFY `notification_id` int(100) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+--
+-- AUTO_INCREMENT for table `notification_users`
+--
+ALTER TABLE `notification_users`
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+--
 -- AUTO_INCREMENT for table `timecapsule`
 --
 ALTER TABLE `timecapsule`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -361,7 +433,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=138;
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=77;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=91;
 --
 -- Constraints for dumped tables
 --
@@ -372,6 +444,13 @@ MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=77;
 ALTER TABLE `friends`
 ADD CONSTRAINT `friends_ibfk_1` FOREIGN KEY (`user_primary`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `friends_ibfk_2` FOREIGN KEY (`user_secondary`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `notification_users`
+--
+ALTER TABLE `notification_users`
+ADD CONSTRAINT `notification_id` FOREIGN KEY (`notification_id`) REFERENCES `notifications` (`notification_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `notification_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `timecapsule`

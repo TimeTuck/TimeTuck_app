@@ -57,3 +57,26 @@ class untuck_info:
         self.id = id
         self.owner_id = owner_id
         self.file_name = file_name
+
+
+class device_users:
+    def __init__(self):
+        self.users = {}
+
+    def add(self, tokens):
+        for i in iter(tokens):
+            id = i[1]
+            token = i[0]
+
+            if token is None:
+                insert = []
+            else:
+                insert = [token]
+
+            if id in self.users:
+                self.users[id] += insert
+            else:
+                self.users[id] = insert
+
+    def __len__(self):
+        return len(self.users)

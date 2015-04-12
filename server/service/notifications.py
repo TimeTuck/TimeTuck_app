@@ -1,6 +1,7 @@
 from apnsclient import *
 import thread
 from timetuck.database import access
+from timetuck.model import device_users
 
 class notify:
     def __init__(self, config, async=False):
@@ -17,18 +18,21 @@ class notify:
         return inner
 
     @_callMethod
-    def send_notification(self, message, devices, type):
-        if len(devices) <= 0:
+    def send_notification(self, message, device_users, type):
+        if len(device_users) <= 0:
             return
 
+        notification_id = self.db.notification_add(type, message)
         badge_dev = {}
 
-        for token in iter(devices):
-            value = self.db.update_badge(1, token)
-            if value in badge_dev:
-                badge_dev[value] += [token]
-            else:
-                badge_dev[value] = [token]
+        for user_id in iter(device_users.users):
+            value = self.db.notification_associate(user_id, notification_id)
+
+            for token in iter(device_users.users[user_id]):
+                if value in badge_dev:
+                    badge_dev[value] += [token]
+                else:
+                    badge_dev[value] = [token]
 
         for badge_count in iter(badge_dev):
             con = Session().get_connection(self.config['PUSH_METHOD'], cert_file=self.config['PUSH_KEY_LOCATION'])

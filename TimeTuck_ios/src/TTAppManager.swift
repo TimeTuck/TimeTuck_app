@@ -66,7 +66,7 @@ class TTAppManager {
                 // Token's do not match, must update token
                 self.deviceToken = token;
                 var access = TTDataAccess();
-                access.updateDeviceToken(session!, deviceToken: deviceToken, complete: nil);
+                access.updateDeviceToken(session!, deviceToken: strippedToken2, complete: nil);
             }
         } else {
             // User does not have a session, do not update token, just store it
