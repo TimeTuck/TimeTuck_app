@@ -17,12 +17,12 @@ public class TTUser {
     var active : Bool;
     
     public init(_ data : [String: AnyObject]) {
-        id = data["id"] as Int;
-        username = data["username"] as String;
-        email = data["email"] as String;
-        phone = data["phone_number"] as String;
-        activated = data["activated"] as Bool;
-        active = data["active"] as Bool;
+        id = data["id"] as! Int;
+        username = data["username"] as! String;
+        email = data["email"] as! String;
+        phone = data["phone_number"] as! String;
+        activated = data["activated"] as! Bool;
+        active = data["active"] as! Bool;
     }
     
     public init(id : Int, username : String, email : String , phone : String, activated : Bool, active : Bool) {

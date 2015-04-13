@@ -29,11 +29,11 @@ public class TTDataAccess {
                     
         makeHTTPRequest("/login", bodyData: login, requestMethod: "POST") {
             response, data, error in
-            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+            if (response != nil && (response as! NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
-                if ((values["status"] as Int) == 0) {
-                    let user = TTUser(values["user"] as [String: AnyObject]);
-                    let session = TTSession(values["session"] as [String: String]);
+                if ((values["status"] as! Int) == 0) {
+                    let user = TTUser(values["user"] as! [String: AnyObject]);
+                    let session = TTSession(values["session"] as! [String: String]);
                     completed(user: user, session: session);
                 } else {
                     completed(user: nil, session: nil);
@@ -53,17 +53,17 @@ public class TTDataAccess {
         
         makeHTTPRequest("/register", bodyData: register, requestMethod: "POST") {
             response, data, error in
-            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+            if (response != nil && (response as! NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
-                if ((values["status"] as Int) == 0) {
-                    let user = TTUser(values["user"] as [String: AnyObject]);
-                    let session = TTSession(values["session"] as [String: String]);
+                if ((values["status"] as! Int) == 0) {
+                    let user = TTUser(values["user"] as! [String: AnyObject]);
+                    let session = TTSession(values["session"] as! [String: String]);
                     success(user: user, session: session);
-                } else if ((values["status"] as Int) == 1) {
-                    let error = values["errors"] as [String: Bool];
+                } else if ((values["status"] as! Int) == 1) {
+                    let error = values["errors"] as! [String: Bool];
                     failureDuplicateInfo(username: error["username"]!, email: error["email"]!, phoneNumber: error["phonenumber"]!);
                 } else {
-                    let error = values["errors"] as [String: String];
+                    let error = values["errors"] as! [String: String];
                     failureIncorrectInfo(username: error["username"], email: error["email"], phoneNumber: error["phone_number"]);
                 }
             }
@@ -73,11 +73,11 @@ public class TTDataAccess {
     public func checkUser(session: TTSession, completed: (user: TTUser?, session: TTSession?, deviceToken: String?) -> Void) {
         makeHTTPRequest("/check_user", bodyData: ["session": session.toDictionary()] , requestMethod: "POST") {
             response, data, error in
-            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+            if (response != nil && (response as! NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
-                let user = TTUser(values["user"] as [String: AnyObject]);
-                let session = TTSession(values["session"] as [String: String]);
-                let token = values["device_token"] as String?;
+                let user = TTUser(values["user"] as! [String: AnyObject]);
+                let session = TTSession(values["session"] as! [String: String]);
+                let token = values["device_token"] as! String?;
                 completed(user: user, session: session, deviceToken: token);
             } else {
                 completed(user: nil, session: nil, deviceToken: nil);
@@ -101,9 +101,9 @@ public class TTDataAccess {
     public func logoutUser(session: TTSession, completed: (successful: Bool) -> Void) {
         makeHTTPRequest("/logout", bodyData: ["session": session.toDictionary()] , requestMethod: "POST") {
             response, data, error in
-            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+            if (response != nil && (response as! NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
-                if ((values["status"] as Int) == 0) {
+                if ((values["status"] as! Int) == 0) {
                     completed(successful: true);
                     return;
                 }
@@ -115,7 +115,7 @@ public class TTDataAccess {
     public func sendFriendRequest(session: TTSession, requestedFriend: Int, completed: (status: Int?) -> Void) {
         makeHTTPRequest("/send_friend_request/" + String(requestedFriend), bodyData: ["session": session.toDictionary()] , requestMethod: "POST") {
             response, data, error in
-            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+            if (response != nil && (response as! NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
                 completed(status: values["status"] as? Int);
             } else {
@@ -144,9 +144,9 @@ public class TTDataAccess {
         var sessData = urlFromDict(params);
         makeHTTPRequest("/search_users" + sessData, bodyData: nil, requestMethod: "GET") {
             response, data, error in
-            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+            if (response != nil && (response as! NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
-                completed(users: values["users"] as [[String: AnyObject]]);
+                completed(users: values["users"] as! [[String: AnyObject]]);
             } else {
                 completed(users: []);
             }
@@ -156,7 +156,7 @@ public class TTDataAccess {
     public func respondFriendRequest(session: TTSession, respondedFriend: Int, accept: Bool, completed: (status: Int?) -> Void) {
         makeHTTPRequest("/respond_friend_request/" + String(respondedFriend), bodyData: ["session": session.toDictionary(), "accept": accept] , requestMethod: "POST") {
             response, data, error in
-            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+            if (response != nil && (response as! NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
                 completed(status: values["status"] as? Int);
             } else {
@@ -169,9 +169,9 @@ public class TTDataAccess {
         var sessData = urlFromDict(session.toDictionary());
         makeHTTPRequest("/get_friends" + sessData, bodyData: nil, requestMethod: "GET") {
           response, data, error in
-            if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+            if (response != nil && (response as! NSHTTPURLResponse).statusCode == 200) {
                 let values = self.JSONParseDictionary(data);
-                completed(friends: values["friends"] as [[String: AnyObject]], requests: values["requests"] as [[String: AnyObject]]);
+                completed(friends: values["friends"] as! [[String: AnyObject]], requests: values["requests"] as! [[String: AnyObject]]);
             } else {
                 completed(friends: [], requests: []);
             }
@@ -187,7 +187,7 @@ public class TTDataAccess {
         makeImageRequest("/image_upload", bodyData: dictData, imageData: imageData,
             imageName: "image" + NSDate().timeIntervalSince1970.description + ".png") {
                 response, data, error in
-                if (response != nil && (response as NSHTTPURLResponse).statusCode == 200) {
+                if (response != nil && (response as! NSHTTPURLResponse).statusCode == 200) {
                     complete();
                 }
         }

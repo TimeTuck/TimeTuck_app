@@ -80,14 +80,14 @@ class FriendsTableViewController: UITableViewController {
         
         if indexPath.section == friendSect {
             cell = tableView.dequeueReusableCellWithIdentifier("mainCell", forIndexPath: indexPath) as? UITableViewCell;
-            (cell as FriendCell).mainLabel!.text = ((friends![indexPath.row] as [String: AnyObject])["username"] as String)
+            (cell as! FriendCell).mainLabel!.text = ((friends![indexPath.row] as [String: AnyObject])["username"] as! String)
         } else {
             cell = tableView.dequeueReusableCellWithIdentifier("responseCell", forIndexPath: indexPath) as? UITableViewCell;
-            (cell as FriendResponseTableCell).usernameLabel!.text = ((requests![indexPath.row] as [String: AnyObject])["username"] as String)
-            (cell as FriendResponseTableCell).accept!.addTarget(self, action: "acceptRequest:", forControlEvents: UIControlEvents.TouchUpInside);
-            (cell as FriendResponseTableCell).decline!.addTarget(self, action: "declineRequest:", forControlEvents: UIControlEvents.TouchUpInside);
-            (cell as FriendResponseTableCell).accept!.tag = ((requests![indexPath.row] as [String: AnyObject])["id"] as Int);
-            (cell as FriendResponseTableCell).decline!.tag = ((requests![indexPath.row] as [String: AnyObject])["id"] as Int);
+            (cell as! FriendResponseTableCell).usernameLabel!.text = ((requests![indexPath.row] as [String: AnyObject])["username"] as! String)
+            (cell as! FriendResponseTableCell).accept!.addTarget(self, action: "acceptRequest:", forControlEvents: UIControlEvents.TouchUpInside);
+            (cell as! FriendResponseTableCell).decline!.addTarget(self, action: "declineRequest:", forControlEvents: UIControlEvents.TouchUpInside);
+            (cell as! FriendResponseTableCell).accept!.tag = ((requests![indexPath.row] as [String: AnyObject])["id"] as! Int);
+            (cell as! FriendResponseTableCell).decline!.tag = ((requests![indexPath.row] as [String: AnyObject])["id"] as! Int);
         }
 
         return cell!;
