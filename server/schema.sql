@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 12, 2015 at 06:50 PM
+-- Generation Time: Apr 13, 2015 at 11:26 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -150,12 +150,12 @@ BEGIN
 INSERT INTO timecapsule_friends (timecap_id, user_id) VALUES (t_id, f_id);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_create_sa`(IN `u_id` INT(10), IN `cap_date` DATETIME, IN `uncap_date` DATETIME, IN `filename` VARCHAR(200), IN `w` INT, IN `h` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_create_sa`(IN `u_id` INT(10), IN `cap_date` DATETIME, IN `uncap_date` DATETIME, IN `filename` VARCHAR(200), IN `w` INT, IN `h` INT, IN `c` VARCHAR(140))
     NO SQL
 BEGIN
 
 DECLARE n_id int;
-INSERT INTO timecapsule (capsule_date, uncapsule_date, owner, type, active) VALUES(cap_date, uncap_date, u_id, 'SA', 1);
+INSERT INTO timecapsule (capsule_date, uncapsule_date, owner, type, active, comment) VALUES(cap_date, uncap_date, u_id, 'SA', 1, c);
 SET n_id = LAST_INSERT_ID();
 INSERT INTO timecapsule_sa_media (timecap_id, file_name, width, height, active) VALUES(n_id, filename, w, h, 1);
 SELECT n_id AS INSERT_ID;
@@ -173,7 +173,8 @@ SELECT t.id as id,
        owner,
        DATE_FORMAT(capsule_date,'%c.%d.%Y') as capsuledate, 
        DATE_FORMAT(uncapsule_date,'%c.%d.%Y') as uncapsuledate,
-       CAST(capsule_date AS char) as orderdate
+       CAST(capsule_date AS char) as orderdate,
+       comment
     FROM user_sessions us 
     		INNER JOIN 
     	 timecapsule t ON us.user_id = t.owner 
@@ -191,7 +192,8 @@ SELECT t.id as id,
        owner,
        DATE_FORMAT(capsule_date,'%c.%d.%Y') as capsuledate, 
        DATE_FORMAT(uncapsule_date,'%c.%d.%Y') as uncapsuledate,
-       CAST(capsule_date AS char) as orderdate
+       CAST(capsule_date AS char) as orderdate,
+       comment
     FROM user_sessions us1 
     		INNER JOIN 
     	 timecapsule_friends tf1 ON us1.user_id = tf1.user_id 
@@ -264,7 +266,7 @@ CREATE TABLE `notifications` (
 `notification_id` int(100) unsigned NOT NULL,
   `type` varchar(200) NOT NULL,
   `message` varchar(300) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -278,7 +280,7 @@ CREATE TABLE `notification_users` (
   `notification_id` int(100) unsigned NOT NULL,
   `was_read` tinyint(1) NOT NULL DEFAULT '0',
   `date` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -292,8 +294,9 @@ CREATE TABLE `timecapsule` (
   `uncapsule_date` datetime NOT NULL,
   `owner` int(10) unsigned NOT NULL,
   `type` varchar(20) NOT NULL,
+  `comment` varchar(140) NOT NULL,
   `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -351,7 +354,7 @@ CREATE TABLE `user_sessions` (
   `secret` char(36) NOT NULL,
   `device_token` char(64) DEFAULT NULL,
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -413,17 +416,17 @@ ALTER TABLE `user_sessions`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-MODIFY `notification_id` int(100) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+MODIFY `notification_id` int(100) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `notification_users`
 --
 ALTER TABLE `notification_users`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `timecapsule`
 --
 ALTER TABLE `timecapsule`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -433,7 +436,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=138;
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=91;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=94;
 --
 -- Constraints for dumped tables
 --

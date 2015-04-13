@@ -178,12 +178,18 @@ public class TTDataAccess {
         };
     }
     
-    func upload_image(session: TTSession, imageData: NSData?, untuckDate: NSDate, users: [Int], complete: () -> Void) {
+    func upload_image(session: TTSession, imageData: NSData?, untuckDate: NSDate, users: [Int], comment: String?, complete: () -> Void) {
         var dictData = session.toDictionary();
         var dateFormatter = NSDateFormatter();
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
         dictData["uncapsule_date"] = dateFormatter.stringFromDate(untuckDate);
         dictData["friends"] = users.description;
+        if (comment == nil) {
+            dictData["comment"] = "";
+        } else {
+            dictData["comment"] = comment;
+        }
+        
         makeImageRequest("/image_upload", bodyData: dictData, imageData: imageData,
             imageName: "image" + NSDate().timeIntervalSince1970.description + ".png") {
                 response, data, error in

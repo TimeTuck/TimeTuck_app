@@ -267,12 +267,12 @@ class access:
                 results = cur.fetchall()
                 return results
 
-    def tuck_sa(self, user, filename, uncapsule, friends, width, height):
+    def tuck_sa(self, user, filename, uncapsule, friends, width, height, comment):
         with self.connection() as db:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
                 try:
                     cur.callproc("timecapsule_create_sa", (user.id, convert_time(time.localtime()), uncapsule, filename,
-                                                           width, height))
+                                                           width, height, comment))
                 except:
                     return None
                 result = cur.fetchone()

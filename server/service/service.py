@@ -318,6 +318,7 @@ def upload_image():
 
     try:
         date = request.form["uncapsule_date"]
+        comment = request.form["comment"]
         friends = request.form["friends"].replace("]", "").replace("[","").split(",")
         friends = map(int, friends)
     except:
@@ -349,7 +350,7 @@ def upload_image():
         except:
             abort(400)
 
-        g.db_main.tuck_sa(user, filename, date, friends, width, height)
+        g.db_main.tuck_sa(user, filename, date, friends, width, height, comment)
     else:
         abort(400)
 
@@ -372,4 +373,4 @@ def notification_update():
     return Response(response=json.dumps(respond(0, values=value), indent=4), status=200, mimetype='application/json')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='144.174.132.195', port=5000)

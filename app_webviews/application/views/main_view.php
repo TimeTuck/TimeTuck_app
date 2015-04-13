@@ -287,7 +287,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 			.lowerFeed {
 				margin: 0px;
-				padding: 20px 20px 10px 20px;
+				padding: 0px 20px 10px 20px;
 				display: block;
 			}
 			.dateWrapper {
@@ -308,9 +308,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				font-family: CampBold;
 				color: #555555;
 				display: block;
+				margin-bottom: 5px;
 			}
 			.timeInfo {
 				font-size: 10px;
+				text-align: right;
+				display: block;
+				margin-bottom: 10px;
 			}
 			.imageHolder {
 				margin: 0;
@@ -324,6 +328,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				width: 100%;
 				height: auto;
 				width: auto\9;
+			}
+			.comment {
+				font-size: 12px;
+				display: block;
 			}
 			#hiddenField {
 				display: none;
@@ -360,10 +368,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 					<div class="lowerFeed">
-						<span class="username">{{item.username}}</span>
 						<span class="timeInfo">
 							tucked <strong>{{item.capsuledate}}</strong> untucked <strong>{{item.uncapsuledate}}</strong>
 						</span>
+						<span class="username">{{item.username}}</span>
+						<span class="comment">{{item.comment}}</span>
 					</div>
 				</div>
 			</div>

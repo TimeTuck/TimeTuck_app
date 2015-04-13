@@ -78,7 +78,6 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tuck() {
-        
         let userID = appManager!.getUserID()
         capsule.addUsers(userID)
         
@@ -92,13 +91,12 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
         }
         
         var data = TTDataAccess();
-        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(capsule.picture!, scale: 0.20)), untuckDate: capsule.date!, users: capsule.shareusers) {
+        data.upload_image(appManager!.session!, imageData: UIImagePNGRepresentation(compressImage(capsule.picture!, scale: 0.20)),
+                          untuckDate: capsule.date!, users: capsule.shareusers, comment: capsule.comment) {
             NSLog("Uploaded");
         };
         
-        
         presentViewController(MainNavigationTabBarController(appManager!), animated: true, completion: nil)
-
     }
     
     func retrieveFriends() {
