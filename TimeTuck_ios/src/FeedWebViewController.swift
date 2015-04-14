@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
     var appManager: TTAppManager?
     var web: UIWebView?
@@ -19,6 +20,8 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     var disableHeaderMotion = false;
     var greenColor = UIColor(red: 0.592, green: 0.831, blue: 0.38, alpha: 1);
     var savedInset : UIEdgeInsets?;
+    var refrehscontrol = UIRefreshControl()
+    
     
     init(_ appManager: TTAppManager) {
         self.appManager = appManager;
@@ -122,6 +125,9 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     
     func webViewDidFinishLoad(webView: UIWebView) {
         UIView.animateWithDuration(0.4, animations: {self.cover!.alpha = 0}, completion: {finished in self.cover!.removeFromSuperview()});
+        refrehscontrol.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        webView.scrollView.addSubview(refrehscontrol)
+        
     }
     
     func finishScroll(willDecelerate decelerate: Bool) {
@@ -139,6 +145,13 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             }
         }
     }
+    
+    
+    func refresh() {
+        web!.reload()
+        refrehscontrol.endRefreshing()
+    }
+    
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         finishScroll(willDecelerate: false);
