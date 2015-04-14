@@ -23,7 +23,7 @@ class TTAppManager {
         var storedSession: AnyObject? = userInfo.objectForKey("session");
         if storedSession != nil {
             var access = TTDataAccess();
-            var foundSession = TTSession(storedSession! as [String: String]);
+            var foundSession = TTSession(storedSession! as! [String: String]);
             access.checkUser(foundSession) {
                 user, session, token in
                 if (user != nil && session != nil) {

@@ -30,7 +30,7 @@ class CameraController: UIImagePickerController, UIImagePickerControllerDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         
         let capsule = TTTuck()
         capsule.setPic(image)

@@ -31,6 +31,7 @@ class SearchUserTableViewController: UITableViewController, UISearchBarDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         var exit = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Stop, target: self, action: "exit");
+        exit.tintColor = UIColor.whiteColor()
         navigationItem.setLeftBarButtonItem(exit, animated: true);
         tableView.tableHeaderView = searchBar!;
         
@@ -63,9 +64,9 @@ class SearchUserTableViewController: UITableViewController, UISearchBarDelegate 
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("mainCell", forIndexPath: indexPath) as RequestFriendCell
-        cell.usernameLabel!.text = ((users![indexPath.row] as [String: AnyObject])["username"] as String);
-        cell.requestButton!.tag = ((users![indexPath.row] as [String: AnyObject])["id"] as Int);
+        let cell = tableView.dequeueReusableCellWithIdentifier("mainCell", forIndexPath: indexPath) as! RequestFriendCell
+        cell.usernameLabel!.text = ((users![indexPath.row] as [String: AnyObject])["username"] as! String);
+        cell.requestButton!.tag = ((users![indexPath.row] as [String: AnyObject])["id"] as! Int);
         cell.requestButton!.addTarget(self, action: "sendRequest:", forControlEvents: UIControlEvents.TouchUpInside);
         return cell;
     }

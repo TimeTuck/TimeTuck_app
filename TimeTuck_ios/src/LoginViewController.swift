@@ -56,7 +56,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         visibleHeight = UIScreen.mainScreen().bounds.height - height.size.height;
         for item in view.subviews {
             if item.isFirstResponder() {
-                updateTextFieldPosition(item as UITextField);
+                updateTextFieldPosition(item as! UITextField);
                 break;
             }
         }

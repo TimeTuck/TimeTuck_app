@@ -14,13 +14,12 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
     
     var friends: [[String: AnyObject]]?
     
-    
     init(_ appManager: TTAppManager, tuck: TTTuck) {
         self.appManager = appManager;
         self.capsule = tuck
         
         super.init(nibName: "AddFriendTVC", bundle: NSBundle.mainBundle());
-        title = "share with friends";
+        title = "share it!";
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -34,6 +33,9 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
         var tuckButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "tuck");
         tuckButton.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = tuckButton;
+        var cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "cancel")
+        navigationItem.leftBarButtonItem = cancelButton
+        cancelButton.tintColor = UIColor.whiteColor()
         self.tableView.allowsMultipleSelection = true;
     
     }
@@ -54,23 +56,16 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
             } else {
                 return 0;
             }
-        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell?;
         
             cell = tableView.dequeueReusableCellWithIdentifier("mainCell", forIndexPath: indexPath) as? UITableViewCell;
-            (cell as FriendCell).mainLabel!.text = ((friends![indexPath.row] as [String: AnyObject])["username"] as String)
-        (cell as FriendCell).mainLabel!.tag = ((friends![indexPath.row] as [String: AnyObject])["id"] as Int);
+            (cell as! FriendCell).mainLabel!.text = ((friends![indexPath.row] as [String: AnyObject])["username"] as! String)
+        (cell as! FriendCell).mainLabel!.tag = ((friends![indexPath.row] as [String: AnyObject])["id"] as! Int);
     
         return cell!;
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
-        
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -84,9 +79,9 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
         if let index = tableView.indexPathsForSelectedRows() {
             for var i = 0; i < index.count; ++i {
                 
-                var thisPath = index[i] as NSIndexPath
+                var thisPath = index[i] as! NSIndexPath
                 var cell = tableView.cellForRowAtIndexPath(thisPath)
-                capsule.addUsers(((cell as FriendCell).mainLabel!.tag))
+                capsule.addUsers(((cell as! FriendCell).mainLabel!.tag))
             }
         }
         
@@ -96,6 +91,11 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
             NSLog("Uploaded");
         };
         
+        presentViewController(MainNavigationTabBarController(appManager!), animated: true, completion: nil)
+    }
+    
+    
+    func cancel() {
         presentViewController(MainNavigationTabBarController(appManager!), animated: true, completion: nil)
     }
     
@@ -120,6 +120,7 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
         UIGraphicsEndImageContext();
         return newImage;
     }
+    
     
 
 }

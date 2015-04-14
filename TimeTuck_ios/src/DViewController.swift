@@ -58,11 +58,19 @@ class DViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         view.endEditing(true)
         return false
     }
 
+    
+    
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let newLength = count(textField.text) + count(string) - range.length
+        return newLength <= 140 // Bool
+    }
+    
     
     func dismissKeyboard() {
         view.endEditing(true);

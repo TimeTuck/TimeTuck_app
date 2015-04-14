@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 TimeTuck. All rights reserved.
 //
 
-import UIkit
+import UIKit
 
 class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
     var appManager: TTAppManager?
@@ -41,12 +41,13 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         var pressRecognizer = UILongPressGestureRecognizer(target: self, action: "holdDownImage:");
         view.addGestureRecognizer(pressRecognizer);
         
-        cover = NSBundle.mainBundle().loadNibNamed("LoadingView", owner: self, options: nil).first as UIView;
+        cover = NSBundle.mainBundle().loadNibNamed("LoadingView", owner: self, options: nil).first as! UIView;
         cover.frame = UIScreen.mainScreen().applicationFrame;
         view.addSubview(cover);
         
         var request = TTWebViews().GetMainFeedRequest(self.appManager!.session!);
         web!.loadRequest(request);
+        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -57,6 +58,8 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     override func viewWillAppear(animated: Bool) {
     }
     
+    
+    
     override func viewWillDisappear(animated: Bool) {
         UIView.animateWithDuration(0.2) {
             self.navigationItem.titleView?.alpha = 1;
@@ -65,7 +68,7 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     }
     
     func holdDownImage(gesture: UILongPressGestureRecognizer) {
-        var url = web?.stringByEvaluatingJavaScriptFromString("downLoadImage(\(gesture.locationInView(web?).x), \(gesture.locationInView(web?).y))");
+        var url = web?.stringByEvaluatingJavaScriptFromString("downLoadImage(\(gesture.locationInView(web).x), \(gesture.locationInView(web).y))");
         if url! != "" && gesture.state == UIGestureRecognizerState.Began {
             var alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet);
             alert.addAction(UIAlertAction(title: "Save Image", style: UIAlertActionStyle.Default) {
@@ -82,8 +85,8 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {        
-        if (request.URL.scheme == "mobile-event") {
-            if (request.URL.host == "fullscreenimage") {
+        if (request.URL!.scheme == "mobile-event") {
+            if (request.URL!.host == "fullscreenimage") {
                 hideBars();
             } else {
                 showBars();
@@ -98,7 +101,7 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         web?.scrollView.bounces = false;
         web?.backgroundColor = UIColor.blackColor();
         disableHeaderMotion = true;
-        (parentViewController as UINavigationController).setNavigationBarHidden(true, animated: true);
+        (parentViewController as! UINavigationController).setNavigationBarHidden(true, animated: true);
         appManager!.shouldAutoRotate = true;
         appManager!.mainTabNav?.tabBar.hidden = true;
         web?.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
@@ -108,7 +111,7 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         web?.scrollView.bounces = true;
         web?.backgroundColor = greenColor;
         disableHeaderMotion = false;
-        (parentViewController as UINavigationController).setNavigationBarHidden(false, animated: true);
+        (parentViewController as! UINavigationController).setNavigationBarHidden(false, animated: true);
         appManager!.shouldAutoRotate = false;
         appManager!.mainTabNav?.tabBar.hidden = false;
         if (savedInset != nil) {
@@ -123,7 +126,7 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     
     func finishScroll(willDecelerate decelerate: Bool) {
         if (!decelerate && !disableHeaderMotion) {
-            var navView = parentViewController as FeedNavigationController;
+            var navView = parentViewController as! FeedNavigationController;
             
             UIView.animateWithDuration(0.2) {
                 if ((self.closedOffsetNav! + navView.navigationBar.frame.origin.y) / self.closedOffsetNav! < 0.7) {
@@ -150,7 +153,7 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             return
         }
         
-        var navView = parentViewController as FeedNavigationController;
+        var navView = parentViewController as! FeedNavigationController;
         
         if (scrollOffset == nil) {
             scrollOffset = scrollView.contentOffset.y;
