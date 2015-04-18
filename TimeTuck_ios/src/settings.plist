@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ServiceURL</key>
-	<string>http://10.186.187.141:5000</string>
+	<string>http://servicetest.timetuck.com</string>
 	<key>MainURL</key>
 	<string>timetuck.com</string>
 	<key>WebURL</key>

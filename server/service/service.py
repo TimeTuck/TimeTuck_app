@@ -392,4 +392,4 @@ def list_notifications():
     return Response(response=json.dumps(respond(0, values=result), indent=4), status=200, mimetype='application/json')
 
 if __name__ == '__main__':
-    app.run(host='10.186.187.141', port=5000)
+    app.run()
