@@ -155,6 +155,10 @@ class access:
                 for v in iter(devices):
                     if v['device_token'] is not None:
                         deviceList.append((v['device_token'], user_id))
+
+                if len(deviceList) == 0:
+                    deviceList.append((None, user_id))
+
         return deviceList
 
     def update_device_token(self, session, token):
@@ -180,6 +184,8 @@ class access:
 
         return result
 
+
+
     def notification_associate(self, user_id, notification_id):
         with self.connection() as db:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
@@ -196,12 +202,40 @@ class access:
         else:
             sess = session
 
+        types = type.split(",")
+
+        with self.connection() as db:
+            for t in iter(types):
+                with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                    cur.callproc("notification_update", (sess['key'], sess['secret'], t))
+                    result = cur.fetchall()
+                db.commit()
+
+        return result
+
+    def notification_get(self, session):
+        if not isinstance(session, dict):
+            sess = session.__dict__
+        else:
+            sess = session
+
         with self.connection() as db:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
-                cur.callproc("notification_update", (sess['key'], sess['secret'], type))
+                cur.callproc("notification_get", (sess['key'], sess['secret']))
                 result = cur.fetchall()
 
-            db.commit()
+        return result
+
+    def notification_list(self, session):
+        if not isinstance(session, dict):
+            sess = session.__dict__
+        else:
+            sess = session
+
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                cur.callproc("notification_list", (sess['key'], sess['secret']))
+                result = cur.fetchall()
 
         return result
 
@@ -328,7 +362,7 @@ class access:
             with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
                 try:
                     cur.callproc("timecapsule_get_live_from_session", (session.key, session.secret, count))
-                except Exception:
+                except:
                     return []
                 result = cur.fetchall()
 

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 class TTAppManager {
     var user: TTUser?;
@@ -94,5 +94,63 @@ class TTAppManager {
     
     func getUserID() -> Int {
         return user!.id
+    }
+    
+    func setBadget(key: String, value: Int) {
+        switch (key) {
+            case "friend_accept":
+                mainTabNav?.friends?.tabBarItem.badgeValue = value.description;
+                break;
+            case "friend_request":
+                mainTabNav?.friends?.tabBarItem.badgeValue = value.description;
+                break;
+            case "new_timetuck":
+                mainTabNav?.feed?.tabBarItem.badgeValue = value.description
+                break;
+            default:
+                break;
+        }
+    }
+    
+    func removeBadge(key: String) {
+        var amount: Int?;
+        var type: String?;
+        switch (key) {
+            case "friend_all":    // Any friend notification is stored in one place.
+                amount = mainTabNav?.friends?.tabBarItem.badgeValue?.toInt();
+                if (amount != nil) {
+                    mainTabNav?.friends?.tabBarItem.badgeValue = nil;
+                    type = "friend_request,friend_accept";
+                }
+                break;
+            case "new_timetuck":
+                 amount = mainTabNav?.feed?.tabBarItem.badgeValue?.toInt();
+                 if (amount != nil) {
+                    mainTabNav?.feed?.tabBarItem.badgeValue = nil;
+                    type = key;
+                 }
+                break;
+            default:
+                break;
+        }
+        
+        if (amount != nil) {
+            var access = TTDataAccess();
+            access.notificationUpdate(session!, type: type!) {
+                values in
+                UIApplication.sharedApplication().applicationIconBadgeNumber -= amount!
+                self.updateInnerBadge();
+            }
+        }
+    }
+    
+    func updateInnerBadge() {
+        NSOperationQueue.mainQueue().addOperationWithBlock() {
+            if UIApplication.sharedApplication().applicationIconBadgeNumber == 0 {
+                self.mainTabNav?.notifications?.tabBarItem.badgeValue = nil;
+            } else {
+                self.mainTabNav?.notifications?.tabBarItem.badgeValue = UIApplication.sharedApplication().applicationIconBadgeNumber.description;
+            }
+        }
     }
 }

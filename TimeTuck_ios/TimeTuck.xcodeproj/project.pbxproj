@@ -40,6 +40,10 @@
 		9E316AFE1AB4BEA200EB09EE /* FeedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E316AFD1AB4BEA200EB09EE /* FeedNavigationController.swift */; };
 		9E316B001AB4C7D800EB09EE /* FeedWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E316AFF1AB4C7D800EB09EE /* FeedWebViewController.swift */; };
 		9E39F51C1A84422300D8ABFB /* FriendsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E39F51A1A84422300D8ABFB /* FriendsNavigationController.swift */; };
+		9E5C5F351AE2DF9B001FE33B /* NotificationsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C5F341AE2DF9B001FE33B /* NotificationsNavigationController.swift */; };
+		9E5C5F371AE2DFF2001FE33B /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C5F361AE2DFF2001FE33B /* NotificationTableViewController.swift */; };
+		9E5C5F391AE2E875001FE33B /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E5C5F381AE2E875001FE33B /* flag.png */; };
+		9E5C5F3B1AE2E88B001FE33B /* flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E5C5F3A1AE2E88B001FE33B /* flag@2x.png */; };
 		9E68BA491A895EEE0033F85B /* StandardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68BA481A895EEE0033F85B /* StandardNavigationController.swift */; };
 		9E69455B1AB5DFC60041B99B /* TTWebViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E69455A1AB5DFC60041B99B /* TTWebViews.swift */; };
 		9E7AEA001A79815300C8BEA9 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E7AE9FF1A79815300C8BEA9 /* splash.png */; };
@@ -111,6 +115,10 @@
 		9E316AFD1AB4BEA200EB09EE /* FeedNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedNavigationController.swift; sourceTree = "<group>"; };
 		9E316AFF1AB4C7D800EB09EE /* FeedWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedWebViewController.swift; sourceTree = "<group>"; };
 		9E39F51A1A84422300D8ABFB /* FriendsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsNavigationController.swift; sourceTree = "<group>"; };
+		9E5C5F341AE2DF9B001FE33B /* NotificationsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsNavigationController.swift; sourceTree = "<group>"; };
+		9E5C5F361AE2DFF2001FE33B /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
+		9E5C5F381AE2E875001FE33B /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag.png; sourceTree = "<group>"; };
+		9E5C5F3A1AE2E88B001FE33B /* flag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flag@2x.png"; sourceTree = "<group>"; };
 		9E68BA481A895EEE0033F85B /* StandardNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigationController.swift; sourceTree = "<group>"; };
 		9E69455A1AB5DFC60041B99B /* TTWebViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTWebViews.swift; sourceTree = "<group>"; };
 		9E7AE9FF1A79815300C8BEA9 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
@@ -221,6 +229,7 @@
 		9E14881D1A841A4A00552B9C /* MainNavigation */ = {
 			isa = PBXGroup;
 			children = (
+				9E5C5F331AE2DF5F001FE33B /* Notifications */,
 				9E1488161A84146000552B9C /* MainNavigationTabBarController.swift */,
 				9E316AFA1AB4BE3A00EB09EE /* Feed */,
 				58892EC51AB1EE8000EF7DE2 /* Date & Friend */,
@@ -269,6 +278,15 @@
 			name = Friends;
 			sourceTree = "<group>";
 		};
+		9E5C5F331AE2DF5F001FE33B /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				9E5C5F341AE2DF9B001FE33B /* NotificationsNavigationController.swift */,
+				9E5C5F361AE2DFF2001FE33B /* NotificationTableViewController.swift */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
 		9E7EB8241A786FF900442DDF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +315,8 @@
 		9E941E931A7876F8001B072A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9E5C5F3A1AE2E88B001FE33B /* flag@2x.png */,
+				9E5C5F381AE2E875001FE33B /* flag.png */,
 				58B036B71AC203030010062B /* picture.png */,
 				58B036B51AC202DE0010062B /* picture@2x.png */,
 				58DE49381A8B0E7F00361BF7 /* camera.png */,
@@ -486,6 +506,7 @@
 				580F9B581AC8F09000BCB6A2 /* AddFriendTVC.xib in Resources */,
 				9E7AEA001A79815300C8BEA9 /* splash.png in Resources */,
 				58DE493E1A8B0E7F00361BF7 /* happy.png in Resources */,
+				9E5C5F391AE2E875001FE33B /* flag.png in Resources */,
 				58B036B61AC202DE0010062B /* picture@2x.png in Resources */,
 				9E0B3AD31A79B8B8007651A8 /* icon60@3x.png in Resources */,
 				9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */,
@@ -497,6 +518,7 @@
 				9EC0D0451A758C810013ED31 /* settings.plist in Resources */,
 				9EEB2A431A8587DE000CB644 /* FriendsTableViewController.xib in Resources */,
 				9EC0D0281A758B2E0013ED31 /* LaunchScreen.xib in Resources */,
+				9E5C5F3B1AE2E88B001FE33B /* flag@2x.png in Resources */,
 				9EC0D0251A758B2E0013ED31 /* Images.xcassets in Resources */,
 				58DE493D1A8B0E7F00361BF7 /* gears.png in Resources */,
 				9EDD9B361A89777B00FBEFDF /* FriendResponseTableCell.xib in Resources */,
@@ -524,6 +546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E5C5F371AE2DFF2001FE33B /* NotificationTableViewController.swift in Sources */,
 				9E276E8B1A7ADF1D0058B91C /* SignUpViewController.swift in Sources */,
 				9E929F5F1A86B78400347C60 /* SearchUsersNavigationController.swift in Sources */,
 				9E0B3AF21A79E989007651A8 /* LoginViewController.swift in Sources */,
@@ -534,6 +557,7 @@
 				580F9B571AC8F09000BCB6A2 /* AddFriendTVC.swift in Sources */,
 				9E929F621A86B90800347C60 /* SearchUserTableViewController.swift in Sources */,
 				9E39F51C1A84422300D8ABFB /* FriendsNavigationController.swift in Sources */,
+				9E5C5F351AE2DF9B001FE33B /* NotificationsNavigationController.swift in Sources */,
 				9E69455B1AB5DFC60041B99B /* TTWebViews.swift in Sources */,
 				9E224C3A1A8ABC58008FF6E9 /* CameraController.swift in Sources */,
 				9E9A13A41A864FA200592527 /* FriendCell.swift in Sources */,

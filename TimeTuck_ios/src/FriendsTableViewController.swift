@@ -13,6 +13,7 @@ class FriendsTableViewController: UITableViewController {
     var friends: [[String: AnyObject]]?
     var requests: [[String: AnyObject]]?
     var friendSect = 0;
+    var touching = false;
     
     init(_ appManager: TTAppManager) {
         self.appManager = appManager;
@@ -33,6 +34,12 @@ class FriendsTableViewController: UITableViewController {
         var addFriendButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addFriends");
         addFriendButton.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = addFriendButton;
+        tableView.delegate = self;
+        
+        var touch = UITapGestureRecognizer(target: self, action: "touched:");
+        var touch1 = UIPanGestureRecognizer(target: self, action: "touched:");
+        self.view.addGestureRecognizer(touch);
+        self.view.addGestureRecognizer(touch1);
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -43,6 +50,17 @@ class FriendsTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func touched(gestureRecognizer: UIGestureRecognizer) {
+        if (!touching) {
+            touching = true;
+            appManager!.removeBadge("friend_all");
+        }
+        
+        if (gestureRecognizer.state == UIGestureRecognizerState.Ended) {
+            touching = false;
+        }
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

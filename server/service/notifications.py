@@ -1,7 +1,7 @@
-from apnsclient import *
 import thread
+
+from apnsclient import *
 from timetuck.database import access
-from timetuck.model import device_users
 
 class notify:
     def __init__(self, config, async=False):

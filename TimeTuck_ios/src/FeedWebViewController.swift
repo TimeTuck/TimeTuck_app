@@ -9,7 +9,7 @@
 import UIKit
 
 
-class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
+class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     var appManager: TTAppManager?
     var web: UIWebView?
     var scrollOffset: CGFloat?;
@@ -21,11 +21,20 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     var greenColor = UIColor(red: 0.592, green: 0.831, blue: 0.38, alpha: 1);
     var savedInset : UIEdgeInsets?;
     var refrehscontrol = UIRefreshControl()
+    var touching = false;
+    var mainUrl: String?;
     
     
     init(_ appManager: TTAppManager) {
         self.appManager = appManager;
         super.init(nibName: nil, bundle: nil);
+        
+        if let path = NSBundle.mainBundle().pathForResource("settings", ofType: "plist") {
+            if let dict = NSDictionary(contentsOfFile: path) {
+                mainUrl = dict["MainURL"] as? String
+            }
+        }
+        
         title = "Feed";
         web = UIWebView();
         web!.backgroundColor = greenColor;
@@ -44,6 +53,13 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         var pressRecognizer = UILongPressGestureRecognizer(target: self, action: "holdDownImage:");
         view.addGestureRecognizer(pressRecognizer);
         
+        var touch = UITapGestureRecognizer(target: self, action: "touched:");
+        var touch1 = UIPanGestureRecognizer(target: self, action: "touched:");
+        touch.delegate = self;
+        touch1.delegate = self;
+        web?.scrollView.addGestureRecognizer(touch);
+        web?.scrollView.addGestureRecognizer(touch1);
+        
         cover = NSBundle.mainBundle().loadNibNamed("LoadingView", owner: self, options: nil).first as! UIView;
         cover.frame = UIScreen.mainScreen().applicationFrame;
         view.addSubview(cover);
@@ -51,6 +67,10 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         var request = TTWebViews().GetMainFeedRequest(self.appManager!.session!);
         web!.loadRequest(request);
         
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true;
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -61,6 +81,16 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     override func viewWillAppear(animated: Bool) {
     }
     
+    func touched(gestureRecognizer: UIGestureRecognizer) {
+        if (!touching) {
+            touching = true;
+            appManager!.removeBadge("new_timetuck");
+        }
+        
+        if (gestureRecognizer.state == UIGestureRecognizerState.Ended) {
+            touching = false;
+        }
+    }
     
     
     override func viewWillDisappear(animated: Bool) {
@@ -87,7 +117,8 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         }
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {        
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        
         if (request.URL!.scheme == "mobile-event") {
             if (request.URL!.host == "fullscreenimage") {
                 hideBars();
@@ -96,7 +127,8 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             }
             return false;
         }
-        return true;
+        NSLog(request.URL!.host!);
+        return request.URL!.host!.rangeOfString(mainUrl!) != nil;
     }
     
     func hideBars() {
@@ -148,8 +180,10 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     
     
     func refresh() {
-        web!.reload()
-        refrehscontrol.endRefreshing()
+        if web != nil {
+            web!.reload()
+            refrehscontrol.endRefreshing()
+        }
     }
     
     

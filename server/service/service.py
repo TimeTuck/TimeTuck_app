@@ -1,17 +1,20 @@
-from flask import Flask, request, Response, g, abort, make_response, current_app
-from flask.ext.principal import Principal, Permission, RoleNeed, Identity, identity_loaded
-from timetuck.database import access
-from timetuck.model import user, session, device_users
-from timetuck.media import create_path_to_image
-from notifications import notify
-from service_info import get_session_data, get_session_form_data, allowed_file, respond
-from functools import wraps
-from uuid import uuid4
-from datetime import timedelta
-from functools import update_wrapper
-import struct
-import os
 import json
+import os
+import struct
+
+from datetime import timedelta
+from functools import update_wrapper, wraps
+from uuid import uuid4
+
+from flask import abort, current_app, Flask, g, make_response, request, Response
+from flask.ext.principal import Identity, identity_loaded, Permission, Principal, RoleNeed
+
+from notifications import notify
+from service_info import allowed_file, get_session_data, get_session_form_data, respond
+
+from timetuck.database import access
+from timetuck.media import create_path_to_image
+from timetuck.model import device_users, session, user
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -372,5 +375,21 @@ def notification_update():
     value = g.db_main.notification_update(sess, set)
     return Response(response=json.dumps(respond(0, values=value), indent=4), status=200, mimetype='application/json')
 
+@app.route('/notification_get', methods=['get'])
+@login_required
+def get_notifications():
+    sess = session(**g.identity.id)
+    result = g.db_main.notification_get(sess)
+
+    return Response(response=json.dumps(respond(0, values=result), indent=4), status=200, mimetype='application/json')
+
+@app.route('/notification_list', methods=['get'])
+@login_required
+def list_notifications():
+    sess = session(**g.identity.id)
+    result = g.db_main.notification_list(sess)
+
+    return Response(response=json.dumps(respond(0, values=result), indent=4), status=200, mimetype='application/json')
+
 if __name__ == '__main__':
-    app.run(host='144.174.132.195', port=5000)
+    app.run(host='10.186.187.141', port=5000)

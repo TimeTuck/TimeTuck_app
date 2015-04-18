@@ -9,18 +9,23 @@
 import UIKit
 
 class FeedNavigationController: StandardNavigationController {
-    var appManager: TTAppManager?
+    var appManager: TTAppManager?;
+    var webController: FeedWebViewController?;
     
     init(_ appManager: TTAppManager) {
         self.appManager = appManager;
         super.init(nibName: nil, bundle: nil);
         title = "Feed";
-        var webController = FeedWebViewController(self.appManager!);
-        setViewControllers([webController], animated: false);
+        webController = FeedWebViewController(self.appManager!);
+        setViewControllers([webController!], animated: false);
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
         self.appManager = nil;
+    }
+    
+    func reloadWeb() {
+        webController?.refresh();
     }
 }

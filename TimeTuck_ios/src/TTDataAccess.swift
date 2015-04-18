@@ -138,6 +138,30 @@ public class TTDataAccess {
         };
     }
     
+    public func notificationGet(session: TTSession, completed: (values: [[String: AnyObject]]) -> Void) {
+        makeHTTPRequest("/notification_get" + urlFromDict(session.toDictionary()), bodyData: nil, requestMethod: "GET") {
+            response, data, error in
+            if (response != nil && (response as! NSHTTPURLResponse).statusCode == 200) {
+                let values = self.JSONParseDictionary(data);
+                completed(values: values["values"] as! [[String: AnyObject]]);
+            } else {
+                completed(values: []);
+            }
+        };
+    }
+    
+    public func notificationList(session: TTSession, completed: (values: [[String: AnyObject]]) -> Void) {
+        makeHTTPRequest("/notification_list" + urlFromDict(session.toDictionary()), bodyData: nil, requestMethod: "GET") {
+            response, data, error in
+            if (response != nil && (response as! NSHTTPURLResponse).statusCode == 200) {
+                let values = self.JSONParseDictionary(data);
+                completed(values: values["values"] as! [[String: AnyObject]]);
+            } else {
+                completed(values: []);
+            }
+        };
+    }
+    
     public func searchUsers(session: TTSession, search: String, completed: (users: [[String: AnyObject]]) -> Void) {
         var params = session.toDictionary();
         params["search"] = search;

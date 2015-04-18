@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 13, 2015 at 11:26 PM
+-- Generation Time: Apr 18, 2015 at 09:49 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -53,6 +53,23 @@ REPLACE INTO notification_users (user_id, notification_id, date) VALUES (uid, id
 SELECT COUNT(*) AS count FROM notification_users WHERE user_id = uid AND was_read = 0;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `notification_get`(IN `k` CHAR(36), IN `s` CHAR(36))
+    NO SQL
+SELECT n.type AS type, count(n.type) AS amount FROM 
+	user_sessions us INNER JOIN 
+   	notification_users nu ON us.user_id = nu.user_id INNER JOIN
+    notifications n ON nu.notification_id = n.notification_id
+    WHERE nu.was_read = 0 AND us.skey = k 
+    	AND us.secret = s GROUP BY n.type$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `notification_list`(IN `k` CHAR(36), IN `s` CHAR(36))
+    NO SQL
+SELECT n.message AS message, nu.was_read AS was_read FROM 
+	user_sessions us INNER JOIN 
+   	notification_users nu ON us.user_id = nu.user_id INNER JOIN
+    notifications n ON nu.notification_id = n.notification_id
+    WHERE us.skey = k AND us.secret = s ORDER BY nu.date DESC LIMIT 0,50$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `notification_update`(IN `k` CHAR(36), IN `s` CHAR(36), IN `type` VARCHAR(200))
     NO SQL
 BEGIN
@@ -66,7 +83,7 @@ ELSE
 	UPDATE user_sessions us INNER JOIN 
     	   notification_users nu ON us.user_id = nu.user_id INNER JOIN
            notifications n ON nu.notification_id = n.notification_id
-    SET nu.was_read = 1 AND n.type = type AND us.skey = k 
+    SET nu.was_read = 1 where n.type = type AND us.skey = k 
     	AND us.secret = s;
 END IF;
 
@@ -163,7 +180,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_device_of_friends`(IN `id` INT)
     NO SQL
-SELECT us.device_token AS device_token, us.user_id AS user_id FROM timecapsule_friends tf INNER JOIN user_sessions us ON tf.user_id = us.user_id WHERE  tf.timecap_id = id$$
+SELECT tf.user_id AS user_id, us.device_token AS device_token FROM timecapsule_friends tf left JOIN user_sessions us ON tf.user_id = us.user_id WHERE  tf.timecap_id = id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_get_live_from_session`(IN `k` CHAR(36), IN `s` CHAR(36), IN `amount` INT)
     NO SQL
@@ -266,7 +283,7 @@ CREATE TABLE `notifications` (
 `notification_id` int(100) unsigned NOT NULL,
   `type` varchar(200) NOT NULL,
   `message` varchar(300) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -280,7 +297,7 @@ CREATE TABLE `notification_users` (
   `notification_id` int(100) unsigned NOT NULL,
   `was_read` tinyint(1) NOT NULL DEFAULT '0',
   `date` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -296,7 +313,7 @@ CREATE TABLE `timecapsule` (
   `type` varchar(20) NOT NULL,
   `comment` varchar(140) NOT NULL,
   `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -339,7 +356,7 @@ CREATE TABLE `users` (
   `created` datetime NOT NULL,
   `activated` tinyint(1) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -354,7 +371,7 @@ CREATE TABLE `user_sessions` (
   `secret` char(36) NOT NULL,
   `device_token` char(64) DEFAULT NULL,
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -416,27 +433,27 @@ ALTER TABLE `user_sessions`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-MODIFY `notification_id` int(100) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
+MODIFY `notification_id` int(100) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `notification_users`
 --
 ALTER TABLE `notification_users`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `timecapsule`
 --
 ALTER TABLE `timecapsule`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=138;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=139;
 --
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=94;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=98;
 --
 -- Constraints for dumped tables
 --

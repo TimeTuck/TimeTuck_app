@@ -47,17 +47,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        var access = TTDataAccess();
-        var amount: Int = 0;
-        if appManager?.session != nil {
-            access.notificationUpdate(appManager!.session!, type: "All") {
-                value in
-                if value.count != 0 {
-                    for v in value {
-                        amount += (v["amount"] as! Int);
-                    }
-                }
-                UIApplication.sharedApplication().applicationIconBadgeNumber = amount;
+        if (appManager?.mainTabNav != nil) {
+            switch (userInfo["type"] as! String) {
+                case "new_timetuck":
+                    appManager!.mainTabNav!.selectedIndex = 1;
+                    (appManager!.mainTabNav?.selectedViewController as? FeedNavigationController)?.reloadWeb();
+                    break;
+                case "friend_accept":
+                    appManager!.mainTabNav!.selectedIndex = 0;
+                    (appManager!.mainTabNav?.selectedViewController as? FriendsNavigationController)?.reloadContent();
+                    break;
+                case "friend_request":
+                    appManager!.mainTabNav!.selectedIndex = 0;
+                    (appManager!.mainTabNav?.selectedViewController as? FriendsNavigationController)?.reloadContent();
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -84,7 +89,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
+        
+        // Update Notifications
+        var access = TTDataAccess();
+        if appManager?.session != nil {
+            access.notificationGet(appManager!.session!) {
+                value in
+                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                    var amount: Int = 0;
+                    if value.count != 0 {
+                        for v in value {
+                            amount += (v["amount"] as! Int);
+                            self.appManager!.setBadget(v["type"] as! String, value: v["amount"] as! Int);
+                        }
+                    }
+                    UIApplication.sharedApplication().applicationIconBadgeNumber = amount;
+                    self.appManager!.updateInnerBadge();
+                }
+            }
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
