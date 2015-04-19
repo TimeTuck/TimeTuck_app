@@ -61,6 +61,12 @@ body{
 	display:block;	
 }
 
+a{
+	color:inherit;
+	text-decoration:none;
+
+}
+
 .main{
 	width:1000px;
 	height:auto;
@@ -73,6 +79,7 @@ body{
 	z-index:1;
 	/*background-color:aqua;*/	
 }
+
 .imgBox{
 	width:1000px;
 	height:500px;
@@ -132,3 +139,49 @@ a.fill-div {
 	color:#555555;
 	font-family: Campton;
 }
+
+.header{
+	font-weight:bold;
+	font-family: Campton;
+	font-size: 75px;
+	color:#97D461;
+	height:150px;
+	border: 10px solid #CCCCCC;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	line-height:150px;
+}
+.title{
+	height:auto;
+	width:360px;
+}
+.textBox{
+	padding:20px;
+	font-family: Campton;
+	margin-top:75px;
+	margin-left:200px;
+	color:#808080;
+	font-size:20px;
+}
+.textBox2{
+	font-family: Campton;
+	padding:20px;
+	margin-left:200px;
+	font-size:20px;
+}
+.questionBox{
+	font-weight:bold;
+	width:1000px;
+	
+}
+.answerBox{
+	margin-top:30px;
+	margin-bottom:40px;
+	width: 1000px;
+	background-color:#EAEAEA;
+	padding:20px;
+	font-size:20px;
+	color:#808080;
+}
+
