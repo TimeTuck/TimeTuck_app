@@ -47,14 +47,14 @@
 		9E68BA491A895EEE0033F85B /* StandardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68BA481A895EEE0033F85B /* StandardNavigationController.swift */; };
 		9E69455B1AB5DFC60041B99B /* TTWebViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E69455A1AB5DFC60041B99B /* TTWebViews.swift */; };
 		9E7AEA001A79815300C8BEA9 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E7AE9FF1A79815300C8BEA9 /* splash.png */; };
-		9E7EB8281A78701100442DDF /* Campton-BoldDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EB8261A78701100442DDF /* Campton-BoldDEMO.otf */; };
-		9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EB8271A78701100442DDF /* Campton-LightDEMO.otf */; };
 		9E8B30DA1AC4B8860033A0C8 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E8B30D91AC4B8860033A0C8 /* LoadingView.xib */; };
 		9E929F5F1A86B78400347C60 /* SearchUsersNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E929F5E1A86B78400347C60 /* SearchUsersNavigationController.swift */; };
 		9E929F621A86B90800347C60 /* SearchUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E929F601A86B90800347C60 /* SearchUserTableViewController.swift */; };
 		9E929F631A86B90800347C60 /* SearchUserTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E929F611A86B90800347C60 /* SearchUserTableViewController.xib */; };
 		9E9A13A41A864FA200592527 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A13A21A864FA200592527 /* FriendCell.swift */; };
 		9E9A13A51A864FA200592527 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E9A13A31A864FA200592527 /* FriendCell.xib */; };
+		9EB07AEF1AE44F0400DB3B32 /* Cam-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9EB07AED1AE44F0400DB3B32 /* Cam-Bold.otf */; };
+		9EB07AF01AE44F0400DB3B32 /* Cam-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9EB07AEE1AE44F0400DB3B32 /* Cam-Light.otf */; };
 		9EB75DA41A7725E800CB6233 /* TTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB75DA31A7725E800CB6233 /* TTSession.swift */; };
 		9EC0D01B1A758B2E0013ED31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D01A1A758B2E0013ED31 /* AppDelegate.swift */; };
 		9EC0D01E1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D01C1A758B2E0013ED31 /* TimeTuck_app.xcdatamodeld */; };
@@ -119,17 +119,17 @@
 		9E5C5F361AE2DFF2001FE33B /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		9E5C5F381AE2E875001FE33B /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag.png; sourceTree = "<group>"; };
 		9E5C5F3A1AE2E88B001FE33B /* flag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flag@2x.png"; sourceTree = "<group>"; };
-		9E68BA481A895EEE0033F85B /* StandardNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigationController.swift; sourceTree = "<group>"; };
+		9E68BA481A895EEE0033F85B /* StandardNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StandardNavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9E69455A1AB5DFC60041B99B /* TTWebViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTWebViews.swift; sourceTree = "<group>"; };
 		9E7AE9FF1A79815300C8BEA9 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
-		9E7EB8261A78701100442DDF /* Campton-BoldDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Campton-BoldDEMO.otf"; sourceTree = "<group>"; };
-		9E7EB8271A78701100442DDF /* Campton-LightDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Campton-LightDEMO.otf"; sourceTree = "<group>"; };
 		9E8B30D91AC4B8860033A0C8 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		9E929F5E1A86B78400347C60 /* SearchUsersNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUsersNavigationController.swift; sourceTree = "<group>"; };
 		9E929F601A86B90800347C60 /* SearchUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserTableViewController.swift; sourceTree = "<group>"; };
 		9E929F611A86B90800347C60 /* SearchUserTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchUserTableViewController.xib; sourceTree = "<group>"; };
 		9E9A13A21A864FA200592527 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		9E9A13A31A864FA200592527 /* FriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
+		9EB07AED1AE44F0400DB3B32 /* Cam-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cam-Bold.otf"; sourceTree = "<group>"; };
+		9EB07AEE1AE44F0400DB3B32 /* Cam-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cam-Light.otf"; sourceTree = "<group>"; };
 		9EB75DA31A7725E800CB6233 /* TTSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTSession.swift; sourceTree = "<group>"; };
 		9EC0D0151A758B2E0013ED31 /* TimeTuck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTuck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EC0D0191A758B2E0013ED31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -299,8 +299,8 @@
 		9E7EB8251A78700500442DDF /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				9E7EB8261A78701100442DDF /* Campton-BoldDEMO.otf */,
-				9E7EB8271A78701100442DDF /* Campton-LightDEMO.otf */,
+				9EB07AED1AE44F0400DB3B32 /* Cam-Bold.otf */,
+				9EB07AEE1AE44F0400DB3B32 /* Cam-Light.otf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -499,17 +499,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				58DE49341A8B07C400361BF7 /* camera@2x.png in Resources */,
+				9EB07AF01AE44F0400DB3B32 /* Cam-Light.otf in Resources */,
 				58DE493C1A8B0E7F00361BF7 /* camera.png in Resources */,
 				9E0B3AF31A79E989007651A8 /* LoginViewController.xib in Resources */,
-				9E7EB8281A78701100442DDF /* Campton-BoldDEMO.otf in Resources */,
 				9E224C391A8ABC58008FF6E9 /* CameraController.xib in Resources */,
 				580F9B581AC8F09000BCB6A2 /* AddFriendTVC.xib in Resources */,
 				9E7AEA001A79815300C8BEA9 /* splash.png in Resources */,
 				58DE493E1A8B0E7F00361BF7 /* happy.png in Resources */,
 				9E5C5F391AE2E875001FE33B /* flag.png in Resources */,
+				9EB07AEF1AE44F0400DB3B32 /* Cam-Bold.otf in Resources */,
 				58B036B61AC202DE0010062B /* picture@2x.png in Resources */,
 				9E0B3AD31A79B8B8007651A8 /* icon60@3x.png in Resources */,
-				9E7EB8291A78701100442DDF /* Campton-LightDEMO.otf in Resources */,
 				58892ED51AB1F1E700EF7DE2 /* DViewController.xib in Resources */,
 				9E929F631A86B90800347C60 /* SearchUserTableViewController.xib in Resources */,
 				9E276E8C1A7ADF1D0058B91C /* SignUpViewController.xib in Resources */,

@@ -6,15 +6,14 @@
 //  Copyright (c) 2015 TimeTuck. All rights reserved.
 //
 
-import UIKit
 import Foundation
+import UIKit
 
 public class TTTuck {
-    
-    var picture: UIImage?
-    var date: NSDate?
-    var shareusers: [Int]
-    var comment: String?
+    var comment: String?;
+    var date: NSDate?;
+    var picture: UIImage?;
+    var shareusers: [Int];
     
     public init () {
         self.shareusers = [Int]()
@@ -35,6 +34,4 @@ public class TTTuck {
     public func addUsers (id: Int) {
         shareusers.append(id)
     }
-    
-    
 }

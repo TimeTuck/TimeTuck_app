@@ -46,7 +46,7 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         
         t.textAlignment = NSTextAlignment.Center;
         t.text = title;
-        t.font = UIFont(name: "Campton-LightDEMO", size: 20)!
+        t.font = UIFont(name: "Campton", size: 20)!
         
         navigationItem.titleView = t;
         
@@ -92,7 +92,6 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         }
     }
     
-    
     override func viewWillDisappear(animated: Bool) {
         UIView.animateWithDuration(0.2) {
             self.navigationItem.titleView?.alpha = 1;
@@ -137,17 +136,17 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         web?.backgroundColor = UIColor.blackColor();
         disableHeaderMotion = true;
         (parentViewController as! UINavigationController).setNavigationBarHidden(true, animated: true);
-        appManager!.shouldAutoRotate = true;
         appManager!.mainTabNav?.tabBar.hidden = true;
         web?.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
+        web?.scrollView.scrollEnabled = false;
     }
     
     func showBars() {
+        web?.scrollView.scrollEnabled = true;
         web?.scrollView.bounces = true;
         web?.backgroundColor = greenColor;
         disableHeaderMotion = false;
         (parentViewController as! UINavigationController).setNavigationBarHidden(false, animated: true);
-        appManager!.shouldAutoRotate = false;
         appManager!.mainTabNav?.tabBar.hidden = false;
         if (savedInset != nil) {
             NSLog(savedInset!.top.description);

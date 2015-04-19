@@ -4,10 +4,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Campton-LightDEMO.otf">
-            <string>Campton-LightDEMO</string>
-            <string>Campton-LightDEMO</string>
-            <string>Campton-LightDEMO</string>
+        <mutableArray key="Cam-Light.otf">
+            <string>Campton-Light</string>
+            <string>Campton-Light</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -44,14 +43,14 @@
                         <constraint firstAttribute="height" constant="21" id="9ry-fi-MKv"/>
                         <constraint firstAttribute="width" constant="175" id="BaJ-C0-mKc"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="20"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="set reveal date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p89-Vs-XWm">
                     <rect key="frame" x="229" y="192" width="143" height="24"/>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="20"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="19"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcT-mh-DYp">
@@ -61,7 +60,7 @@
                         <constraint firstAttribute="height" constant="40" id="9xZ-9X-i68"/>
                         <constraint firstAttribute="width" constant="135" id="d4p-q3-S59"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="19"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="19"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="Next">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

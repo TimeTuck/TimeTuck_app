@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Campton-LightDEMO.otf">
-            <string>Campton-LightDEMO</string>
-            <string>Campton-LightDEMO</string>
+        <mutableArray key="Cam-Light.otf">
+            <string>Campton-Light</string>
+            <string>Campton-Light</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -22,7 +22,7 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCu-uB-gOW">
                     <rect key="frame" x="253" y="35" width="95" height="29"/>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="24"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="24"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -32,7 +32,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="kwo-75-6rx"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="15"/>
                     <state key="normal" title="logout">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

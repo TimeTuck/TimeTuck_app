@@ -76,7 +76,20 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
         if appManager == nil {
             return true;
         } else {
+            if !appManager!.shouldAutoRotate {
+                if UIApplication.sharedApplication().statusBarOrientation != UIInterfaceOrientation.Portrait {
+                    return true;
+                }
+            }
             return appManager!.shouldAutoRotate;
         }
+    }
+    
+    override func supportedInterfaceOrientations() -> Int {
+        if appManager!.shouldAutoRotate {
+            return Int(UIInterfaceOrientationMask.All.rawValue);
+        }
+        
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue);
     }
 }

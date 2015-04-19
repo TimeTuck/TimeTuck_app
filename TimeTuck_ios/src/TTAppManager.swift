@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 
 class TTAppManager {
-    var user: TTUser?;
-    var session: TTSession?;
     var shouldAutoRotate = false;
+    
     var deviceToken: String?
     var mainTabNav: MainNavigationTabBarController?
-    
+    var session: TTSession?;
+    var user: TTUser?;
+
     class func checkUser() -> TTAppManager? {
         var userInfo = NSUserDefaults();
         var appManager: TTAppManager?;

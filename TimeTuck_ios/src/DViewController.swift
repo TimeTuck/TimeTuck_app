@@ -8,9 +8,7 @@
 
 import UIKit
 
-
 class DViewController: UIViewController, UITextFieldDelegate {
-    
     var appManager: TTAppManager?;
     var capsule : TTTuck!;
  
@@ -39,13 +37,10 @@ class DViewController: UIViewController, UITextFieldDelegate {
         let currentDate = NSDate()
         datePicker.minimumDate = currentDate
         datePicker.date = currentDate
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
@@ -62,15 +57,11 @@ class DViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
         return false
     }
-
-    
-    
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let newLength = count(textField.text) + count(string) - range.length
         return newLength <= 140 // Bool
     }
-    
     
     func dismissKeyboard() {
         view.endEditing(true);
@@ -80,18 +71,7 @@ class DViewController: UIViewController, UITextFieldDelegate {
         return false;
     }
     
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return UIInterfaceOrientation.Portrait;
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue);
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

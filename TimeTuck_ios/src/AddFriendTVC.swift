@@ -120,7 +120,4 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
         UIGraphicsEndImageContext();
         return newImage;
     }
-    
-    
-
 }

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Campton-LightDEMO.otf">
-            <string>Campton-LightDEMO</string>
-            <string>Campton-LightDEMO</string>
-            <string>Campton-LightDEMO</string>
-            <string>Campton-LightDEMO</string>
-            <string>Campton-LightDEMO</string>
-            <string>Campton-LightDEMO</string>
-            <string>Campton-LightDEMO</string>
-            <string>Campton-LightDEMO</string>
-            <string>Campton-LightDEMO</string>
+        <mutableArray key="Cam-Light.otf">
+            <string>Campton-Light</string>
+            <string>Campton-Light</string>
+            <string>Campton-Light</string>
+            <string>Campton-Light</string>
+            <string>Campton-Light</string>
+            <string>Campton-Light</string>
+            <string>Campton-Light</string>
+            <string>Campton-Light</string>
+            <string>Campton-Light</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -44,7 +44,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="va5-hy-6rJ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                     <connections>
                         <action selector="editingItem:" destination="-1" eventType="editingDidBegin" id="wLb-w1-ftx"/>
@@ -57,7 +57,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="DH7-IT-pRq"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                     <connections>
                         <action selector="editingItem:" destination="-1" eventType="editingDidBegin" id="bkd-xU-qYQ"/>
@@ -66,7 +66,7 @@
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="signup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fP0-Pz-OPV">
                     <rect key="frame" x="261" y="40" width="77" height="29"/>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="24"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="24"/>
                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -77,7 +77,7 @@
                         <constraint firstAttribute="width" constant="264" id="2Qy-BO-8hS"/>
                         <constraint firstAttribute="height" constant="30" id="GOx-99-X2b"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -96,7 +96,7 @@
                         <constraint firstAttribute="height" constant="30" id="9c0-YW-fId"/>
                         <constraint firstAttribute="width" constant="264" id="iYh-Hk-K9h"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -117,7 +117,7 @@
                         <constraint firstAttribute="width" constant="200" id="gNl-oU-pKl"/>
                         <constraint firstAttribute="height" constant="55" id="hVo-pf-BEQ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="15"/>
                     <state key="normal" title="back">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -145,7 +145,7 @@
                         <constraint firstAttribute="height" constant="55" id="eFM-Wt-Kk7"/>
                         <constraint firstAttribute="width" constant="200" id="riq-D7-GL2"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="15"/>
                     <state key="normal" title="go">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -161,7 +161,7 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="7g8-um-DAY">
                     <rect key="frame" x="10" y="77" width="580" height="21"/>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="17"/>
                     <color key="textColor" red="0.84973787010000001" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -173,7 +173,7 @@
                         <constraint firstAttribute="height" constant="30" id="KAT-Qg-0q8"/>
                         <constraint firstAttribute="height" constant="55" id="PMT-wS-4b3"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                     <variation key="default">
                         <mask key="constraints">

@@ -4,8 +4,8 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Campton-LightDEMO.otf">
-            <string>Campton-LightDEMO</string>
+        <mutableArray key="Cam-Light.otf">
+            <string>Campton-Light</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -20,7 +20,7 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pN-4Y-vDQ">
                         <rect key="frame" x="16" y="12" width="296" height="21"/>
-                        <fontDescription key="fontDescription" name="Campton-LightDEMO" family="Campton" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
