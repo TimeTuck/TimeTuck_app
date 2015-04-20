@@ -77,7 +77,6 @@ a{
 	right:0;
 	margin:auto;
 	z-index:1;
-	/*background-color:aqua;*/	
 }
 
 .imgBox{
@@ -117,6 +116,7 @@ button:hover{
 	cursor:pointer;
 }
 
+/* fill the entire div box so that it can be clicked */
 a.fill-div {
     display: block;
     height: 100%;
@@ -152,18 +152,29 @@ a.fill-div {
 	border-right:none;
 	line-height:150px;
 }
+
+/* box title used with fill-div */
 .title{
 	height:auto;
 	width:360px;
+}
+.centerPage{
+	text-align:center;
+	height:auto;
+	margin-top:25%;	
+
 }
 .textBox{
 	padding:20px;
 	font-family: Campton;
 	margin-top:75px;
 	margin-left:200px;
+	margin-right:200px;
 	color:#808080;
 	font-size:20px;
 }
+
+/* Inner box (inside textBox) */
 .textBox2{
 	font-family: Campton;
 	padding:20px;
