@@ -172,6 +172,7 @@ a.fill-div {
 	margin-right:200px;
 	color:#808080;
 	font-size:20px;
+	max-width:100%;
 }
 
 /* Inner box (inside textBox) */
@@ -189,7 +190,7 @@ a.fill-div {
 .answerBox{
 	margin-top:30px;
 	margin-bottom:40px;
-	width: 1000px;
+	width: 850px;
 	background-color:#EAEAEA;
 	padding:20px;
 	font-size:20px;
