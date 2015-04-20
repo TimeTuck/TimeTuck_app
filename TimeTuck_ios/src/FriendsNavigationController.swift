@@ -32,7 +32,7 @@ class FriendsNavigationController: StandardNavigationController {
     }
     
     func reloadContent() {
-        friends!.tableView.reloadData();
+        friends!.retrieveFriends();
     }
 
     override func didReceiveMemoryWarning() {

@@ -906,11 +906,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/AppDelegate.swift"
-            timestampString = "451066369.823788"
+            timestampString = "451259636.917998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "application(_:didFailToRegisterForRemoteNotificationsWithError:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1989,11 +1989,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/AppDelegate.swift"
-            timestampString = "451066369.823788"
+            timestampString = "451259636.917998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "application(_:didFailToRegisterForRemoteNotificationsWithError:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2325,27 +2325,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/AppDelegate.swift"
-            timestampString = "451066369.823788"
+            timestampString = "451259636.917998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "applicationDidBecomeActive(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "src/AppDelegate.swift"
-            timestampString = "451066369.823788"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "applicationDidBecomeActive(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2388,194 +2372,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "src/AppDelegate.swift"
-            timestampString = "451066369.823788"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "applicationDidBecomeActive(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.AppDelegate.applicationDocumentsDirectory.getter : ObjectiveC.NSURL"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/AppDelegate.swift"
-                  timestampString = "451065973.291866"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "21">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.AppDelegate.applicationDocumentsDirectory.getter : ObjectiveC.NSURL"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/AppDelegate.swift"
-                  timestampString = "451065973.292009"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "100"
-                  endingLineNumber = "100"
-                  offsetFromSymbolStart = "253">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.AppDelegate.applicationDocumentsDirectory.setter : ObjectiveC.NSURL"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/AppDelegate.swift"
-                  timestampString = "451065973.292125"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "27">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.AppDelegate.init (TimeTuck.AppDelegate.Type)() -&gt; TimeTuck.AppDelegate"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/AppDelegate.swift"
-                  timestampString = "451065973.29224"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "100"
-                  endingLineNumber = "100"
-                  offsetFromSymbolStart = "67">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.AppDelegate.(applicationDocumentsDirectory.getter : ObjectiveC.NSURL).(closure #1)"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/AppDelegate.swift"
-                  timestampString = "451065973.292365"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102"
-                  offsetFromSymbolStart = "3">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "src/AppDelegate.swift"
-            timestampString = "451066369.823788"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "applicationDidBecomeActive(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.AppDelegate.applicationDocumentsDirectory.getter : ObjectiveC.NSURL"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/AppDelegate.swift"
-                  timestampString = "451065975.274576"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "21">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.AppDelegate.applicationDocumentsDirectory.getter : ObjectiveC.NSURL"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/AppDelegate.swift"
-                  timestampString = "451065975.274726"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "100"
-                  endingLineNumber = "100"
-                  offsetFromSymbolStart = "253">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.AppDelegate.applicationDocumentsDirectory.setter : ObjectiveC.NSURL"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/AppDelegate.swift"
-                  timestampString = "451065975.274855"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "27">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.AppDelegate.init (TimeTuck.AppDelegate.Type)() -&gt; TimeTuck.AppDelegate"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/AppDelegate.swift"
-                  timestampString = "451065975.274978"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "100"
-                  endingLineNumber = "100"
-                  offsetFromSymbolStart = "67">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.AppDelegate.(applicationDocumentsDirectory.getter : ObjectiveC.NSURL).(closure #1)"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/AppDelegate.swift"
-                  timestampString = "451065975.275137"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102"
-                  offsetFromSymbolStart = "3">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "src/TTAppManager.swift"
-            timestampString = "451066369.823788"
+            timestampString = "451259335.380216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -2751,23 +2549,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/TTAppManager.swift"
-            timestampString = "451079243.585532"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "updateInnerBadge()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "src/TTAppManager.swift"
-            timestampString = "451079243.585532"
+            timestampString = "451259335.380216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "152"
@@ -2783,11 +2565,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/TTAppManager.swift"
-            timestampString = "451079243.585532"
+            timestampString = "451259335.380216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "updateInnerBadge()"
             landmarkType = "5">
          </BreakpointContent>
@@ -2799,11 +2581,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/TTAppManager.swift"
-            timestampString = "451078820.169847"
+            timestampString = "451259335.380216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "updateInnerBadge()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/TTAppManager.swift"
+            timestampString = "451259335.380216"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "removeBadge(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2815,11 +2613,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/TTAppManager.swift"
-            timestampString = "451078844.052011"
+            timestampString = "451259335.380216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "removeBadge(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2831,11 +2629,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/TTAppManager.swift"
-            timestampString = "451079011.934607"
+            timestampString = "451259335.380216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "removeBadge(_:)"
             landmarkType = "5">
          </BreakpointContent>

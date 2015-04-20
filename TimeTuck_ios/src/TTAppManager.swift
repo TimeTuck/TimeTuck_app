@@ -101,9 +101,11 @@ class TTAppManager {
         switch (key) {
             case "friend_accept":
                 mainTabNav?.friends?.tabBarItem.badgeValue = value.description;
+                mainTabNav?.friends?.reloadContent();
                 break;
             case "friend_request":
                 mainTabNav?.friends?.tabBarItem.badgeValue = value.description;
+                mainTabNav?.friends?.reloadContent();
                 break;
             case "new_timetuck":
                 mainTabNav?.feed?.tabBarItem.badgeValue = value.description
@@ -153,5 +155,26 @@ class TTAppManager {
                 self.mainTabNav?.notifications?.tabBarItem.badgeValue = UIApplication.sharedApplication().applicationIconBadgeNumber.description;
             }
         }
+    }
+    
+    func refreshBadges() {
+        var access = TTDataAccess();
+        if self.session != nil {
+            access.notificationGet(self.session!) {
+                value in
+                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                    var amount: Int = 0;
+                    if value.count != 0 {
+                        for v in value {
+                            amount += (v["amount"] as! Int);
+                            self.setBadget(v["type"] as! String, value: v["amount"] as! Int);
+                        }
+                    }
+                    UIApplication.sharedApplication().applicationIconBadgeNumber = amount;
+                    self.updateInnerBadge();
+                }
+            }
+        }
+
     }
 }
