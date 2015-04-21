@@ -89,8 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        
-        // Update Notifications
         appManager?.refreshBadges();
     }
 
@@ -162,6 +160,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
-

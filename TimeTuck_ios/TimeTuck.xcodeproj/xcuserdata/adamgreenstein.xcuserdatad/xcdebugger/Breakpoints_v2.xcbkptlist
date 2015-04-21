@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/LoginViewController.swift"
-            timestampString = "445711205.609286"
+            timestampString = "451266998.040393"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "dismissKeyboard()"
             landmarkType = "5">
          </BreakpointContent>
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/LoginViewController.swift"
-            timestampString = "445711205.609286"
+            timestampString = "451266998.040393"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "login(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -858,11 +858,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/MainNavigationTabBarController.swift"
-            timestampString = "451078417.742825"
+            timestampString = "451267144.342113"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "didReceiveMemoryWarning()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1050,7 +1050,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/LoginViewController.swift"
-            timestampString = "445711205.609286"
+            timestampString = "451266998.040393"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "108"
@@ -1073,38 +1073,6 @@
             endingLineNumber = "106"
             landmarkName = "login(_:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.LoginViewController.(login (TimeTuck.LoginViewController) -&gt; (ObjectiveC.UIButton) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/LoginViewController.swift"
-                  timestampString = "445710816.31404"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TimeTuck.LoginViewController.(login (TimeTuck.LoginViewController) -&gt; (ObjectiveC.UIButton) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "TimeTuck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamgreenstein/Documents/TimeTuck/application/TimeTuck_ios/src/LoginViewController.swift"
-                  timestampString = "445710816.314205"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "220">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2325,7 +2293,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/AppDelegate.swift"
-            timestampString = "451259636.917998"
+            timestampString = "451266257.280157"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
@@ -2661,12 +2629,124 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/MainNavigationTabBarController.swift"
-            timestampString = "451173155.79846"
+            timestampString = "451267144.342113"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "shouldAutorotate()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/MainNavigationTabBarController.swift"
+            timestampString = "451267144.342113"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/MainNavigationTabBarController.swift"
+            timestampString = "451267144.342113"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "didReceiveMemoryWarning()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/AppDelegate.swift"
+            timestampString = "451266296.496719"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "applicationDidBecomeActive(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/TTAppManager.swift"
+            timestampString = "451266381.889038"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "refreshBadges()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/TTAppManager.swift"
+            timestampString = "451266442.396408"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "refreshBadges()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/TTAppManager.swift"
+            timestampString = "451266455.244979"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "refreshBadges()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/LoginViewController.swift"
+            timestampString = "451266808.991958"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "login(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

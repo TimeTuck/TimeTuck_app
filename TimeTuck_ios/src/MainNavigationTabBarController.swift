@@ -49,6 +49,8 @@ class MainNavigationTabBarController: UITabBarController, UITabBarControllerDele
         cameraControl.tabBarItem = UITabBarItem(title: "camera", image: cameraImg, tag: 2);
         setViewControllers([friends!, feed!, cameraControl, notifications!, settings!], animated: false);
         selectedIndex = 1;
+        
+        appManager?.refreshBadges();
     }
 
     override func didReceiveMemoryWarning() {

@@ -322,7 +322,6 @@ class access:
             db.commit()
             return None
 
-
     def timecapsule_get_need_untuck_sa(self, date):
          values = []
          with self.connection() as db:
@@ -346,6 +345,16 @@ class access:
             with closing(db.cursor()) as cur:
                 cur.callproc("timecapsule_update_status", (id,))
                 db.commit()
+
+    def timecapsule_all_friends(self, id):
+        with self.connection() as db:
+            with closing(db.cursor(MySQLdb.cursors.DictCursor)) as cur:
+                cur.callproc("timecapsule_all_friends", (id,))
+                result = cur.fetchall()
+                values = []
+                for i in iter(result):
+                    values.append((None, i['user_id']))
+                return values
 
     def timecapsule_get_device_of_friends(self, id):
         with self.connection() as db:

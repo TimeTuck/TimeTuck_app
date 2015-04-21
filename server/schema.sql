@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 18, 2015 at 09:49 PM
+-- Generation Time: Apr 21, 2015 at 02:11 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -166,6 +166,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_add_friend`(IN `t_id` I
 BEGIN
 INSERT INTO timecapsule_friends (timecap_id, user_id) VALUES (t_id, f_id);
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_all_friends`(IN `id` INT)
+    NO SQL
+SELECT tf.user_id AS user_id FROM timecapsule_friends where timecapsule_friends.timecap_id = id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_create_sa`(IN `u_id` INT(10), IN `cap_date` DATETIME, IN `uncap_date` DATETIME, IN `filename` VARCHAR(200), IN `w` INT, IN `h` INT, IN `c` VARCHAR(140))
     NO SQL
@@ -371,7 +375,7 @@ CREATE TABLE `user_sessions` (
   `secret` char(36) NOT NULL,
   `device_token` char(64) DEFAULT NULL,
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -453,7 +457,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=139;
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=98;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=99;
 --
 -- Constraints for dumped tables
 --
