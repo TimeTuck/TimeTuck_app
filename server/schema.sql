@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 21, 2015 at 02:11 AM
+-- Generation Time: Apr 21, 2015 at 02:41 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -169,7 +169,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_all_friends`(IN `id` INT)
     NO SQL
-SELECT tf.user_id AS user_id FROM timecapsule_friends where timecapsule_friends.timecap_id = id$$
+SELECT user_id AS user_id FROM timecapsule_friends where timecap_id = id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `timecapsule_create_sa`(IN `u_id` INT(10), IN `cap_date` DATETIME, IN `uncap_date` DATETIME, IN `filename` VARCHAR(200), IN `w` INT, IN `h` INT, IN `c` VARCHAR(140))
     NO SQL
@@ -287,7 +287,7 @@ CREATE TABLE `notifications` (
 `notification_id` int(100) unsigned NOT NULL,
   `type` varchar(200) NOT NULL,
   `message` varchar(300) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -301,7 +301,7 @@ CREATE TABLE `notification_users` (
   `notification_id` int(100) unsigned NOT NULL,
   `was_read` tinyint(1) NOT NULL DEFAULT '0',
   `date` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -317,7 +317,7 @@ CREATE TABLE `timecapsule` (
   `type` varchar(20) NOT NULL,
   `comment` varchar(140) NOT NULL,
   `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -375,7 +375,7 @@ CREATE TABLE `user_sessions` (
   `secret` char(36) NOT NULL,
   `device_token` char(64) DEFAULT NULL,
   `updated` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -437,17 +437,17 @@ ALTER TABLE `user_sessions`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-MODIFY `notification_id` int(100) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
+MODIFY `notification_id` int(100) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `notification_users`
 --
 ALTER TABLE `notification_users`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT for table `timecapsule`
 --
 ALTER TABLE `timecapsule`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -457,7 +457,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=139;
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=99;
+MODIFY `session_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=101;
 --
 -- Constraints for dumped tables
 --
