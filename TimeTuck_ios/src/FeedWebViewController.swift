@@ -155,7 +155,7 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        UIView.animateWithDuration(0.4, animations: {self.cover!.alpha = 0}, completion: {finished in self.cover!.removeFromSuperview()});
+        UIView.animateWithDuration(0.4, animations: {self.cover!.alpha = 0}, completion: {finished in self.cover!.removeFromSuperview()});        
         refrehscontrol.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         webView.scrollView.addSubview(refrehscontrol)
         

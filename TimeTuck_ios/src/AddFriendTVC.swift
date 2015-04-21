@@ -11,6 +11,7 @@ import UIKit
 class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataSource {
     var appManager: TTAppManager?
     var capsule : TTTuck!
+    var greenColor = UIColor(red: 0.592, green: 0.831, blue: 0.38, alpha: 1);
     
     var friends: [[String: AnyObject]]?
     
@@ -67,6 +68,13 @@ class AddFriendTVC: UITableViewController, UITableViewDelegate, UITableViewDataS
     
         return cell!;
     }
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        selectedCell.contentView.backgroundColor = greenColor
+    }
+    
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50;
