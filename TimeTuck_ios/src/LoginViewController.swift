@@ -130,7 +130,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return false;
     }
     
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return UIInterfaceOrientation.Portrait;
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue);
     }
 }
