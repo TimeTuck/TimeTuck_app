@@ -149,7 +149,7 @@ class TTAppManager {
     
     func updateInnerBadge() {
         NSOperationQueue.mainQueue().addOperationWithBlock() {
-            if UIApplication.sharedApplication().applicationIconBadgeNumber == 0 {
+            if UIApplication.sharedApplication().applicationIconBadgeNumber == 0 || UIApplication.sharedApplication().applicationIconBadgeNumber.description == "0" {
                 self.mainTabNav?.notifications?.tabBarItem.badgeValue = nil;
             } else {
                 self.mainTabNav?.notifications?.tabBarItem.badgeValue = UIApplication.sharedApplication().applicationIconBadgeNumber.description;

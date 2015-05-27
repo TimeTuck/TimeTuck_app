@@ -20,6 +20,7 @@ class DViewController: UIViewController, UITextFieldDelegate {
         super.init(nibName: "DViewController", bundle: NSBundle.mainBundle());
         self.appManager = appManager
         self.capsule = tuck
+        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -33,6 +34,7 @@ class DViewController: UIViewController, UITextFieldDelegate {
         var tap = UITapGestureRecognizer(target: self, action: "dismissKeyboard");
         view.addGestureRecognizer(tap);
         comment.delegate = self;
+        comment.autocapitalizationType = UITextAutocapitalizationType.Sentences
         datePicker.backgroundColor = UIColor.whiteColor()
         let currentDate = NSDate()
         datePicker.minimumDate = currentDate

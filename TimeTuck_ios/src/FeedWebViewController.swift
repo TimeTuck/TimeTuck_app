@@ -35,7 +35,7 @@ class FeedWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             }
         }
         
-        title = "Feed";
+        title = "feed";
         web = UIWebView();
         web!.backgroundColor = greenColor;
         web!.delegate = self;

@@ -40,6 +40,8 @@ class FriendsTableViewController: UITableViewController {
         var touch1 = UIPanGestureRecognizer(target: self, action: "touched:");
         self.view.addGestureRecognizer(touch);
         self.view.addGestureRecognizer(touch1);
+        
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -52,7 +54,7 @@ class FriendsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func touched(gestureRecognizer: UIGestureRecognizer) {
+   func touched(gestureRecognizer: UIGestureRecognizer) {
         if (!touching) {
             touching = true;
             appManager!.removeBadge("friend_all");
@@ -118,6 +120,33 @@ class FriendsTableViewController: UITableViewController {
             return "friends";
         }
     }
+    
+   // Unfinished implementation of delete friends
+   /*
+    
+    override func tableView(tableView: UITableView,
+        commitEditingStyle editingStyle: UITableViewCellEditingStyle,
+        forRowAtIndexPath indexPath: NSIndexPath) {
+            switch editingStyle {
+            case .Delete:
+                // remove the deleted item from the model
+                //self.items.removeAtIndex(indexPath.row)
+                // remove the deleted item from the `UITableView`
+                //self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            default:
+                return
+            }
+    }
+    
+    
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    
+    */
+
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50;

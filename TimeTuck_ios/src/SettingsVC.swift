@@ -58,6 +58,12 @@ class SettingsVC: UIViewController {
             }
         }
     }
+    
+    @IBAction func changePass(sender: UIButton) {
+        
+        let pass = ChangePassVC(appManager!)
+        presentViewController(pass, animated: true, completion: nil)
+    }
 }
 
                  

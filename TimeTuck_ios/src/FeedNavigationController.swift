@@ -15,7 +15,7 @@ class FeedNavigationController: StandardNavigationController {
     init(_ appManager: TTAppManager) {
         self.appManager = appManager;
         super.init(nibName: nil, bundle: nil);
-        title = "Feed";
+        title = "feed";
         webController = FeedWebViewController(self.appManager!);
         setViewControllers([webController!], animated: false);
     }

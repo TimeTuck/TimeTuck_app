@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Cam-Light.otf">
-            <string>Campton-Light</string>
             <string>Campton-Light</string>
             <string>Campton-Light</string>
             <string>Campton-Light</string>
@@ -49,7 +48,7 @@
                         <constraint firstAttribute="height" constant="70" id="EJ4-5j-dTb"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="15"/>
-                    <state key="normal" title="signup">
+                    <state key="normal" title="sign up">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" red="1" green="0.57230681180953979" blue="0.57230681180953979" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
@@ -62,46 +61,52 @@
                         <action selector="signup:" destination="-1" eventType="touchUpInside" id="6ir-Ah-6Mg"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timetuck" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MM-D1-whp">
-                    <rect key="frame" x="172" y="709" width="70" height="20"/>
-                    <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="16"/>
-                    <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="get started..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUK-LO-JmO">
                     <rect key="frame" x="136" y="70" width="142" height="29"/>
                     <fontDescription key="fontDescription" name="Campton-Light" family="Campton" pointSize="24"/>
                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="oGY-t1-pGp">
+                    <rect key="frame" x="132" y="626" width="150" height="85"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="85" id="DfN-4m-1SI"/>
+                        <constraint firstAttribute="width" constant="150" id="IyX-z7-zTD"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.59215686270000001" green="0.83137254900000002" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="zpI-G6-Hhj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="0Cn-RB-Slh"/>
                 <constraint firstAttribute="trailing" secondItem="hkr-9c-lmF" secondAttribute="trailing" constant="10" id="4hp-5p-NWZ"/>
                 <constraint firstItem="zpI-G6-Hhj" firstAttribute="top" secondItem="hkr-9c-lmF" secondAttribute="bottom" constant="10" id="6ZE-Oe-RhC"/>
+                <constraint firstAttribute="centerY" secondItem="oGY-t1-pGp" secondAttribute="centerY" id="7Zo-hd-Xg3"/>
                 <constraint firstAttribute="centerX" secondItem="hkr-9c-lmF" secondAttribute="centerX" id="7nk-jc-nEy"/>
                 <constraint firstAttribute="trailing" secondItem="zpI-G6-Hhj" secondAttribute="trailing" constant="10" id="EB2-IV-D4k"/>
+                <constraint firstAttribute="bottom" secondItem="oGY-t1-pGp" secondAttribute="bottom" constant="25" id="FCj-MZ-FSz"/>
                 <constraint firstAttribute="centerX" secondItem="IUK-LO-JmO" secondAttribute="centerX" id="Mgx-Zn-W8u"/>
-                <constraint firstItem="9MM-D1-whp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="VtG-Hg-Kxl"/>
-                <constraint firstAttribute="bottom" secondItem="9MM-D1-whp" secondAttribute="bottom" constant="7" id="fgZ-Xu-CPJ"/>
+                <constraint firstAttribute="trailing" secondItem="oGY-t1-pGp" secondAttribute="trailing" constant="98" id="a8S-L3-Mz4"/>
+                <constraint firstItem="oGY-t1-pGp" firstAttribute="centerX" secondItem="zpI-G6-Hhj" secondAttribute="centerX" id="c8l-HI-dLX"/>
+                <constraint firstItem="oGY-t1-pGp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="98" id="ctR-vR-6of"/>
                 <constraint firstItem="hkr-9c-lmF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="gQT-ks-Nzh"/>
-                <constraint firstAttribute="bottom" secondItem="9MM-D1-whp" secondAttribute="bottom" constant="7" id="h0I-2A-cla"/>
                 <constraint firstAttribute="centerX" secondItem="zpI-G6-Hhj" secondAttribute="centerX" id="m8K-B6-fsw"/>
                 <constraint firstItem="hkr-9c-lmF" firstAttribute="top" secondItem="IUK-LO-JmO" secondAttribute="bottom" constant="40" id="nSg-a3-aoX"/>
                 <constraint firstItem="IUK-LO-JmO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="tJx-78-owx"/>
-                <constraint firstAttribute="centerX" secondItem="9MM-D1-whp" secondAttribute="centerX" id="tob-CP-92r"/>
                 <constraint firstItem="hkr-9c-lmF" firstAttribute="top" secondItem="IUK-LO-JmO" secondAttribute="bottom" constant="40" id="vUo-eR-q4l"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="nSg-a3-aoX"/>
-                    <exclude reference="VtG-Hg-Kxl"/>
-                    <exclude reference="fgZ-Xu-CPJ"/>
+                    <exclude reference="7Zo-hd-Xg3"/>
+                    <exclude reference="a8S-L3-Mz4"/>
+                    <exclude reference="ctR-vR-6of"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="276" y="259"/>
         </view>
     </objects>
+    <resources>
+        <image name="splash.png" width="687" height="397"/>
+    </resources>
 </document>
